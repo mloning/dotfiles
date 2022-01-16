@@ -1,4 +1,4 @@
-# My dot files
+# My dotfiles
 
 This repository contains some of my common configuration files (dotfiles). 
 

@@ -1,0 +1,107 @@
+{
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    },
+    "gitlens.statusBar.enabled": false,
+    "gitlens.codeLens.enabled": false,
+    "python.languageServer": "Pylance",
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": true
+    },
+    "jupyter.sendSelectionToInteractiveWindow": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "jupyter.askForKernelRestart": false,
+    "liveshare.authenticationProvider": "Microsoft",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "jupyter.addGotoCodeLenses": false,
+    "jupyter.enableCellCodeLens": false,
+    "todo-tree.tree.showScanModeButton": false,
+    "markdownlint.run": "onSave",
+    "grammarly.autoActivate": false,
+    "grammarly.domain": "technical",
+    "grammarly.hideUnavailablePremiumAlerts": true,
+    "redhat.telemetry.enabled": false,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "grammarly.debug": true,
+    "terminal.integrated.defaultProfile.linux": "zsh-ohmy",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        },
+        "zsh-ohmy": {
+            "path": "zsh"
+        }
+    },
+    "terminal.integrated.inheritEnv": false,
+    "extensions.autoUpdate": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "vim.easymotion": true,
+    "vim.leader": "<space>",
+    "vim.foldfix": true,
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "u"
+            ],
+            "commands": [
+                "undo",
+            ]
+        },
+        {
+            "before": [
+                "<C-r>"
+            ],
+            "commands": [
+                "redo",
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "r",
+                "n"
+            ],
+            "commands": [
+                "editor.action.rename"
+            ]
+        },
+    ],
+    "json.schemas": [],
+    "aws.telemetry": false,
+    "workbench.colorTheme": "Gruvbox Light Hard",
+    "telemetry.telemetryLevel": "off"
+}

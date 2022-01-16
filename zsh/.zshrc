@@ -99,6 +99,7 @@ ZSH_THEME="robbyrussell"
 plugins=(
 	git
 	z
+	fzf
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 )

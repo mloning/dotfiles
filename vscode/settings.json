@@ -109,4 +109,5 @@
     "editor.minimap.showSlider": "always",
     "markdownlint.run": "onSave",
     "workbench.iconTheme": "vs-seti",
+    "terminal.integrated.inheritEnv": true,
 }

@@ -110,4 +110,7 @@
     "markdownlint.run": "onSave",
     "workbench.iconTheme": "vs-seti",
     "terminal.integrated.inheritEnv": true,
+    "search.exclude": {
+        "**/build/lib": true
+    },
 }

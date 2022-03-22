@@ -34,6 +34,8 @@
     "vim.useSystemClipboard": true,
     "vim.hlsearch": true,
     "vim.leader": "<space>",
+    "vim.vimrc.enable": true,
+    "vim.vimrc.path": "Y:/home/mloning/.vimrc",
     "vim.visualModeKeyBindingsNonRecursive": [
         {
             "before": [
@@ -70,7 +72,7 @@
                 "v",
                 "y"
             ]
-        }
+        },
     ],
     "workbench.editor.enablePreview": false, // open files in preview mode
     "editor.minimap.showSlider": "always",
@@ -80,4 +82,8 @@
     "search.exclude": {
         "**/build/lib": true
     },
+    "markdown.extension.orderedList.marker": "one",
+    "markdown.extension.preview.autoShowPreviewToSide": true,
+    "markdown.extension.tableFormatter.normalizeIndentation": true,
+    "markdown.extension.toc.unorderedList.marker": "*",
 }

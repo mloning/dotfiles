@@ -1,11 +1,8 @@
 {
     "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
-    "python.showStartPage": false,
-    "jupyter.alwaysTrustNotebooks": true,
     "python.formatting.provider": "black",
     "editor.formatOnSave": true,
     "editor.formatOnPaste": false,
@@ -76,7 +73,6 @@
     ],
     "workbench.editor.enablePreview": false, // open files in preview mode
     "editor.minimap.showSlider": "always",
-    "markdownlint.run": "onSave",
     "workbench.iconTheme": "vs-seti",
     "terminal.integrated.inheritEnv": true,
     "search.exclude": {

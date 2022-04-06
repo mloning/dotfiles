@@ -82,4 +82,7 @@
     "markdown.extension.preview.autoShowPreviewToSide": true,
     "markdown.extension.tableFormatter.normalizeIndentation": true,
     "markdown.extension.toc.unorderedList.marker": "*",
+    "[markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    },
 }

@@ -1,79 +1,107 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": [
+    "actions": 
+    [
         {
-            "command": {
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": 
+            {
                 "action": "switchToTab",
                 "index": 0
             },
             "keys": "ctrl+1"
         },
         {
-            "command": {
-                "action": "switchToTab",
-                "index": 1
-            },
-            "keys": "ctrl+2"
-        },
-        {
-            "command": {
-                "action": "switchToTab",
-                "index": 2
-            },
-            "keys": "ctrl+3"
-        },
-        {
-            "command": {
-                "action": "switchToTab",
-                "index": 6
-            },
-            "keys": "ctrl+7"
-        },
-        {
-            "command": {
-                "action": "switchToTab",
-                "index": 3
-            },
-            "keys": "ctrl+4"
-        },
-        {
-            "command": {
-                "action": "switchToTab",
-                "index": 7
-            },
-            "keys": "ctrl+8"
-        },
-        {
-            "command": {
+            "command": 
+            {
                 "action": "switchToTab",
                 "index": 4
             },
             "keys": "ctrl+5"
         },
         {
-            "command": {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 1
+            },
+            "keys": "ctrl+2"
+        },
+        {
+            "command": 
+            {
                 "action": "switchToTab",
                 "index": 5
             },
             "keys": "ctrl+6"
         },
         {
-            "command": {
+            "command": 
+            {
                 "action": "switchToTab",
-                "index": 8
+                "index": 2
             },
-            "keys": "ctrl+9"
+            "keys": "ctrl+3"
         },
         {
-            "command": {
+            "command": 
+            {
+                "action": "closeTab"
+            },
+            "keys": "ctrl+w"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 6
+            },
+            "keys": "ctrl+7"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 3
+            },
+            "keys": "ctrl+4"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 7
+            },
+            "keys": "ctrl+8"
+        },
+        {
+            "command": 
+            {
                 "action": "copy",
                 "singleLine": false
             },
             "keys": "ctrl+c"
         },
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 8
+            },
+            "keys": "ctrl+9"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
         },
         {
             "command": "paste",
@@ -84,40 +112,31 @@
             "keys": "ctrl+t"
         },
         {
-            "command": {
-                "action": "closeTab"
-            },
-            "keys": "ctrl+w"
-        },
-        {
-            "command": {
+            "command": 
+            {
                 "action": "newWindow"
             },
             "keys": "ctrl+n"
-        },
-        {
-            "command": {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+shift+d"
         }
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{3e91e5dc-8180-4479-add4-1c32c31e6b53}",
-    "profiles": {
-        "defaults": {},
-        "list": [
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "colorScheme": "Campbell",
+            "cursorShape": "filledBox"
+        },
+        "list": 
+        [
             {
-                "commandline": "powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
-                "commandline": "cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt"
@@ -125,6 +144,7 @@
             {
                 "colorScheme": "Campbell",
                 "commandline": "wsl.exe -d Ubuntu-20.04",
+                "cursorShape": "bar",
                 "guid": "{3e91e5dc-8180-4479-add4-1c32c31e6b53}",
                 "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
                 "name": "Ubuntu-20.04",
@@ -139,7 +159,8 @@
             }
         ]
     },
-    "schemes": [
+    "schemes": 
+    [
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",

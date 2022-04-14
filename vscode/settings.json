@@ -79,10 +79,11 @@
         "**/build/lib": true
     },
     "markdown.extension.orderedList.marker": "one",
-    "markdown.extension.preview.autoShowPreviewToSide": true,
+    "markdown.extension.preview.autoShowPreviewToSide": false,
     "markdown.extension.tableFormatter.normalizeIndentation": true,
     "markdown.extension.toc.unorderedList.marker": "*",
     "[markdown]": {
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
     },
+    "azureFunctions.showProjectWarning": false,
 }

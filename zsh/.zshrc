@@ -1,44 +1,22 @@
-# conda initialize
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Applications/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Applications/anaconda3/etc/profile.d/conda.sh" ]; then
-# . "/Applications/anaconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
-    else
-# export PATH="/Applications/anaconda3/bin:$PATH"  # commented out by conda initialize
-    fi
-fi
-unset __conda_setup
-
-
-# Add Julia to PATH
-export PATH="/Applications/Julia-1.4.app/Contents/Resources/julia/bin/:$PATH"
-
-# Add common directories to CDPATH
-export CDPATH=.:$HOME/Documents/Research/software/:$HOME/Documents/Research/papers/
-
-
-# Add local bin to PATH
-export PATH="/Users/mloning/.local/bin:$PATH"
-
-# oh-my-zsh config
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+export HTTP_PROXY=http://proxy-eu.shell.com:8080
+export HTTPS_PROXY=http://proxy-eu.shell.com:8080
+export BROWSER=wslview
+
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/mloning/.oh-my-zsh/"
+export ZSH="/home/mloning/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -56,12 +34,10 @@ ZSH_THEME="robbyrussell"
 # DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -73,6 +49,8 @@ ZSH_THEME="robbyrussell"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -92,16 +70,16 @@ ZSH_THEME="robbyrussell"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
 	z
-	fzf
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	fzf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -131,26 +109,22 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-
-# Avoid zsh automatic pattern matching for pip
-# https://github.com/ray-project/ray/issues/6696
-alias pip='noglob pip'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/mloning/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/mloning/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/mloning/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/mloning/opt/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/mloning/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/mloning/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/mloning/opt/anaconda3/bin:$PATH"
+        export PATH="/home/mloning/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform

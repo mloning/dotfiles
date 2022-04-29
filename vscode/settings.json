@@ -86,4 +86,5 @@
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
     },
     "azureFunctions.showProjectWarning": false,
+    "shellcheck.useWorkspaceRootAsCwd": true,
 }

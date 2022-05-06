@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 export HTTP_PROXY=http://proxy-eu.shell.com:8080
 export HTTPS_PROXY=http://proxy-eu.shell.com:8080
 export BROWSER=wslview
@@ -125,6 +124,9 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
+# terraform autocompletion
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
+
+# kubectl autocompletion
+source <(kubectl completion zsh)

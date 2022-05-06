@@ -11,8 +11,9 @@
         "default": "right",
         "jupyter-notebook": "left"
     },
-    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.enabled": false,
     "gitlens.hovers.currentLine.over": "line",
+    "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
     "explorer.confirmDragAndDrop": false,
     "jupyter.askForKernelRestart": false,

@@ -14,8 +14,9 @@
         "default": "right",
         "jupyter-notebook": "left"
     },
-    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.enabled": false,
     "gitlens.hovers.currentLine.over": "line",
+    "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
     "explorer.confirmDragAndDrop": false,
     "jupyter.askForKernelRestart": false,
@@ -34,6 +35,8 @@
     "vim.useSystemClipboard": true,
     "vim.hlsearch": true,
     "vim.leader": "<space>",
+    "vim.vimrc.enable": true,
+    "vim.vimrc.path": "Y:/home/mloning/.vimrc",
     "vim.visualModeKeyBindingsNonRecursive": [
         {
             "before": [
@@ -70,8 +73,10 @@
                 "v",
                 "y"
             ]
-        }
+        },
     ],
+    "workbench.editor.enablePreview": false, // open files in preview mode
+    "editor.minimap.showSlider": "always",
     "vim.statusBarColorControl": true,
     "vim.statusBarColors.normal": [
         "#8FBCBB",
@@ -106,11 +111,19 @@
         "statusBar.foreground": "#000",
         "statusBar.debuggingForeground": "#000"
     },
-    "editor.minimap.showSlider": "always",
     "markdownlint.run": "onSave",
     "workbench.iconTheme": "vs-seti",
     "terminal.integrated.inheritEnv": true,
     "search.exclude": {
         "**/build/lib": true
     },
+    "markdown.extension.orderedList.marker": "one",
+    "markdown.extension.preview.autoShowPreviewToSide": false,
+    "markdown.extension.tableFormatter.normalizeIndentation": true,
+    "markdown.extension.toc.unorderedList.marker": "*",
+    "[markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    },
+    "azureFunctions.showProjectWarning": false,
+    "shellcheck.useWorkspaceRootAsCwd": true
 }

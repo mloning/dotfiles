@@ -1,0 +1,16 @@
+[user]
+	name = mloning
+	email = markus.loning@gmail.com
+[color]
+	ui = auto
+[core]
+	autocrlf = true
+	editor = vim
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false

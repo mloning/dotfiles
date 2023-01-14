@@ -20,5 +20,3 @@ simulate: ## Simulate symbolic link creation
 delete: ## Delete symbolic links
 	stow --verbose --target=${TARGET_DIR} --delete */
 
-
-

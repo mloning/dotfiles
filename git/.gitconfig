@@ -5,6 +5,7 @@
 	ui = auto
 [core]
 	autocrlf = true
+    editor = nvim
 [push]
 	default = simple
 [credential]

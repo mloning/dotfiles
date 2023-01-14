@@ -1,24 +1,9 @@
-# conda initialize
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Applications/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Applications/anaconda3/etc/profile.d/conda.sh" ]; then
-# . "/Applications/anaconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
-    else
-# export PATH="/Applications/anaconda3/bin:$PATH"  # commented out by conda initialize
-    fi
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-unset __conda_setup
-
-
-# Add Julia to PATH
-export PATH="/Applications/Julia-1.4.app/Contents/Resources/julia/bin/:$PATH"
-
-# Add common directories to CDPATH
-export CDPATH=.:$HOME/Documents/Research/software/:$HOME/Documents/Research/papers/
-
 
 # Add local bin to PATH
 export PATH="/Users/mloning/.local/bin:$PATH"
@@ -29,12 +14,11 @@ export PATH="/Users/mloning/.local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/mloning/.oh-my-zsh/"
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -108,34 +92,31 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# Set neovim as default editor
+export EDITOR=nvim
+export VISUAL=nvim
+alias vim='nvim'
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
+alias vscode='code'
+alias ls='exa -lha'
+# alias ls='ls -lha'
 
 # Avoid zsh automatic pattern matching for pip
 # https://github.com/ray-project/ray/issues/6696
 alias pip='noglob pip'
+
+# Enable fuzzy-search
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Enable kubectl auto-completion
+source <(kubectl completion zsh)
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -152,5 +133,3 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

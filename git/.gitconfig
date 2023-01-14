@@ -5,7 +5,6 @@
 	ui = auto
 [core]
 	autocrlf = true
-	editor = vim
 [push]
 	default = simple
 [credential]

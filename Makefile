@@ -14,9 +14,6 @@ help:
 create: ## Create symbolic links
 	stow --verbose --target=${TARGET_DIR} --restow */
 
-simulate: ## Simulate symbolic link creation
-	stow --verbose --target=${TARGET_DIR} --restow --simulate */
-
 delete: ## Delete symbolic links
 	stow --verbose --target=${TARGET_DIR} --delete */
 

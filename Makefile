@@ -4,8 +4,8 @@
 
 .DEFAULT_GOAL := help
 
-#TARGET_DIR=${HOME}
-TARGET_DIR=${HOME}/testdir/
+TARGET_DIR=${HOME}
+#TARGET_DIR=${HOME}/testdir/
 
 help:
 	# see http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html

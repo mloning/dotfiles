@@ -23,5 +23,11 @@ make create
 
 ## Find out more
 
+### Maintaining dotfiles
+
 * http://dotfiles.github.io
 * https://alexpearce.me/2016/02/managing-dotfiles-with-stow/
+
+### Neovim
+
+* https://github.com/LunarVim/nvim-basic-ide

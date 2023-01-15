@@ -1,11 +1,10 @@
 [user]
 	name = mloning
-    email = 21020482+mloning@users.noreply.github.com
+	email = 21020482+mloning@users.noreply.github.com
 [color]
 	ui = auto
 [core]
-   	autocrlf = input
-    editor = nvim
+	autocrlf = input
 [push]
 	default = simple
 [credential]
@@ -14,3 +13,7 @@
 	defaultBranch = main
 [pull]
 	rebase = false
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true

@@ -1,9 +1,10 @@
 [user]
 	name = mloning
+    email = 21020482+mloning@users.noreply.github.com
 [color]
 	ui = auto
 [core]
-	autocrlf = input
+   	autocrlf = input
     editor = nvim
 [push]
 	default = simple

@@ -1,6 +1,6 @@
 # Makefile for easier setup
 
-.PHONY: help create simulate delete
+.PHONY: help create delete
 
 .DEFAULT_GOAL := help
 

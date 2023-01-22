@@ -109,6 +109,11 @@ alias ls='exa -lha'
 # https://github.com/ray-project/ray/issues/6696
 alias pip='noglob pip'
 
+# Enable GPG commit signing
+# See https://unix.stackexchange.com/a/608921/298933
+export GPG_TTY=$TTY
+gpgconf --launch gpg-agent
+
 # Enable fuzzy-search
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -133,6 +138,3 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# See https://unix.stackexchange.com/a/608921/298933
-export GPG_TTY=$TTY
-gpgconf --launch gpg-agent

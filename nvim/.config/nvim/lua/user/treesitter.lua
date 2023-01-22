@@ -24,7 +24,9 @@ configs.setup({
         "lua",
         "ninja",
         "hcl", -- HashiCorp Configuration Language (terraform)
-        "csharp",
+        "c_sharp",
+        "latex",
+        "comment", -- Parser for comment labels
     },
     -- ensure_installed = "all"
     ignore_install = { "phpdoc" }, -- List of parsers to ignore installing

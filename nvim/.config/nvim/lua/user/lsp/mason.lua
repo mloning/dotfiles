@@ -7,6 +7,7 @@ local servers = {
     "jsonls",
     "yamlls",
     "rust_analyzer",
+    "marksman",
 }
 
 local settings = {

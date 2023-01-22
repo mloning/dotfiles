@@ -53,16 +53,16 @@ return packer.startup(function(use)
     use({ "kyazdani42/nvim-tree.lua" })
     use({ "akinsho/bufferline.nvim" })
     use({ "moll/vim-bbye" })
-    -- use { "github/copilot.vim" }
-    -- use {
-    --   "zbirenbaum/copilot.lua",
-    --   event = { "VimEnter" },
-    --   config = function()
-    --     vim.defer_fn(function()
-    --       require "user.copilot"
-    --     end, 100)
-    --   end,
-    -- }
+    use({ "github/copilot.vim" })
+    use({
+        "zbirenbaum/copilot.lua",
+        event = { "VimEnter" },
+        config = function()
+            vim.defer_fn(function()
+                require("user.copilot")
+            end, 100)
+        end,
+    })
     use({ "mbbill/undotree" })
     use({ "nvim-lualine/lualine.nvim" })
     use({ "akinsho/toggleterm.nvim" })
@@ -73,8 +73,6 @@ return packer.startup(function(use)
     --use { "christoomey/vim-tmux-navigator" }
 
     -- Colorschemes
-    use({ "andersevenrud/nordic.nvim" })
-    use({ "rebelot/kanagawa.nvim" })
     use({ "folke/tokyonight.nvim" })
     use({ "lunarvim/darkplus.nvim" })
 

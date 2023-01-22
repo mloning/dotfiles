@@ -4,6 +4,7 @@
 
 .DEFAULT_GOAL := help
 
+VERBOSE=1
 TARGET_DIR=${HOME}
 #TARGET_DIR=${HOME}/testdir/
 
@@ -12,8 +13,8 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 create: ## Create symbolic links
-	stow --verbose --target=${TARGET_DIR} --restow */
+	stow --verbose=${VERBOSE} --target=${TARGET_DIR} --restow */
 
 delete: ## Delete symbolic links
-	stow --verbose --target=${TARGET_DIR} --delete */
+	stow --verbose=${VERBOSE} --target=${TARGET_DIR} --delete */
 

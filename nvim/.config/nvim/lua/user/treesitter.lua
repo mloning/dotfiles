@@ -11,9 +11,7 @@ end
 configs.setup({
     ensure_installed = {
         "python",
-        "elm",
         "rust",
-        "toml",
         "yaml",
         "json",
         "vim",
@@ -25,8 +23,10 @@ configs.setup({
         "dockerfile",
         "lua",
         "ninja",
-    }, -- one of "all" or a list of languages
-    -- ensure_installed = "all", -- one of "all" or a list of languages
+        "hcl", -- HashiCorp Configuration Language (terraform)
+        "csharp",
+    },
+    -- ensure_installed = "all"
     ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 

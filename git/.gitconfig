@@ -13,6 +13,7 @@
 	defaultBranch = main
 [pull]
 	rebase = false
+# Sign git commits, see https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
 [commit]
 	gpgSign = true
 [tag]

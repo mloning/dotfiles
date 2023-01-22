@@ -18,7 +18,7 @@ make create
 * [alacritty](https://alacritty.org)
 * [oh-my-zsh](https://ohmyz.sh)
 * [powerlevel10k](https://github.com/romkatv/powerlevel10k)
-* [tmux](https://github.com/tmux/tmux/wiki)
+* [tmux](https://github.com/tmux/tmux)
 * [neovim](https://neovim.io)
 
 ## Find out more
@@ -30,4 +30,5 @@ make create
 
 #### Neovim
 
+* https://github.com/SimonCW/dotfiles
 * https://github.com/LunarVim/nvim-basic-ide

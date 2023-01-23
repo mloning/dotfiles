@@ -1,0 +1,4 @@
+[submodule "dotfiles-personal"]
+	path = dotfiles-personal
+	url = git@github.com:mloning/dotfiles-personal.git
+	branch = main

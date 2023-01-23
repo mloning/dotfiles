@@ -1,0 +1,20 @@
+[user]
+	name = mloning
+	email = 21020482+mloning@users.noreply.github.com
+[color]
+	ui = auto
+[core]
+	autocrlf = input
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
+# Sign git commits, see https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true

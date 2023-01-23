@@ -18,10 +18,8 @@
     "explorer.confirmDragAndDrop": false,
     "jupyter.askForKernelRestart": false,
     "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 100,
     "autoDocstring.docstringFormat": "numpy",
     "workbench.startupEditor": "none",
-    "git.terminalAuthentication": false,
     "jupyter.sendSelectionToInteractiveWindow": true,
     "redhat.telemetry.enabled": false,
     "telemetry.telemetryLevel": "off",
@@ -88,4 +86,17 @@
     },
     "azureFunctions.showProjectWarning": false,
     "shellcheck.useWorkspaceRootAsCwd": true,
+    "[yaml]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 1,
+        "editor.autoIndent": "keep",
+        "gitlens.codeLens.scopes": [
+            "document"
+        ],
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        }
+    },
 }

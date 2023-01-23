@@ -140,3 +140,6 @@ complete -o nospace -C /usr/bin/terraform terraform
 
 # kubectl autocompletion
 source <(kubectl completion zsh)
+
+# add sqlcmd to path
+export PATH="/opt/mssql-tools/bin:$PATH"

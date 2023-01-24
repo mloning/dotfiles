@@ -100,7 +100,7 @@ alias vim='nvim'
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 alias vscode='code'
-alias ls='exa -lha'
+alias ls='exa -la'
 # alias ls='ls -lha'
 
 # Avoid zsh automatic pattern matching for pip

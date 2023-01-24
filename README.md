@@ -32,3 +32,7 @@ make create
 
 * https://github.com/SimonCW/dotfiles
 * https://github.com/LunarVim/nvim-basic-ide
+
+#### Signing commits
+
+* https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html

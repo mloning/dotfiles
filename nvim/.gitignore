@@ -39,6 +39,9 @@ luac.out
 *.x86_64
 *.hex
 
+# History files
+*.netrwhist
+
 # Compiled packer file
 packer_compiled.lua
 

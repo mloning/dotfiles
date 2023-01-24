@@ -4,8 +4,19 @@
     "actions": 
     [
         {
+            "command": 
+            {
+                "action": "newWindow"
+            },
+            "keys": "ctrl+n"
+        },
+        {
             "command": "find",
             "keys": "ctrl+shift+f"
+        },
+        {
+            "command": "duplicateTab",
+            "keys": "ctrl+t"
         },
         {
             "command": 
@@ -35,6 +46,14 @@
             "command": 
             {
                 "action": "switchToTab",
+                "index": 2
+            },
+            "keys": "ctrl+3"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
                 "index": 5
             },
             "keys": "ctrl+6"
@@ -43,9 +62,9 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 2
+                "index": 8
             },
-            "keys": "ctrl+3"
+            "keys": "ctrl+9"
         },
         {
             "command": 
@@ -79,6 +98,10 @@
             "keys": "ctrl+8"
         },
         {
+            "command": "paste",
+            "keys": "ctrl+v"
+        },
+        {
             "command": 
             {
                 "action": "copy",
@@ -89,34 +112,11 @@
         {
             "command": 
             {
-                "action": "switchToTab",
-                "index": 8
-            },
-            "keys": "ctrl+9"
-        },
-        {
-            "command": 
-            {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
-        },
-        {
-            "command": "paste",
-            "keys": "ctrl+v"
-        },
-        {
-            "command": "duplicateTab",
-            "keys": "ctrl+t"
-        },
-        {
-            "command": 
-            {
-                "action": "newWindow"
-            },
-            "keys": "ctrl+n"
         }
     ],
     "copyFormatting": "none",
@@ -127,7 +127,11 @@
         "defaults": 
         {
             "colorScheme": "Campbell",
-            "cursorShape": "filledBox"
+            "cursorShape": "filledBox",
+            "font": 
+            {
+                "face": "MesloLGS NF"
+            }
         },
         "list": 
         [

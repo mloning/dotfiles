@@ -2,4 +2,3 @@
 .gnupg/*
 !.gnupg/gpg.conf
 !.gnupg/gpg-agent.conf
-!.gnupg/test.conf

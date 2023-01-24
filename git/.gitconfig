@@ -1,20 +1,26 @@
 [user]
-	name = mloning
-	email = 21020482+mloning@users.noreply.github.com
+	name = mloning-shell
+	email = 82043799+mloning-shell@users.noreply.github.com
+	signingkey = A79662EC
 [color]
 	ui = auto
 [core]
 	autocrlf = input
 [push]
-	default = simple
+  default = simple
 [credential]
-	helper = osxkeychain
+  helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager-core.exe
+[credential "https://dev.azure.com"]
+  useHttpPath = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [pull]
-	rebase = false
+  rebase = false
 # Sign git commits, see https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
 [commit]
-	gpgSign = true
+  gpgSign = true
 [tag]
-	gpgSign = true
+  gpgSign = true
+[http]
+  sslVerify = true
+  sslCAInfo = /etc/ssl/certs/ca-certificates.crt

@@ -18,3 +18,12 @@
 	gpgSign = true
 [tag]
 	gpgSign = true
+[alias]
+	s = status
+	a = add
+	c = commit
+	d = diff
+  r = restore
+	co = checkout
+	br = branch
+  rb = rebase

@@ -16,6 +16,10 @@ vim.g.mapleader = " "
 --   command_mode = "c",
 
 -- Normal --
+-- Better vertical movements
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")
+
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)

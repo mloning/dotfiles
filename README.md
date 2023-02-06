@@ -32,6 +32,7 @@ make create
 
 * https://github.com/SimonCW/dotfiles
 * https://github.com/LunarVim/nvim-basic-ide
+* https://github.com/ThePrimeagen/.dotfiles
 
 #### Signing commits
 

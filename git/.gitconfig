@@ -24,3 +24,12 @@
 [http]
   sslVerify = true
   sslCAInfo = /etc/ssl/certs/ca-certificates.crt
+[alias]
+	s = status
+	a = add
+	c = commit
+	d = diff
+  r = restore
+	co = checkout
+	br = branch
+  rb = rebase

@@ -6,18 +6,18 @@
 [core]
 	autocrlf = input
 [push]
-	default = simple
+  default = simple
 [credential]
 	helper = osxkeychain
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [pull]
-	rebase = false
+  rebase = false
 # Sign git commits, see https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
 [commit]
-	gpgSign = true
+  gpgSign = true
 [tag]
-	gpgSign = true
+  gpgSign = true
 [alias]
 	s = status
 	a = add

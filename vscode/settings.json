@@ -1,11 +1,8 @@
 {
     "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
-    "python.showStartPage": false,
-    "jupyter.alwaysTrustNotebooks": true,
     "python.formatting.provider": "black",
     "editor.formatOnSave": true,
     "editor.formatOnPaste": false,
@@ -21,10 +18,8 @@
     "explorer.confirmDragAndDrop": false,
     "jupyter.askForKernelRestart": false,
     "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 100,
     "autoDocstring.docstringFormat": "numpy",
     "workbench.startupEditor": "none",
-    "git.terminalAuthentication": false,
     "jupyter.sendSelectionToInteractiveWindow": true,
     "redhat.telemetry.enabled": false,
     "telemetry.telemetryLevel": "off",
@@ -77,41 +72,6 @@
     ],
     "workbench.editor.enablePreview": false, // open files in preview mode
     "editor.minimap.showSlider": "always",
-    "vim.statusBarColorControl": true,
-    "vim.statusBarColors.normal": [
-        "#8FBCBB",
-        "#000"
-    ],
-    "vim.statusBarColors.insert": [
-        "#BF616A",
-        "#000"
-    ],
-    "vim.statusBarColors.visual": [
-        "#B48EAD",
-        "#000"
-    ],
-    "vim.statusBarColors.visualline": [
-        "#B48EAD",
-        "#000"
-    ],
-    "vim.statusBarColors.visualblock": [
-        "#A3BE8C",
-        "#000"
-    ],
-    "vim.statusBarColors.replace": "#D08770",
-    "vim.statusBarColors.commandlineinprogress": "#007ACC",
-    "vim.statusBarColors.searchinprogressmode": "#007ACC",
-    "vim.statusBarColors.easymotionmode": "#007ACC",
-    "vim.statusBarColors.easymotioninputmode": "#007ACC",
-    "vim.statusBarColors.surroundinputmode": "#007ACC",
-    "workbench.colorCustomizations": {
-        "statusBar.background": "#8FBCBB",
-        "statusBar.noFolderBackground": "#8FBCBB",
-        "statusBar.debuggingBackground": "#8FBCBB",
-        "statusBar.foreground": "#000",
-        "statusBar.debuggingForeground": "#000"
-    },
-    "markdownlint.run": "onSave",
     "workbench.iconTheme": "vs-seti",
     "terminal.integrated.inheritEnv": true,
     "search.exclude": {
@@ -125,5 +85,18 @@
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
     },
     "azureFunctions.showProjectWarning": false,
-    "shellcheck.useWorkspaceRootAsCwd": true
+    "shellcheck.useWorkspaceRootAsCwd": true,
+    "[yaml]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 1,
+        "editor.autoIndent": "keep",
+        "gitlens.codeLens.scopes": [
+            "document"
+        ],
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        }
+    },
 }

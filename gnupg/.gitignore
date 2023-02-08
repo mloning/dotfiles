@@ -1,0 +1,4 @@
+# Ignore all files except config files
+.gnupg/*
+!.gnupg/gpg.conf
+!.gnupg/gpg-agent.conf

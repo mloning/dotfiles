@@ -24,6 +24,8 @@
 	c = commit
 	d = diff
   r = restore
+  m = merge
 	co = checkout
 	br = branch
   rb = rebase
+  root = rev-parse --show-toplevel

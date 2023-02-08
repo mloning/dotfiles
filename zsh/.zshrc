@@ -14,6 +14,9 @@ export https_proxy=http://proxy-eu.shell.com:8080
 # WSL config
 export BROWSER=wslview
 
+# Include hidden files in tab completion
+setopt globdots
+
 # oh-my-zsh config
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/usr/local/bin:$PATH"
@@ -111,6 +114,7 @@ alias vim='nvim'
 alias vscode='code'
 alias ls='exa -la'
 # alias ls='ls -lha'
+alias sproj="$HOME"/.local/bin/start-tmux-projects.sh
 
 # Avoid zsh automatic pattern matching for pip
 # https://github.com/ray-project/ray/issues/6696

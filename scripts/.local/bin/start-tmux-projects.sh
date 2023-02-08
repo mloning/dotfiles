@@ -2,52 +2,73 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# Script to start tmux session for projects
+# Script to start tmux session for paths
 # adapted from https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 
-PROJECT_PATH=$HOME/documents/projects/
+# Personal project directory
+PROJECT_PATH="$HOME"/documents/projects
 
+# Check if tmux is running
+tmux_running=$(pgrep tmux)
+
+# Select project name
 if [[ $# -eq 1 ]]; then
-  selected=$1
+  name=$1
 else
-  selected=$(find "$PROJECT_PATH" -mindepth 1 -maxdepth 2 -type d | fzf)
+  path=$(find "$PROJECT_PATH" -mindepth 1 -maxdepth 2 -type d | fzf)
+  # Trim full path to path name
+  name=$(basename "$path" | tr . _)
 fi
 
 # Exit if nothing found
-if [[ -z $selected ]]; then
+if [[ -z "$name" ]]; then
   exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
-tmux_running=$(pgrep tmux)
+# Use simpler project names
+if [[ $name == "ptx-ds-Auto-fwd-curve" ]]; then
+  name="pcb"
+fi
+if [[ $name == "pcb" ]]; then
+  path="$PROJECT_PATH"/fwd-curve-modeling/ptx-ds-Auto-fwd-curve
+fi
 
+# Function to create tmux windows for given project name
 function create_windows {
-  if [[ $selected_name == "pcb" ]]; then
+  if [[ $name == "pcb" ]]; then
     conda_env="pcb"
+
     window=0
-    tmux rename-window -t $selected_name:$window "vim"
-    tmux send-keys -t $selected_name:$window "conda activate $conda_env" C-m
-    tmux send-keys -t $selected_name:$window "vim" C-m
+    # window 0 is always created with the session
+    tmux rename-window -t $window "cmd" 
+    tmux send-keys -t $window "cd $path" C-m  
+    tmux send-keys -t $window "conda activate $conda_env" C-m C-l
+
     window=1
-    tmux new-window -t $selected_name:$window -n "cmd" -c $selected
-    tmux send-keys -t $selected_name:$window "conda activate $conda_env" C-m
+    tmux new-window -d -t $window -n "vim" 
+    tmux send-keys -t $window "cd $path" C-m
+    tmux send-keys -t $window "conda activate $conda_env" C-m C-l
+    tmux send-keys -t $window "vim" C-m
+
+    window=2
+    tmux new-window -d -t $window -n "jupyter" 
+    tmux send-keys -t $window "cd $path" C-m
+    tmux send-keys -t $window "conda activate $conda_env" C-m C-l
+    tmux send-keys -t $window "jupyter lab --no-browser" C-m
+
   else
     window=0
-    tmux send-keys -t $selected_name:$window "vim" C-m
+    # window 0 is always created with the session
+    tmux rename-window -t $window "cmd" 
+
     window=1
-    tmux new-window -t $selected_name:$window -c $selected
+    tmux new-window -d -t $window -n "vim" 
+    tmux send-keys -t $window "vim" C-m C-l
   fi
 }
 
 # If not in tmux and no session running, start
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-  tmux new-session -ds $selected_name -c $selected
-  create_windows
-  tmux attach-session -t $selected_name:0
-fi
+tmux new-session -d -s $name 
+create_windows
+tmux attach-session -t $name
 
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-  tmux new-session -ds $selected_name -c $selected
-  create_windows
-  tmux switch-client -t $selected_name:0
-fi

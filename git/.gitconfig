@@ -1,31 +1,37 @@
 [user]
-	name = mloning
-	email = 21020482+mloning@users.noreply.github.com
+  name = mloning
+  email = 21020482+mloning@users.noreply.github.com
 [color]
-	ui = auto
+  ui = auto
 [core]
-	autocrlf = input
+  autocrlf = input
 [push]
   default = simple
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [init]
   defaultBranch = main
 [pull]
   rebase = false
-# Sign git commits, see https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
 [commit]
+  # git signatures, see https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
   gpgSign = true
 [tag]
   gpgSign = true
+  # sort tags by semantic versioning in reverse order
+  sort = -version:refname
 [alias]
-	s = status
-	a = add
-	c = commit
-	d = diff
+  s = status
+  a = add
+  c = commit
+  d = diff
   r = restore
   m = merge
-	co = checkout
-	br = branch
+  co = checkout
+  br = branch
   rb = rebase
+  ps = push
+  psu = !git push --set-upstream origin $(git branch --show-current)
+  pl = pull
+  sync = pull origin main:main --no-edit
   root = rev-parse --show-toplevel

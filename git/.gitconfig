@@ -21,6 +21,8 @@
   gpgSign = true
 [tag]
   gpgSign = true
+  # sort tags by semantic versioning in reverse order
+	sort = -version:refname  
 [http]
   sslVerify = true
   sslCAInfo = /etc/ssl/certs/ca-certificates.crt
@@ -30,6 +32,11 @@
 	c = commit
 	d = diff
   r = restore
+  m = merge
+  ps = push
+  psu = !git push --set-upstream origin $(git branch --show-current)
+  pl = pull
 	co = checkout
 	br = branch
   rb = rebase
+  sync = pull origin main:main --no-edit

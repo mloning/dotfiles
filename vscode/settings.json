@@ -68,7 +68,7 @@
                 "v",
                 "y"
             ]
-        },
+        }
     ],
     "workbench.editor.enablePreview": false, // open files in preview mode
     "editor.minimap.showSlider": "always",
@@ -98,5 +98,5 @@
             "comments": false,
             "strings": true
         }
-    },
+    }
 }

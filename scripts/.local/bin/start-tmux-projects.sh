@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euox pipefail
+set -euo pipefail
 IFS=$'\n\t'
 
 # Script to start tmux session for paths
@@ -7,6 +7,9 @@ IFS=$'\n\t'
 
 # Personal project directory
 PROJECT_PATH="$HOME"/Documents/Software
+
+# Check if tmux is running
+tmux_running=$(pgrep tmux)
 
 # Select project name
 if [[ $# -eq 1 ]]; then
@@ -34,6 +37,7 @@ function create_windows {
   fi
 }
 
+# If not in tmux and no session running, start
 tmux new-session -d -s $name 
 create_windows
 tmux attach-session -t $name

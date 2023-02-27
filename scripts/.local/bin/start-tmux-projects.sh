@@ -40,17 +40,22 @@ function create_windows {
 
     window=0
     # window 0 is always created with the session
-    tmux rename-window -t $window "cmd" 
+    tmux rename-window -t $window "cmd1" 
     tmux send-keys -t $window "cd $path" C-m  
     tmux send-keys -t $window "conda activate $conda_env" C-m C-l
 
     window=1
+    tmux new-window -d -t $window -n "cmd2" 
+    tmux send-keys -t $window "cd $path" C-m  
+    tmux send-keys -t $window "conda activate $conda_env" C-m C-l
+
+    window=2
     tmux new-window -d -t $window -n "vim" 
     tmux send-keys -t $window "cd $path" C-m
     tmux send-keys -t $window "conda activate $conda_env" C-m C-l
     tmux send-keys -t $window "vim" C-m
 
-    window=2
+    window=3
     tmux new-window -d -t $window -n "jupyter" 
     tmux send-keys -t $window "cd $path" C-m
     tmux send-keys -t $window "conda activate $conda_env" C-m C-l

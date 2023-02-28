@@ -16,7 +16,6 @@
   defaultBranch = main
 [pull]
   rebase = false
-# Sign git commits, see https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
 [commit]
   gpgSign = true
 [tag]
@@ -39,4 +38,6 @@
 	co = checkout
 	br = branch
   rb = rebase
+  st = stash
   sync = pull origin main:main --no-edit
+  root = rev-parse --show-toplevel

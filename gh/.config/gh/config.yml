@@ -12,6 +12,7 @@ aliases:
     wp: pr view --web
     ep: pr edit
     cp: pr create
+    cdp: pr create --draft
     co: pr checkout
     op: pr checkout
     

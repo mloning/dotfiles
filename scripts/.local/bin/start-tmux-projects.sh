@@ -61,6 +61,11 @@ function create_windows {
     tmux send-keys -t $window "conda activate $conda_env" C-m C-l
     tmux send-keys -t $window "jupyter lab --no-browser" C-m
 
+    window=4
+    tmux new-window -d -t $window -n "dotfiles" 
+    tmux send-keys -t $window "cd $HOME/documents/dotfiles/" C-m
+    tmux send-keys -t $window "conda activate dotfiles" C-m 
+
   else
     window=0
     # window 0 is always created with the session

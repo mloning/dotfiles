@@ -66,6 +66,9 @@ keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
+-- Docstring generator
+keymap("n", "<leader>cd", "<cmd>lua require('neogen').generate()<CR>", opts)
+
 -- Comment
 keymap("n", "gc", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
 keymap("x", "gc", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
@@ -80,10 +83,3 @@ keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
 keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
-
---
--- -- Grammarous
--- keymap("n", "<leader>gq", "<Plug>(grammarous-close-info-window)")
--- keymap("n", "<leader>gn", "<Plug>(grammarous-move-to-next-error)")
--- keymap("n", "<leader>gp", "<Plug>(grammarous-move-to-previous-error)")
--- keymap("n", "<leader>gf", "<Plug>(grammarous-fixit)")

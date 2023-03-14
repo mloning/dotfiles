@@ -15,13 +15,13 @@ telescope.setup({
             "--line-number",
             "--column",
             "--smart-case",
-            "--hidden", -- include hidden files
-            "--no-ignore",  -- disable filtering ignored files
+            "--hidden",
         },
         prompt_prefix = " ",
         selection_caret = " ",
         path_display = { "smart" },
         file_ignore_patterns = { ".git/", "node_modules" },
+
         mappings = {
             i = {
                 ["<Down>"] = actions.cycle_history_next,

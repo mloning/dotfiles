@@ -28,8 +28,7 @@ fi
 # Use simpler project names
 if [[ $name == "ptx-ds-Auto-fwd-curve" ]]; then
   name="pcb"
-fi
-if [[ $name == "pcb" ]]; then
+elif [[ $name == "pcb" ]]; then
   path="$PROJECT_PATH"/fwd-curve-modeling/ptx-ds-Auto-fwd-curve
 fi
 
@@ -61,19 +60,16 @@ function create_windows {
     tmux send-keys -t $window "conda activate $conda_env" C-m C-l
     tmux send-keys -t $window "jupyter lab --no-browser" C-m
 
-    window=4
-    tmux new-window -d -t $window -n "dotfiles" 
-    tmux send-keys -t $window "cd $HOME/documents/dotfiles/" C-m
-    tmux send-keys -t $window "conda activate dotfiles" C-m 
-
   else
     window=0
     # window 0 is always created with the session
-    tmux rename-window -t $window "cmd" 
+    tmux rename-window -t $window "cmd1" 
+    tmux send-keys -t $window "cd $path" C-m C-l
 
     window=1
     tmux new-window -d -t $window -n "vim" 
-    tmux send-keys -t $window "vim" C-m C-l
+    tmux send-keys -t $window "cd $path" C-m C-l  
+    tmux send-keys -t $window "vim" C-m 
   fi
 }
 

@@ -99,7 +99,6 @@ return packer.startup(function(use)
 
     -- Telescope
     use({ "nvim-telescope/telescope.nvim" })
-    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
     -- Treesitter
     use({ "nvim-treesitter/nvim-treesitter" })
@@ -107,18 +106,9 @@ return packer.startup(function(use)
     -- Git
     use({ "lewis6991/gitsigns.nvim" })
 
-    -- Spectre
-    -- use({ "windwp/nvim-spectre" })
+    -- Docstring generator
+    use({ "danymat/neogen" })
 
-    -- show keymap help
-    use({
-        "folke/which-key.nvim",
-        config = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-            require("which-key").setup()
-        end,
-    })
     -- Debugging (DAP)
     use({ "mfussenegger/nvim-dap" })
     use({ "rcarriga/nvim-dap-ui" })

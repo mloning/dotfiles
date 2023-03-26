@@ -58,17 +58,16 @@ keymap("v", ">", ">gv", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files hidden=true no_ignore=true no_ignore_parent=true<CR>", opts)
+keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-keymap("n", "<leader>fk", ":Telescope keymaps<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
--- Spectre
--- keymap("n", "<leader>fr", "<cmd>lua require('Spectre').open() <CR>", opts)
+-- Docstring generator
+keymap("n", "<leader>cd", "<cmd>lua require('neogen').generate()<CR>", opts)
 
 -- Comment
 keymap("n", "gc", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)

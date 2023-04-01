@@ -73,6 +73,9 @@ keymap("n", "<leader>cd", "<cmd>lua require('neogen').generate()<CR>", opts)
 keymap("n", "gc", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
 keymap("x", "gc", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
 
+-- Undotree
+keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
+
 -- DAP
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
 keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)

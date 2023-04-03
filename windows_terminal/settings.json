@@ -21,9 +21,17 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 4
+                "index": 0
             },
-            "keys": "ctrl+5"
+            "keys": "ctrl+1"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+w"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+t"
         },
         {
             "command": 
@@ -33,14 +41,6 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
-        },
-        {
-            "command": "unbound",
-            "keys": "ctrl+w"
-        },
-        {
-            "command": "unbound",
-            "keys": "ctrl+t"
         },
         {
             "command": 
@@ -54,9 +54,9 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 0
+                "index": 4
             },
-            "keys": "ctrl+1"
+            "keys": "ctrl+5"
         },
         {
             "command": 
@@ -78,17 +78,17 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 5
+                "index": 6
             },
-            "keys": "ctrl+6"
+            "keys": "ctrl+7"
         },
         {
             "command": 
             {
                 "action": "switchToTab",
-                "index": 6
+                "index": 5
             },
-            "keys": "ctrl+7"
+            "keys": "ctrl+6"
         },
         {
             "command": 
@@ -158,7 +158,6 @@
                 "cursorShape": "bar",
                 "guid": "{3e91e5dc-8180-4479-add4-1c32c31e6b53}",
                 "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
-                "intenseTextStyle": "bold",
                 "name": "Ubuntu-20.04",
                 "startingDirectory": "Y:\\home\\mloning"
             },

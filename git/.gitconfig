@@ -3,9 +3,9 @@
 	email = 82043799+mloning-shell@users.noreply.github.com
 	signingkey = A79662EC
 [color]
-	ui = auto
+  ui = auto
 [core]
-	autocrlf = input
+  autocrlf = input
 [push]
   default = simple
 [credential]
@@ -17,6 +17,7 @@
 [pull]
   rebase = false
 [commit]
+  # git signatures, see https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
   gpgSign = true
 [tag]
   gpgSign = true
@@ -26,18 +27,18 @@
   sslVerify = true
   sslCAInfo = /etc/ssl/certs/ca-certificates.crt
 [alias]
-	s = status
-	a = add
-	c = commit
-	d = diff
+  s = status
+  a = add
+  c = commit
+  d = diff
   r = restore
   m = merge
+  co = checkout
+  br = branch
+  rb = rebase
+  st = stash
   ps = push
   psu = !git push --set-upstream origin $(git branch --show-current)
   pl = pull
-	co = checkout
-	br = branch
-  rb = rebase
-  st = stash
   sync = pull origin main:main --no-edit
   root = rev-parse --show-toplevel

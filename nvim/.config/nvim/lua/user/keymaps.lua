@@ -60,6 +60,7 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fs", ":Telescope lsp_workspace_symbols<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
@@ -72,6 +73,9 @@ keymap("n", "<leader>cd", "<cmd>lua require('neogen').generate()<CR>", opts)
 -- Comment
 keymap("n", "gc", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
 keymap("x", "gc", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
+
+-- Undotree
+keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 
 -- DAP
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)

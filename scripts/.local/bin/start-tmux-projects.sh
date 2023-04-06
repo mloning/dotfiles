@@ -27,14 +27,15 @@ fi
 
 # Function to create tmux windows for given project name
 function create_windows {
-    window=0
-    # window 0 is always created with the session
-    tmux rename-window -t $window "cmd" 
+  window=1
+  # the first window is always created with the session
+  tmux rename-window -t $window "cmd" 
+  tmux send-keys -t $window "cd $path" C-m C-l
 
-    window=1
-    tmux new-window -d -t $window -n "vim" 
-    tmux send-keys -t $window "vim" C-m C-l
-  fi
+  window=2
+  tmux new-window -d -t $window -n "vim" 
+  tmux send-keys -t $window "cd $path" C-m C-l  
+  tmux send-keys -t $window "vim" C-m 
 }
 
 # If not in tmux and no session running, start

@@ -8,9 +8,6 @@ IFS=$'\n\t'
 # Personal project directory
 PROJECT_PATH="$HOME"/Documents/Software
 
-# Check if tmux is running
-tmux_running=$(pgrep tmux)
-
 # Select project name
 if [[ $# -eq 1 ]]; then
   name=$1

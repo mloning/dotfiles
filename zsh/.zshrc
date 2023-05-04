@@ -112,7 +112,7 @@ alias vim='nvim'
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 alias vscode='code'
-alias ls='exa -la'
+alias exa='exa -la'
 # alias ls='ls -lha'
 alias sproj="$HOME"/.local/bin/start-tmux-projects.sh
 

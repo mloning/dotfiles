@@ -42,6 +42,3 @@ luac.out
 # History files
 *.netrwhist
 
-# Compiled packer file
-packer_compiled.lua
-

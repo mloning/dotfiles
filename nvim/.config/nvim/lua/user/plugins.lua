@@ -30,20 +30,14 @@ return lazy.setup({
     "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
     "numToStr/Comment.nvim",
     "JoosepAlviste/nvim-ts-context-commentstring",
-    "kyazdani42/nvim-web-devicons",
-    "kyazdani42/nvim-tree.lua",
-    "akinsho/bufferline.nvim",
-    "moll/vim-bbye",
-    "github/copilot.vim",
+    "nvim-tree/nvim-web-devicons",
     {
-        "zbirenbaum/copilot.lua",
-        event = { "VimEnter" },
-        config = function()
-            vim.defer_fn(function()
-                require("user.copilot")
-            end, 100)
-        end,
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
+        dependencies = "nvim-tree/nvim-web-devicons",
     },
+    { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
+    "moll/vim-bbye",
     "mbbill/undotree",
     "nvim-lualine/lualine.nvim",
     "akinsho/toggleterm.nvim",
@@ -60,10 +54,9 @@ return lazy.setup({
     "hrsh7th/nvim-cmp", -- The completion plugin
     "hrsh7th/cmp-buffer", -- buffer completions
     "hrsh7th/cmp-path", -- path completions
-    "saadparwaiz1/cmp_luasnip", -- snippet completions
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lua",
-    "zbirenbaum/copilot-cmp",
+    "saadparwaiz1/cmp_luasnip", -- snippet completions
     "simrat39/rust-tools.nvim",
 
     -- snippets
@@ -82,8 +75,12 @@ return lazy.setup({
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
     -- Treesitter
-    "nvim-treesitter/nvim-treesitter",
-
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = function()
+            require("nvim-treesitter.install").update({ with_sync = true })
+        end,
+    },
     -- Git
     "lewis6991/gitsigns.nvim",
 

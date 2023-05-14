@@ -1,5 +1,4 @@
-local fn = vim.fn
-
+-- Install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -13,10 +12,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
---Remap space as leader key
+-- Remap space as leader key
+-- Make sure to set `mapleader` before lazy so your mappings are correct
 local keymap = vim.keymap.set
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
+keymap("", "<Space>", "<Nop>")
+vim.g.mapleader = " "
 
 -- Use a protected call so we don't error out on first use
 local status_ok, lazy = pcall(require, "lazy")
@@ -49,9 +49,8 @@ return lazy.setup({
     "akinsho/toggleterm.nvim",
     "ahmedkhalf/project.nvim",
     "lewis6991/impatient.nvim",
-    "lukas-reineke/indent-blankline.nvim",
     "goolord/alpha-nvim",
-    --use { "christoomey/vim-tmux-navigator" }
+    -- "christoomey/vim-tmux-navigator"
 
     -- Colorschemes
     "folke/tokyonight.nvim",

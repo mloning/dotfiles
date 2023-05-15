@@ -156,6 +156,10 @@
                 "colorScheme": "Horizon Dark",
                 "commandline": "wsl.exe -d Ubuntu-20.04",
                 "cursorShape": "bar",
+                "font": 
+                {
+                    "face": "MesloLGS Nerd Font"
+                },
                 "guid": "{3e91e5dc-8180-4479-add4-1c32c31e6b53}",
                 "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
                 "name": "Ubuntu-20.04",

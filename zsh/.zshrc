@@ -5,12 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Corporate proxy config
-export HTTP_PROXY=http://proxy-eu.shell.com:8080
-export HTTPS_PROXY=http://proxy-eu.shell.com:8080
-export http_proxy=http://proxy-eu.shell.com:8080
-export https_proxy=http://proxy-eu.shell.com:8080
-
 # WSL config
 export BROWSER=wslview
 

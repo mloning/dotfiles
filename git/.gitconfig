@@ -1,6 +1,6 @@
 [user]
-	name = mloning-shell
-	email = 82043799+mloning-shell@users.noreply.github.com
+  name = mloning-shell
+  email = 82043799+mloning-shell@users.noreply.github.com
   signingkey = 4571E871
 [color]
   ui = auto

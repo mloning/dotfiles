@@ -128,6 +128,18 @@ source <(kubectl completion zsh)
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# terraform autocompletion
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
+
+# add sqlcmd to path
+export PATH="/opt/mssql-tools/bin:$PATH"
+
+# add nvm to path
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/mloning/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -143,17 +155,3 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# terraform autocompletion
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
-
-# kubectl autocompletion
-source <(kubectl completion zsh)
-
-# add sqlcmd to path
-export PATH="/opt/mssql-tools/bin:$PATH"
-
-# add nvm to path
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

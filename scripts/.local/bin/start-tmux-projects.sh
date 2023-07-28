@@ -6,7 +6,7 @@ IFS=$'\n\t'
 # adapted from https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 
 # Personal project directory
-PROJECT_PATH="$HOME"/documents/projects
+PROJECT_PATH="$HOME"/projects
 
 # Check if tmux is running
 tmux_running=$(pgrep tmux)

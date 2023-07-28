@@ -40,5 +40,5 @@
   ps = push
   psu = !git push --set-upstream origin $(git branch --show-current)
   pl = pull
-  sync = pull origin main:main --no-edit
+  sy = pull origin main:main --no-edit
   root = rev-parse --show-toplevel

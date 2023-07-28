@@ -1,3 +1,4 @@
 .jupyter/lab/workspaces
 .jupyter/lab/user-settings/@jupyterlab/apputils-extension
 .jupyter/migrated
+.jupyter/serverconfig

@@ -1,4 +1,5 @@
 .jupyter/lab/workspaces
 .jupyter/lab/user-settings/@jupyterlab/apputils-extension
+.jupyter/lab/user-settings/@jupyterlab/filebrowser-extension
 .jupyter/migrated
 .jupyter/serverconfig

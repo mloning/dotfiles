@@ -21,6 +21,12 @@ make create
 * [tmux](https://github.com/tmux/tmux)
 * [neovim](https://neovim.io)
 
+## Updating neovim packages
+
+* Use `:Lazy` and `sync` (S) to update packages 
+* Run `:checkhealth` to check health of all packages
+* Run `:TSUpdate` to update tree-sitter
+
 ## Find out more
 
 #### Maintaining dotfiles

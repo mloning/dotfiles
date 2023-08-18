@@ -27,9 +27,8 @@ end
 -- Install your plugins here
 return lazy.setup({
     "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
-    "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
-    "numToStr/Comment.nvim",
-    "JoosepAlviste/nvim-ts-context-commentstring",
+
+    -- graphical user interface plugins
     "nvim-tree/nvim-web-devicons",
     {
         "nvim-tree/nvim-tree.lua",
@@ -37,20 +36,34 @@ return lazy.setup({
         dependencies = "nvim-tree/nvim-web-devicons",
     },
     { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
-    "moll/vim-bbye",
-    "mbbill/undotree",
-    "nvim-lualine/lualine.nvim",
-    "akinsho/toggleterm.nvim",
-    "ahmedkhalf/project.nvim",
-    "lewis6991/impatient.nvim",
-    "goolord/alpha-nvim",
+    "moll/vim-bbye", -- Manage buffers
+    "nvim-lualine/lualine.nvim", -- Status line
+    "goolord/alpha-nvim", -- Start-up page
+    -- "lewis6991/impatient.nvim",  -- No longer required in nvim 0.9
     -- "christoomey/vim-tmux-navigator"
 
-    -- Colorschemes
+    -- Editing tools
+    "ahmedkhalf/project.nvim",
+    "akinsho/toggleterm.nvim",
+    "mbbill/undotree",
+    "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
+    "JoosepAlviste/nvim-ts-context-commentstring", -- Context-aware commenting
+    "numToStr/Comment.nvim",
+    "danymat/neogen", -- Docstring generator
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({})
+        end,
+    },
+
+    -- Color schema_version
     "folke/tokyonight.nvim",
     "lunarvim/darkplus.nvim",
 
-    -- cmp plugins
+    -- Completion engine plugins
     "hrsh7th/nvim-cmp", -- The completion plugin
     "hrsh7th/cmp-buffer", -- buffer completions
     "hrsh7th/cmp-path", -- path completions
@@ -59,11 +72,11 @@ return lazy.setup({
     "saadparwaiz1/cmp_luasnip", -- snippet completions
     "simrat39/rust-tools.nvim",
 
-    -- snippets
+    -- Snippets
     "L3MON4D3/LuaSnip", --snippet engine
     "rafamadriz/friendly-snippets", -- a bunch of snippets to use
 
-    -- LSP
+    -- Language servers
     "neovim/nvim-lspconfig", -- enable LSP
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
@@ -81,11 +94,9 @@ return lazy.setup({
             require("nvim-treesitter.install").update({ with_sync = true })
         end,
     },
+
     -- Git
     "lewis6991/gitsigns.nvim",
-
-    -- Docstring generator
-    "danymat/neogen",
 
     -- Debugging (DAP)
     "mfussenegger/nvim-dap",

@@ -65,6 +65,14 @@ keymap("n", "<leader>fs", ":Telescope lsp_dynamic_workspace_symbols<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
+-- Trouble
+keymap("n", "<leader>xx", ":TroubleToggle <CR>", opts)
+keymap("n", "<leader>xw", ":TroubleToggle workspace_diagnostics <CR>", opts)
+keymap("n", "<leader>xd", ":TroubleToggle document_diagnostics <CR>", opts)
+keymap("n", "<leader>xq", ":TroubleToggle quickfix <CR>", opts)
+keymap("n", "<leader>xl", ":TroubleToggle loclist <CR>", opts)
+keymap("n", "gr", ": TroubleToggle lsp_references <CR>", opts)
+
 -- Git
 keymap("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", opts)
 

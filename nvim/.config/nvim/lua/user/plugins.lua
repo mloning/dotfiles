@@ -49,6 +49,7 @@ return lazy.setup({
     "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
     "JoosepAlviste/nvim-ts-context-commentstring", -- Context-aware commenting
     "numToStr/Comment.nvim",
+    { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
     "danymat/neogen", -- Docstring generator
     {
         "kylechui/nvim-surround",

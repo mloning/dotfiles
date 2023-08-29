@@ -66,11 +66,11 @@ keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
 -- Trouble
-keymap("n", "<leader>xx", ":TroubleToggle <CR>", opts)
-keymap("n", "<leader>xw", ":TroubleToggle workspace_diagnostics <CR>", opts)
-keymap("n", "<leader>xd", ":TroubleToggle document_diagnostics <CR>", opts)
-keymap("n", "<leader>xq", ":TroubleToggle quickfix <CR>", opts)
-keymap("n", "<leader>xl", ":TroubleToggle loclist <CR>", opts)
+keymap("n", "<leader>tx", ":TroubleToggle <CR>", opts)
+keymap("n", "<leader>tw", ":TroubleToggle workspace_diagnostics <CR>", opts)
+keymap("n", "<leader>td", ":TroubleToggle document_diagnostics <CR>", opts)
+keymap("n", "<leader>tq", ":TroubleToggle quickfix <CR>", opts)
+keymap("n", "<leader>tl", ":TroubleToggle loclist <CR>", opts)
 keymap("n", "gr", ": TroubleToggle lsp_references <CR>", opts)
 
 -- Git

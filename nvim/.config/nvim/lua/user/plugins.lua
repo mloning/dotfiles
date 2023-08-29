@@ -48,7 +48,7 @@ return lazy.setup({
     "mbbill/undotree",
     "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
     "JoosepAlviste/nvim-ts-context-commentstring", -- Context-aware commenting
-    "numToStr/Comment.nvim",
+    { "numToStr/Comment.nvim", lazy = false },
     { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
     "danymat/neogen", -- Docstring generator
     {
@@ -95,6 +95,7 @@ return lazy.setup({
             require("nvim-treesitter.install").update({ with_sync = true })
         end,
     },
+    "nvim-treesitter/nvim-treesitter-context",
 
     -- Git
     "lewis6991/gitsigns.nvim",

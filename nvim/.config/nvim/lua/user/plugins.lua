@@ -28,7 +28,7 @@ end
 return lazy.setup({
     "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
 
-    -- graphical user interface plugins
+    -- Graphical user interface plugins
     "nvim-tree/nvim-web-devicons",
     {
         "nvim-tree/nvim-tree.lua",
@@ -39,7 +39,6 @@ return lazy.setup({
     "moll/vim-bbye", -- Manage buffers
     "nvim-lualine/lualine.nvim", -- Status line
     "goolord/alpha-nvim", -- Start-up page
-    -- "lewis6991/impatient.nvim",  -- No longer required in nvim 0.9
     -- "christoomey/vim-tmux-navigator"
 
     -- Editing tools
@@ -57,6 +56,22 @@ return lazy.setup({
         event = "VeryLazy",
         config = function()
             require("nvim-surround").setup({})
+        end,
+    },
+
+    -- GitHub Copilot
+    {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup({})
+        end,
+    },
+    {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+            require("copilot_cmp").setup()
         end,
     },
 

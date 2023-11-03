@@ -60,9 +60,18 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fg", ":Telescope grep_string<CR>", opts) -- search text under cursor
 keymap("n", "<leader>fs", ":Telescope lsp_dynamic_workspace_symbols<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+
+-- Trouble
+keymap("n", "<leader>tx", ":TroubleToggle <CR>", opts)
+keymap("n", "<leader>tw", ":TroubleToggle workspace_diagnostics <CR>", opts)
+keymap("n", "<leader>td", ":TroubleToggle document_diagnostics <CR>", opts)
+keymap("n", "<leader>tq", ":TroubleToggle quickfix <CR>", opts)
+keymap("n", "<leader>tl", ":TroubleToggle loclist <CR>", opts)
+keymap("n", "gr", ": TroubleToggle lsp_references <CR>", opts)
 
 -- Git
 keymap("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", opts)

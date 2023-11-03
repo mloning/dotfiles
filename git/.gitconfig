@@ -27,12 +27,14 @@
   d = diff
   r = restore
   m = merge
+  n = switch --create
   co = checkout
+  sw = switch
   br = branch
   rb = rebase
   st = stash
   ps = push
   psu = !git push --set-upstream origin $(git branch --show-current)
   pl = pull
-  sync = pull origin main:main --no-edit
+  sy = pull origin main:main --no-edit
   root = rev-parse --show-toplevel

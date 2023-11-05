@@ -3,3 +3,7 @@ repos:
   rev: v0.16.0
   hooks:
     - id: stylua 
+- repo: https://github.com/koalaman/shellcheck-precommit
+  rev: v0.9.0
+  hooks:
+    - id: shellcheck

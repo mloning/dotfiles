@@ -36,7 +36,9 @@ function create_windows {
 }
 
 # If not in tmux and no session running, start
-tmux new-session -d -s $name 
-create_windows
-tmux attach-session -t $name
+if ! tmux has-session -t "$name" 2>/dev/null; then
+  tmux new-session -d -s "$name"
+  create_windows
+fi
+tmux attach-session -t "$name"
 

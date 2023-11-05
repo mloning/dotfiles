@@ -28,6 +28,7 @@
   r = restore
   m = merge
   n = switch --create
+  l = log --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
   co = checkout
   sw = switch
   br = branch

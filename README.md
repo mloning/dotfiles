@@ -36,7 +36,7 @@ make create
 
 #### Signing commits
 
-* https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
+https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
 
 #### How to use the Windows clipboard in Neovim from WSL? 
 

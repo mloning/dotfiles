@@ -8,9 +8,6 @@ IFS=$'\n\t'
 # Personal project directory
 PROJECT_PATH="$HOME"/projects
 
-# Check if tmux is running
-tmux_running=$(pgrep tmux)
-
 # Select project name
 if [[ $# -eq 1 ]]; then
   name=$1
@@ -26,15 +23,15 @@ if [[ -z "$name" ]]; then
 fi
 
 # Use simpler project names
-if [[ $name == "ptx-ds-Auto-fwd-curve" ]]; then
+if [[ "$name" == "ptx-ds-Auto-fwd-curve" ]]; then
   name="pcb"
-elif [[ $name == "pcb" ]]; then
+elif [[ "$name" == "pcb" ]]; then
   path="$PROJECT_PATH"/fwd-curve-modeling/ptx-ds-Auto-fwd-curve
 fi
 
 # Function to create tmux windows for given project name
 function create_windows {
-  if [[ $name == "pcb" ]]; then
+  if [[ "$name" == "pcb" ]]; then
     conda_env="pcb"
 
     window=1
@@ -74,7 +71,9 @@ function create_windows {
 }
 
 # If not in tmux and no session running, start
-tmux new-session -d -s $name 
-create_windows
-tmux attach-session -t $name
+if ! tmux has-session -t "$name" 2>/dev/null; then
+  tmux new-session -d -s "$name"
+  create_windows
+fi
+tmux attach-session -t "$name"
 

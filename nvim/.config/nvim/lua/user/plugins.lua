@@ -58,6 +58,8 @@ return lazy.setup({
             require("nvim-surround").setup({})
         end,
     },
+    -- LLMs
+    "David-Kunz/gen.nvim",
 
     -- GitHub Copilot
     {

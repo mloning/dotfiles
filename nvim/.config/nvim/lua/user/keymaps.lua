@@ -75,6 +75,8 @@ keymap("n", "gr", ": TroubleToggle lsp_references <CR>", opts)
 
 -- Git
 keymap("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", opts)
+keymap("n", "ch", ":diffget LOCAL <CR>", opts)
+keymap("n", "cl", ":diffget REMOTE <CR>", opts)
 
 -- Docstring generator
 keymap("n", "<leader>cd", "<cmd>lua require('neogen').generate()<CR>", opts)

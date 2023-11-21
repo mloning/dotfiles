@@ -41,6 +41,7 @@
   mt = mergetool
   n = switch --create
   l = log --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset %Cgreen(%ad)%Creset %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset'
+  t = tag
   co = checkout
   sw = switch
   br = branch

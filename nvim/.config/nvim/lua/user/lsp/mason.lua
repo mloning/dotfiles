@@ -8,6 +8,7 @@ local servers = {
     "yamlls",
     "rust_analyzer",
     "marksman",
+    "omnisharp",
 }
 
 local settings = {

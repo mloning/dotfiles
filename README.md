@@ -28,7 +28,7 @@ In Neovim, run:
 * `:Lazy` and `sync` (S) to update packages 
 * `:checkhealth` to check health of all packages
 * `:TSUpdate` to update tree-sitter
-* `:Mason` to update language LSP servers 
+* `:Mason` to update LSP servers and related tools
 
 ## Find out more
 

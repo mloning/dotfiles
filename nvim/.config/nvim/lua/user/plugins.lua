@@ -85,7 +85,7 @@ return lazy.setup({
     "hrsh7th/nvim-cmp", -- The completion plugin
     "hrsh7th/cmp-buffer", -- buffer completions
     "hrsh7th/cmp-path", -- path completions
-    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lsp", -- LSP server completions
     "hrsh7th/cmp-nvim-lua",
     "saadparwaiz1/cmp_luasnip", -- snippet completions
     "simrat39/rust-tools.nvim",
@@ -96,7 +96,7 @@ return lazy.setup({
 
     -- Language servers
     "neovim/nvim-lspconfig", -- enable LSP
-    "williamboman/mason.nvim",
+    "williamboman/mason.nvim", -- package manager for LSP servers
     "williamboman/mason-lspconfig.nvim",
     "jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
     "RRethy/vim-illuminate",

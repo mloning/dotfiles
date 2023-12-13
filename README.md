@@ -13,7 +13,7 @@ cd dotfiles
 make create
 ```
 
-## Dependencies
+## Core dependencies
 
 * [alacritty](https://alacritty.org)
 * [oh-my-zsh](https://ohmyz.sh)
@@ -23,9 +23,12 @@ make create
 
 ## Updating neovim packages
 
-* Use `:Lazy` and `sync` (S) to update packages 
-* Run `:checkhealth` to check health of all packages
-* Run `:TSUpdate` to update tree-sitter
+In Neovim, run:
+
+* `:Lazy` and `sync` (S) to update packages 
+* `:checkhealth` to check health of all packages
+* `:TSUpdate` to update tree-sitter
+* `:Mason` to update LSP servers and related tools
 
 ## Find out more
 

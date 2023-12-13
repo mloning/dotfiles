@@ -121,4 +121,14 @@ return lazy.setup({
     "mfussenegger/nvim-dap",
     "rcarriga/nvim-dap-ui",
     "ravenxrz/DAPInstall.nvim",
+
+    -- markdown renderer
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function()
+            vim.fn["mkdp#util#install"]()
+        end,
+    },
 })

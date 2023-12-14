@@ -43,6 +43,10 @@ In Neovim, run:
 * https://github.com/LunarVim/nvim-basic-ide
 * https://github.com/ThePrimeagen/.dotfiles
 
+#### Tmux
+
+https://tmuxcheatsheet.com/
+
 #### Signing commits
 
 https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html

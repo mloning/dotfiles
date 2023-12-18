@@ -50,10 +50,6 @@ cmp.setup({
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
-    -- completion = {
-    --   autocomplete = true,
-    -- },
-
     mapping = cmp.mapping.preset.insert({
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -116,20 +112,17 @@ cmp.setup({
         end,
     },
     sources = {
-        { name = "nvim_lsp" },
-        { name = "buffer" },
+        { name = "nvim_lsp", group_index = 2 },
+        { name = "buffer", group_index = 2 },
         {
             name = "copilot",
             max_item_count = 3,
-            trigger_characters = {
-                { ".", ":", "(", "'", '"', "[", ",", "#", "*", "@", "|", "=", "-", "{", "/", "\\", "+", "?" },
-            },
             group_index = 2,
         },
-        { name = "path" },
-        { name = "nvim_lua" },
-        { name = "luasnip" },
-        { name = "buffer" },
+        { name = "path", group_index = 2 },
+        { name = "nvim_lua", group_index = 2 },
+        { name = "luasnip", group_index = 2 },
+        { name = "buffer", group_index = 2 },
     },
     confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,

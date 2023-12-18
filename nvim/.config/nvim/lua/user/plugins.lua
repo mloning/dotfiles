@@ -39,7 +39,7 @@ return lazy.setup({
     "moll/vim-bbye", -- Manage buffers
     "nvim-lualine/lualine.nvim", -- Status line
     "goolord/alpha-nvim", -- Start-up page
-    -- "christoomey/vim-tmux-navigator"
+    { "christoomey/vim-tmux-navigator", lazy = false }, -- tmux key-binding from within vim
 
     -- Editing tools
     "ahmedkhalf/project.nvim",

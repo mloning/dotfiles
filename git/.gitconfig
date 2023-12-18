@@ -2,18 +2,20 @@
   name = mloning-shell
   email = 82043799+mloning-shell@users.noreply.github.com
   signingkey = 4571E871
-[color]
-  ui = auto
-[core]
-  autocrlf = input
-[push]
-  default = simple
 [credential]
   helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 [credential "https://dev.azure.com"]
   useHttpPath = true
+[credential "https://github.com"]
+  username = mloning-shell
+[color]
+  ui = auto
+[core]
+  autocrlf = input
 [init]
   defaultBranch = main
+[push]
+  default = simple
 [pull]
   rebase = false
 [commit]
@@ -52,3 +54,5 @@
   pl = pull
   sy = pull origin main:main --no-edit
   root = rev-parse --show-toplevel
+  default-branch = !git remote show origin | grep 'HEAD branch' | cut -d' ' -f5
+

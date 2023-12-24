@@ -21,7 +21,7 @@ make create
 * [tmux](https://github.com/tmux/tmux)
 * [neovim](https://neovim.io)
 
-## Updating plugins
+## Update plugins
 
 ### Neovim
 

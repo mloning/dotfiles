@@ -45,3 +45,4 @@ aliases:
     wr: repo view --web
     cr: repo create --disable-wiki --disable-issues
     clr: repo create --disable-wiki --disable-issues --source=. --remote=origin
+version: "1"

@@ -7,33 +7,33 @@ browser:
 aliases:
     # pull requests
     _fp: | # query and fuzzy-search pull request id using jq and fzf
-      ! [ ! -z "$1" ] && echo "$1" || gh pr list \
-        --json number,title,headRefName,author,additions,deletions,labels \
-        --jq '.[]|"\(.number);\(.title);\(.author.login);+\(.additions)/-\(.deletions);\(.headRefName);\(.labels|map(.name)|join(", "))"' \
-        | column -ts ';' \
-        | fzf \
-        | awk '{ print $1 }'
+        ! [ ! -z "$1" ] && echo "$1" || gh pr list \
+          --json number,title,headRefName,author,additions,deletions,labels \
+          --jq '.[]|"\(.number);\(.title);\(.author.login);+\(.additions)/-\(.deletions);\(.headRefName);\(.labels|map(.name)|join(", "))"' \
+          | column -ts ';' \
+          | fzf \
+          | awk '{ print $1 }'
     lp: pr list
     lmp: pr list --author @me
     cp: pr create
     cdp: pr create --draft
     wp: pr view --web
     fp: |
-      ! id=$(gh _fp $1); [ -n "$id" ] && gh pr view "$id" --web
+        ! id=$(gh _fp $1); [ -n "$id" ] && gh pr view "$id" --web
     ep: |
-      ! id=$(gh _fp $1); [ -n "$id" ] && gh pr edit "$id"
+        ! id=$(gh _fp $1); [ -n "$id" ] && gh pr edit "$id"
     op: |
-      ! id=$(gh _fp $1); [ -n "$id" ] && gh pr checkout "$id"
+        ! id=$(gh _fp $1); [ -n "$id" ] && gh pr checkout "$id"
     # issues
     _fi: | # query and fuzzy-search pull request id using jq and fzf
-      ! [ ! -z "$1" ] && echo "$1" || gh issue list --state "open" --limit 300 \
-      --json number,title,labels \
-      --jq '.[]|"\(.number);\(.title);\(.labels|map(.name)|join(", "))"' \
-      | column -ts ';' \
-      | fzf \
-      | awk '{ print $1 }'
+        ! [ ! -z "$1" ] && echo "$1" || gh issue list --state "open" --limit 300 \
+        --json number,title,labels \
+        --jq '.[]|"\(.number);\(.title);\(.labels|map(.name)|join(", "))"' \
+        | column -ts ';' \
+        | fzf \
+        | awk '{ print $1 }'
     fi: |
-      ! id=$(gh _fi $1); [ -n "$id" ] && gh issue view "$id" --web
+        ! id=$(gh _fi $1); [ -n "$id" ] && gh issue view "$id" --web
     si: issue status
     vi: issue view
     wi: issue view --web

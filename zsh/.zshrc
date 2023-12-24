@@ -118,9 +118,6 @@ gpgconf --launch gpg-agent
 # Enable fuzzy-search
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Enable kubectl auto-completion
-source <(kubectl completion zsh)
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -145,4 +142,8 @@ complete -o nospace -C /usr/bin/terraform terraform
 
 # kubectl autocompletion
 source <(kubectl completion zsh)
+
+# poetry autocompletion
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
 

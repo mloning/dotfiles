@@ -1,16 +1,17 @@
 [user]
   name = mloning
   email = 21020482+mloning@users.noreply.github.com
-[color]
-  ui = auto
-[core]
-  autocrlf = input
-[push]
-  default = simple
 [credential]
   helper = osxkeychain
+[core]
+  autocrlf = input
+[color]
+  ui = auto
 [init]
   defaultBranch = main
+[push]
+  default = simple
+  autoSetupRemote = true
 [pull]
   rebase = false
 [commit]
@@ -46,3 +47,5 @@
   pl = pull
   sy = pull origin main:main --no-edit
   root = rev-parse --show-toplevel
+  default-branch = !git remote show origin | grep 'HEAD branch' | cut -d' ' -f5
+

@@ -11,6 +11,7 @@ PROJECT_PATH="$HOME"/Documents/Software
 # Select project name
 if [[ $# -eq 1 ]]; then
   name=$1
+  path="$PROJECT_PATH/$name"
 else
   path=$(find "$PROJECT_PATH" -mindepth 1 -maxdepth 2 -type d | fzf)
   # Trim full path to path name
@@ -23,7 +24,7 @@ if [[ -z "$name" ]]; then
 fi
 
 # Function to create tmux windows for given project name
-function create_windows {
+create_windows () {
   window=1
   # the first window is always created with the session
   tmux rename-window -t $window "cmd" 

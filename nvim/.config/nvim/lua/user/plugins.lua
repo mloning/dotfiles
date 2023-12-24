@@ -39,7 +39,7 @@ return lazy.setup({
     "moll/vim-bbye", -- Manage buffers
     "nvim-lualine/lualine.nvim", -- Status line
     "goolord/alpha-nvim", -- Start-up page
-    -- "christoomey/vim-tmux-navigator"
+    { "christoomey/vim-tmux-navigator", lazy = false }, -- tmux key-binding from within vim
 
     -- Editing tools
     "ahmedkhalf/project.nvim",
@@ -66,9 +66,6 @@ return lazy.setup({
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
         event = "InsertEnter",
-        config = function()
-            require("copilot").setup({})
-        end,
     },
     {
         "zbirenbaum/copilot-cmp",
@@ -121,4 +118,14 @@ return lazy.setup({
     "mfussenegger/nvim-dap",
     "rcarriga/nvim-dap-ui",
     "ravenxrz/DAPInstall.nvim",
+
+    -- markdown renderer
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function()
+            vim.fn["mkdp#util#install"]()
+        end,
+    },
 })

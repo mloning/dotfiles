@@ -101,6 +101,8 @@ alias vim='nvim'
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+alias rm='rm -r'
+alias cp='cp -r'
 alias vscode='code'
 alias ls='exa -la'
 # alias ls='ls -lha'

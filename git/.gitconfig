@@ -23,6 +23,9 @@
   sort = -version:refname
 [merge]
   tool = nvimdiff2
+[diff]
+  colormoved = default
+  colormovedws = allow-indentation-change
 [mergetool]
   keepBackup = false
   writeToTemp = true

@@ -112,6 +112,9 @@ alias sproj="$HOME"/.local/bin/start-tmux-projects.sh
 # https://github.com/ray-project/ray/issues/6696
 alias pip='noglob pip'
 
+# dotnet 
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
+
 # Enable GPG commit signing
 # See https://unix.stackexchange.com/a/608921/298933
 export GPG_TTY=$TTY

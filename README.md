@@ -21,14 +21,20 @@ make create
 * [tmux](https://github.com/tmux/tmux)
 * [neovim](https://neovim.io)
 
-## Updating neovim packages
+## Update plugins
 
-In Neovim, run:
+### Neovim
 
-* `:Lazy` and `sync` (S) to update packages 
+* `:Lazy` using `Restore` install versions from lock file and `Sync` to upgrade plugins 
 * `:checkhealth` to check health of all packages
 * `:TSUpdate` to update tree-sitter
 * `:Mason` to update LSP servers and related tools
+
+### Tmux
+
+* Press `prefix` + `I` to install plugins using [tmp]
+
+[tmp]: https://github.com/tmux-plugins/tpm
 
 ## Find out more
 

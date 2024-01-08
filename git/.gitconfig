@@ -26,6 +26,9 @@
   gpgSign = true
   # sort tags by semantic versioning in reverse order
   sort = -version:refname
+[diff]
+  colormoved = default
+  colormovedws = allow-indentation-change
 [http]
   sslVerify = true
   sslCAInfo = /etc/ssl/certs/ca-certificates.crt

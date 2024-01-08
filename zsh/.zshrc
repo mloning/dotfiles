@@ -106,7 +106,8 @@ alias vim='nvim'
 # For a full list of active aliases, run `alias`.
 alias vscode='code'
 alias exa='exa -la'
-# alias ls='ls -lha'
+alias rm='rm -r'
+alias cp='cp -r'
 alias sproj="$HOME"/.local/bin/start-tmux-projects.sh
 
 # Avoid zsh automatic pattern matching for pip

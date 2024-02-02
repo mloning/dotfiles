@@ -95,6 +95,20 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Configure command history; some of these are already set by oh-my-zsh 
+# but I keep them here for completeness
+HISTSIZE=50000
+SAVEHIST=50000
+setopt INC_APPEND_HISTORY # Immediately append to history file
+setopt EXTENDED_HISTORY # Record timestamp in history
+setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history
+setopt HIST_IGNORE_DUPS # Don't record an entry that was just recorded again
+setopt HIST_IGNORE_ALL_DUPS # Delete old recorded entry if new entry is a duplicate
+setopt HIST_FIND_NO_DUPS # Don't display a line previously found
+setopt HIST_IGNORE_SPACE # Don't record an entry starting with a space
+setopt HIST_SAVE_NO_DUPS # Don't write duplicate entries in the history file
+setopt SHARE_HISTORY # Share history between all sessions
+
 # Set neovim as default editor
 export EDITOR=nvim
 export VISUAL=nvim

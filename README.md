@@ -53,9 +53,11 @@ make create
 
 https://tmuxcheatsheet.com/
 
-#### Signing commits
+#### Git 
 
-https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
+* [How and why to sign git commits](https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html)
+* [Popular git config options](https://jvns.ca/blog/2024/02/16/popular-git-config-options/)
+* [Better Git Conflicts with zdiff3](https://ductile.systems/zdiff3/)
 
 #### How to use the Windows clipboard in Neovim from WSL? 
 

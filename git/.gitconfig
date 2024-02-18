@@ -14,6 +14,9 @@
   autoSetupRemote = true
 [pull]
   rebase = false
+[rebase]
+  autosquash = true
+  autostash = true
 [commit]
   gpgSign = true
 [tag]
@@ -21,12 +24,18 @@
   sort = -version:refname
 [merge]
   tool = nvimdiff2
+  conflictstyle = zdiff3
 [diff]
-  colormoved = default
-  colormovedws = allow-indentation-change
+  algorithm = histogram
+  colorMoved = default
+  colorMovedWS = allow-indentation-change
 [mergetool]
   keepBackup = false
   writeToTemp = true
+[rerere]
+  enabled = true
+[branch]
+  sort = -committerdate
 [alias]
   s = status
   a = add

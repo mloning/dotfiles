@@ -15,11 +15,9 @@
 [pull]
   rebase = false
 [commit]
-  # git signatures, see https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
   gpgSign = true
 [tag]
   gpgSign = true
-  # sort tags by semantic versioning in reverse order
   sort = -version:refname
 [merge]
   tool = nvimdiff2
@@ -38,7 +36,7 @@
   m = merge
   mt = mergetool
   n = switch --create
-  l = log --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset %Cgreen(%ad)%Creset %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset'
+  l = log --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset %Cgreen%ad%Creset %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset'
   t = tag
   co = checkout
   sw = switch

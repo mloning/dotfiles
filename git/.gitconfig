@@ -55,6 +55,7 @@
   n = switch --create
   l = log --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset %Cgreen%ad%Creset %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset'
   t = tag
+  f = fetch
   co = checkout
   sw = switch
   br = branch
@@ -62,6 +63,7 @@
   st = stash
   ps = push
   psu = !git push --set-upstream origin $(git branch --show-current)
+  psf = push --force-with-lease
   pl = pull
   sy = pull origin main:main --no-edit
   root = rev-parse --show-toplevel

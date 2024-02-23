@@ -124,6 +124,9 @@ alias rm='rm -r'
 alias cp='cp -r'
 alias sproj="$HOME"/.local/bin/start-tmux-projects.sh
 
+# dotnet
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
+
 # Avoid zsh automatic pattern matching for pip
 # https://github.com/ray-project/ray/issues/6696
 alias pip='noglob pip'

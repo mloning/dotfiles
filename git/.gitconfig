@@ -19,24 +19,31 @@
   autoSetupRemote = true
 [pull]
   rebase = false
+[rebase]
+  autosquash = true
+  autostash = true
 [commit]
-  # git signatures, see https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
   gpgSign = true
 [tag]
   gpgSign = true
-  # sort tags by semantic versioning in reverse order
   sort = -version:refname
 [diff]
-  colormoved = default
-  colormovedws = allow-indentation-change
+  algorithm = histogram
+  colorMoved = default
+  colorMovedWS = allow-indentation-change
 [http]
   sslVerify = true
   sslCAInfo = /etc/ssl/certs/ca-certificates.crt
 [merge]
   tool = nvimdiff2
+  conflictstyle = zdiff3
 [mergetool]
   keepBackup = false
   writeToTemp = true
+[rerere]
+  enabled = true
+[branch]
+  sort = -committerdate
 [alias]
   s = status
   a = add

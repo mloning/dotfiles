@@ -15,7 +15,7 @@ make create
 
 ## Core dependencies
 
-* [alacritty](https://alacritty.org)
+* [alacritty](https://alacritty.org) or [Windows Terminal](https://github.com/microsoft/terminal)
 * [oh-my-zsh](https://ohmyz.sh)
 * [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 * [tmux](https://github.com/tmux/tmux)

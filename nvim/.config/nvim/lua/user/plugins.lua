@@ -74,6 +74,13 @@ return lazy.setup({
         end,
     },
 
+    -- Rust tooling
+    {
+        "mrcjkb/rustaceanvim",
+        version = "^4",
+        ft = { "rust" },
+    },
+
     -- Color schema_version
     "folke/tokyonight.nvim",
     "lunarvim/darkplus.nvim",

@@ -28,6 +28,7 @@ configs.setup({
         "c_sharp",
         "latex",
         "comment", -- Parser for comment labels
+        "toml",
     },
     -- ensure_installed = "all"
     ignore_install = { "phpdoc" }, -- List of parsers to ignore installing

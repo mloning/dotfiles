@@ -9,6 +9,7 @@ local servers = {
     "rust_analyzer",
     "marksman",
     "omnisharp",
+    "dockerls",
 }
 
 local settings = {

@@ -43,4 +43,5 @@ aliases:
     lmi: issue list --assignee @me
     # repos
     wr: repo view --web
+    cr: repo create --private --source=. --remote=upstream --push
 version: "1"

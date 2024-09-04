@@ -6,7 +6,7 @@ IFS=$'\n\t'
 # adapted from https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 
 # Personal project directory
-PROJECT_PATH="$HOME"/Documents/Software
+PROJECT_PATH="$HOME"/Dev/projects
 
 # Select project name
 if [[ $# -eq 1 ]]; then

@@ -17,10 +17,10 @@
 [rebase]
   autosquash = true
   autostash = true
-[commit]
-  gpgSign = true
+; [commit]
+;   gpgSign = true
 [tag]
-  gpgSign = true
+  ; gpgSign = true
   sort = -version:refname
 [diff]
   algorithm = histogram

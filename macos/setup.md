@@ -40,6 +40,8 @@ brew install \
   gh \
   gpg \
   node \
+  htop \
+  tree \
   ripgrep
 ```
 

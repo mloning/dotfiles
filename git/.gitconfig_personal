@@ -1,0 +1,10 @@
+[user]
+  name = mloning
+  email = 21020482+mloning@users.noreply.github.com
+[credential]
+  helper = osxkeychain
+[commit]
+  gpgSign = true
+[tag]
+  gpgSign = true
+

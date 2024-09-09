@@ -1,8 +1,3 @@
-[user]
-  name = mloning
-  email = 21020482+mloning@users.noreply.github.com
-[credential]
-  helper = osxkeychain
 [core]
   autocrlf = input
 [color]
@@ -17,10 +12,7 @@
 [rebase]
   autosquash = true
   autostash = true
-; [commit]
-;   gpgSign = true
 [tag]
-  ; gpgSign = true
   sort = -version:refname
 [diff]
   algorithm = histogram
@@ -61,4 +53,3 @@
   sy = pull origin main:main --no-edit
   root = rev-parse --show-toplevel
   default-branch = !git remote show origin | grep 'HEAD branch' | cut -d' ' -f5
-

@@ -116,6 +116,7 @@ alias vim='nvim'
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+alias la='eza --long --all'
 alias rm='rm -r'
 alias cp='cp -r'
 alias vscode='code'
@@ -159,3 +160,9 @@ fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
 export PATH="/opt/homebrew/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/mloning/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mloning/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/mloning/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mloning/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

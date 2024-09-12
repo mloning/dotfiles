@@ -33,6 +33,7 @@ brew install \
   neovim \
   tmux \
   alacritty \
+  eza \
   stow \
   bat \
   fzf \
@@ -78,12 +79,16 @@ Open tmux session and press: tmux prefix + `I` to install plugins
 
 ## Install Python
 
+Install [miniforge]:
+
 ```bash
-brew install --cask mambaforge
+brew install miniforge
 conda init "$(basename "${SHELL}")"
 omz reload
 conda info
 ```
+
+[miniforge]: https://github.com/conda-forge/miniforge
 
 ## Create GPG keys
 

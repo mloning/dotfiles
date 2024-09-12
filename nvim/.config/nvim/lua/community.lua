@@ -10,5 +10,6 @@ return {
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
+  { import = "astrocommunity.completion.copilot-cmp" },
   -- import/override with your plugins folder
 }

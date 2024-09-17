@@ -134,6 +134,9 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export GPG_TTY=$TTY
 gpgconf --launch gpg-agent
 
+# Add ssh keys to agent
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519 >/dev/null 2>&1
+
 # Enable fuzzy-search
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

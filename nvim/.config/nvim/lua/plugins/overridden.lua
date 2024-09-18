@@ -7,6 +7,13 @@ return {
         -- disable diagnostics virtual text
         virtual_text = false,
       },
+      mappings = {
+        n = {
+          ["<S-l>"] = { cmd = ":bnext<CR>", desc = "Next buffer" },
+          ["<S-h>"] = { cmd = ":bprevious<CR>", desc = "Previous buffer" },
+          ["<S-q>"] = { cmd = "<cmd>bdelete<CR>", desc = "Close buffer" },
+        },
+      },
     },
   },
 }

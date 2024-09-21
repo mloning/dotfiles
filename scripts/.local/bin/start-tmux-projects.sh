@@ -13,7 +13,7 @@ if [[ $# -eq 1 ]]; then
   name=$1
   path="$PROJECT_PATH/$name"
 else
-  path=$(find "$PROJECT_PATH" -mindepth 1 -maxdepth 2 -type d | fzf)
+  path=$(find "$PROJECT_PATH" -mindepth 1 -maxdepth 1 -type d | fzf)
   # Trim full path to path name
   name=$(basename "$path" | tr . _)
 fi

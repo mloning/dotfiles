@@ -21,6 +21,16 @@ make create
 - [tmux](https://github.com/tmux/tmux)
 - [neovim](https://neovim.io) with [AstroNvim](https://astronvim.com/)
 
+## Git configuration
+
+My personal git configuration is different from my work one.
+I define a shared `.gitconfig_base`, which I can then include in my `.gitconfig` file.
+
+```
+[include]
+  path = ~/.gitconfig_base
+```
+
 ## Update plugins
 
 ### Neovim

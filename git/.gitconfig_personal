@@ -7,3 +7,6 @@
   gpgSign = true
 [tag]
   gpgSign = true
+[include]
+  path = ~/.gitconfig_base
+

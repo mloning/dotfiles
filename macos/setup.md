@@ -4,12 +4,18 @@ https://simoncw.com/posts/dev-setup-mac-python-rust/
 
 ## Manual configuration
 
-* Bluetooth in control center bar
-* Sound in control center bar
-* Trackpad click on tap
-* `defaults write -g ApplePressAndHoldEnabled -bool false` 
+- Bluetooth in control center bar
+- Sound in control center bar
+- Trackpad click on tap
+- `defaults write -g ApplePressAndHoldEnabled -bool false`
 
 For automation, see https://apple.stackexchange.com/a/457024.
+
+## Install command-line tools
+
+```bash
+xcode-select --install
+```
 
 ## Install homebrew
 
@@ -22,9 +28,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 Add `brew` command to path:
 
 ```bash
-(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/mloning/.zprofile 
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/mloning/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
-``` 
+```
 
 ## Install system packages
 
@@ -66,8 +72,8 @@ git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins $ZSH_CUSTOM/pl
 omz reload
 ```
 
-* Install fonts https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#manual-font-installation
-* Install powerlevel10k https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#oh-my-zsh
+- Install fonts https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#manual-font-installation
+- Install powerlevel10k https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#oh-my-zsh
 
 ## Install tmux plugins
 
@@ -75,7 +81,7 @@ omz reload
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-Open tmux session and press: tmux prefix + `I` to install plugins 
+Open tmux session and press: tmux prefix + `I` to install plugins
 
 ## Install Python
 
@@ -93,4 +99,3 @@ conda info
 ## Create GPG keys
 
 https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html
-

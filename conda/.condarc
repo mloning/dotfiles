@@ -1,8 +1,6 @@
 auto_activate_base: false
 channels:
   - conda-forge
-  - defaults
-  - anaconda
 channel_priority: true
 ssl_verify: true
 envs_dirs:

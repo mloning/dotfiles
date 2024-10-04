@@ -82,10 +82,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	z
-	zsh-autosuggestions
-	zsh-syntax-highlighting
-	fzf
+  z
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  fzf
+  autoupdate
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -115,6 +116,7 @@ alias vim='nvim'
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+alias la='eza --long --all'
 alias rm='rm -r'
 alias cp='cp -r'
 alias vscode='code'
@@ -132,6 +134,9 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export GPG_TTY=$TTY
 gpgconf --launch gpg-agent
 
+# Add ssh keys to agent
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519 >/dev/null 2>&1
+
 # Enable fuzzy-search
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -140,27 +145,29 @@ gpgconf --launch gpg-agent
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/mloning/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/mloning/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/mloning/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/mloning/miniconda3/bin:$PATH"
+        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# terraform autocompletion
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
-
-# kubectl autocompletion
-source <(kubectl completion zsh)
-
 # poetry autocompletion
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
+export PATH="/opt/homebrew/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/mloning/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mloning/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/mloning/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mloning/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+. "$HOME/.cargo/env"

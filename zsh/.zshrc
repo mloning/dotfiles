@@ -158,10 +158,12 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# poetry autocompletion
+# autocompletion
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
+autoload -Uz bashcompinit && bashcompinit
 
+# add homebrew to path
 export PATH="/opt/homebrew/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.

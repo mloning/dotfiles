@@ -16,15 +16,14 @@ make create
 ## Core dependencies
 
 - [alacritty](https://alacritty.org) or [Windows Terminal](https://github.com/microsoft/terminal)
-- [oh-my-zsh](https://ohmyz.sh)
-- [powerlevel10k](https://github.com/romkatv/powerlevel10k)
+- [oh-my-zsh](https://ohmyz.sh) with [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 - [tmux](https://github.com/tmux/tmux)
 - [neovim](https://neovim.io) with [AstroNvim](https://astronvim.com/)
 
 ## Git configuration
 
 My personal git configuration is different from my work one.
-I define a shared `.gitconfig_base`, which I can then include in my `.gitconfig` file.
+I define a shared `.gitconfig_base`, which I can then import in each of my `.gitconfig` files.
 
 ```
 [include]

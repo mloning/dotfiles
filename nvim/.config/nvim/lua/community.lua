@@ -11,6 +11,6 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   { import = "astrocommunity.completion.copilot-cmp" },
+  { import = "astrocommunity.editing-support.neogen" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
-  -- import/override with your plugins folder
 }

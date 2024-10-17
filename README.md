@@ -30,6 +30,8 @@ I define a shared `.gitconfig_base`, which I can then import in each of my `.git
   path = ~/.gitconfig_base
 ```
 
+My personal git configuration is in `git/.gitconfig_personal`.
+
 ## Update plugins
 
 ### Neovim

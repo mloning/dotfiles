@@ -122,6 +122,19 @@ alias cp='cp -r'
 alias vscode='code'
 alias sproj="$HOME"/.local/bin/start-tmux-projects.sh
 
+# define clip function for macOS and Linux
+if [[ "$(uname)" == "Darwin" ]]; then 
+  # clipboard copying and pasting on macOS
+  clip() {
+    [ -t 0 ] && pbpaste || pbcopy
+  }
+else  
+  # clipboard copying and pasting on Linux
+  clip () {
+    [ -t 0 ] && xclip -o -selection clipboard || xclip -selection clipboard
+  }
+fi
+
 # Avoid zsh automatic pattern matching for pip
 # https://github.com/ray-project/ray/issues/6696
 alias pip='noglob pip'

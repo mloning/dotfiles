@@ -11,6 +11,8 @@ return {
         n = {
           ["<S-l>"] = { cmd = ":bnext<CR>", desc = "Next buffer" },
           ["<S-h>"] = { cmd = ":bprevious<CR>", desc = "Previous buffer" },
+          ["n"] = { cmd = "nzz", desc = "Next search result with centering" },
+          ["N"] = { cmd = "Nzz", desc = "Previous search result with centering" },
         },
       },
     },

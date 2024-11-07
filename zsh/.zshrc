@@ -116,20 +116,22 @@ alias vim='nvim'
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias la='eza --long --all'
+alias la='eza --long --all --total-size'
+alias lt='eza --tree'
 alias rm='rm -r'
 alias cp='cp -r'
 alias vscode='code'
 alias sproj="$HOME"/.local/bin/start-tmux-projects.sh
 
+# Define custom functions
 # define clip function for macOS and Linux
 if [[ "$(uname)" == "Darwin" ]]; then 
-  # clipboard copying and pasting on macOS
+  # macOS
   clip() {
     [ -t 0 ] && pbpaste || pbcopy
   }
 else  
-  # clipboard copying and pasting on Linux
+  # assume Linux
   clip () {
     [ -t 0 ] && xclip -o -selection clipboard || xclip -selection clipboard
   }

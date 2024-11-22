@@ -40,6 +40,10 @@ create_windows () {
 if ! tmux has-session -t "$name" 2>/dev/null; then
   tmux new-session -d -s "$name"
   create_windows
+
+  # select second window as initial window
+  tmux select-window -t "$name":2
 fi
+
 tmux attach-session -t "$name"
 

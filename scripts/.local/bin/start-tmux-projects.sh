@@ -27,13 +27,13 @@ fi
 create_windows () {
   window=1
   # the first window is always created with the session
-  tmux rename-window -t $window "cmd" 
-  tmux send-keys -t $window "cd $path" C-m C-l
+  tmux rename-window -t $window "nvim" 
+  tmux send-keys -t $window "cd $path" C-m C-l  
+  tmux send-keys -t $window "nvim" C-m 
 
   window=2
-  tmux new-window -d -t $window -n "vim" 
-  tmux send-keys -t $window "cd $path" C-m C-l  
-  tmux send-keys -t $window "vim" C-m 
+  tmux new-window -d -t $window -n "cmd" 
+  tmux send-keys -t $window "cd $path" C-m C-l
 }
 
 # If not in tmux and no session running, start

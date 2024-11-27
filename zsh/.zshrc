@@ -121,7 +121,10 @@ alias lt='eza --tree'
 alias rm='rm -r'
 alias cp='cp -r'
 alias vscode='code'
-alias sproj="$HOME"/.local/bin/start-tmux-projects.sh
+alias tmux-sessionizer="$HOME"/.local/bin/tmux-sessionizer.sh
+
+# Define custom key bindings, new line '\n' at the end to run command
+bindkey -s ^f "tmux-sessionizer\n"  # control + f
 
 # Define custom functions
 # define clip function for macOS and Linux

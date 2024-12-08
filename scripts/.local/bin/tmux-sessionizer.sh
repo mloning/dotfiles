@@ -1,12 +1,12 @@
 #!/bin/bash
-# set -euox pipefail
+set -euo pipefail
 IFS=$'\n\t'
 
 # Script to start tmux sessions for projects using fzf to filter directories 
 # adapted from https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 
 # Personal project directory
-DEFAULT_PATH="$HOME"/Dev/projects
+DEFAULT_PATH="$HOME"/Documents/Software
 
 # Select project path and name, from input name or from project paths using fzf
 if [[ $# -eq 1 ]]; then
@@ -47,14 +47,15 @@ create_windows () {
 # check if tmux is running, gives non-zero exit code if not, otherwise process ID
 tmux_running=$(pgrep tmux || true)
 
-# if not in tmux and tmux is not running, create and attach to new session
+# if not in tmux and tmux is not running, create and attach to new session; 
+# otherwise, assume tmux is running
 if [[ -z "$TMUX" ]] && [[ -z "$tmux_running" ]]; then
   tmux new-session -s "$name" -c "$path" -d
   create_windows
   tmux attach-session -t "$name"
 fi
 
-# otherwise, assume tmux is running
+# if in tmux and current session is already selected name, exit
 current_session=$(tmux display-message -p '#S')
 if [[ -n "$TMUX" ]] && [[ "$current_session" == "$name" ]]; then
   exit 0

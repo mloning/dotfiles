@@ -49,7 +49,7 @@ My personal git configuration is in `git/.gitconfig_personal`.
 
 ## Find out more
 
-#### Maintaining dotfiles
+#### Dotfiles
 
 - http://dotfiles.github.io
 - https://alexpearce.me/2016/02/managing-dotfiles-with-stow/
@@ -60,11 +60,11 @@ My personal git configuration is in `git/.gitconfig_personal`.
 - https://github.com/LunarVim/nvim-basic-ide
 - https://github.com/ThePrimeagen/.dotfiles
 
-#### Tmux
+#### tmux
 
-https://tmuxcheatsheet.com/
+- https://tmuxcheatsheet.com/
 
-#### Git
+#### git
 
 - [How and why to sign git commits](https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html)
 - [Popular git config options](https://jvns.ca/blog/2024/02/16/popular-git-config-options/)
@@ -72,4 +72,9 @@ https://tmuxcheatsheet.com/
 
 #### How to use the Windows clipboard in Neovim from WSL?
 
-https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
+- https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
+
+#### zsh
+
+- https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout
+- https://www.freecodecamp.org/news/how-do-zsh-configuration-files-work/

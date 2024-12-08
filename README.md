@@ -41,7 +41,7 @@ My personal git configuration is in `git/.gitconfig_personal`.
 - `:TSUpdate` to update tree-sitter
 - `:Mason` to update LSP servers and related tools
 
-### Tmux
+### tmux
 
 - Press `prefix` + `I` to install plugins using [tmp]
 
@@ -49,32 +49,32 @@ My personal git configuration is in `git/.gitconfig_personal`.
 
 ## Find out more
 
-#### Dotfiles
+### Dotfiles
 
 - http://dotfiles.github.io
 - https://alexpearce.me/2016/02/managing-dotfiles-with-stow/
 
-#### Neovim
+### Neovim
 
 - https://github.com/SimonCW/dotfiles
 - https://github.com/LunarVim/nvim-basic-ide
 - https://github.com/ThePrimeagen/.dotfiles
 
-#### tmux
+### tmux
 
 - https://tmuxcheatsheet.com/
 
-#### git
+### git
 
 - [How and why to sign git commits](https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html)
 - [Popular git config options](https://jvns.ca/blog/2024/02/16/popular-git-config-options/)
 - [Better Git Conflicts with zdiff3](https://ductile.systems/zdiff3/)
 
-#### How to use the Windows clipboard in Neovim from WSL?
+### How to use the Windows clipboard in Neovim from WSL?
 
 - https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
 
-#### zsh
+### zsh
 
 - https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout
 - https://www.freecodecamp.org/news/how-do-zsh-configuration-files-work/

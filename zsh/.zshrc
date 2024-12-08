@@ -118,6 +118,8 @@ alias vim='nvim'
 # For a full list of active aliases, run `alias`.
 alias la='eza --long --all --total-size'
 alias lt='eza --tree'
+alias lf='eza --long --total-size --only-files'
+alias ld='eza --long --total-size --only-dirs'  # overrides linkage editor/binder `ld` cmd
 alias rm='rm -r'
 alias cp='cp -r'
 alias vscode='code'

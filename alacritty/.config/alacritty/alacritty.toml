@@ -47,7 +47,7 @@ style = "Bold Italic"
 style = "Italic"
 
 [font.normal]
-family = "MesloLGS NF"
+family = "MesloLGS Nerd Font"
 style = "Regular"
 
 [window]

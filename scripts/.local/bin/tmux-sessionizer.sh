@@ -6,7 +6,8 @@ IFS=$'\n\t'
 # adapted from https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 
 # Personal project directory
-ROOT_PATH="$HOME"/Dev/projects
+DEFAULT_ROOT_PATH="$HOME"/Dev/projects
+ROOT_PATH="${TMUX_SESSIONIZER_ROOT_PATH:-$DEFAULT_ROOT_PATH}"
 
 # Select project path and name, from input name or from project paths using fzf
 if [[ $# -eq 1 ]]; then

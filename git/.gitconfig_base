@@ -53,3 +53,5 @@
   sy = pull origin main:main --no-edit
   root = rev-parse --show-toplevel
   default-branch = !git remote show origin | grep 'HEAD branch' | cut -d' ' -f5
+[help]
+  autocorrect = 20  # 2 seconds

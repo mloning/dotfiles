@@ -54,3 +54,13 @@ style = "Regular"
 decorations = "full"
 dynamic_padding = false
 startup_mode = "Windowed"
+
+[keyboard]
+bindings = [
+  { key = "L", mods = "Alt", chars = "\u001BF" },     # Move right one word
+  { key = "H", mods = "Alt", chars = "\u001BB" },     # Move left one word
+  { key = "Right", mods = "Alt", chars = "\u001BF" }, # Move right one word
+  { key = "Left", mods = "Alt", chars = "\u001BB" },  # Move left one word
+  { key = "K", mods = "Alt", chars = "\u001BP" },     # Search backward through history
+  { key = "J", mods = "Alt", chars = "\u001BN" },     # Search forward through history
+]

@@ -63,4 +63,6 @@ bindings = [
   { key = "Left", mods = "Alt", chars = "\u001BB" },  # Move left one word
   { key = "K", mods = "Alt", chars = "\u001BP" },     # Search backward through history
   { key = "J", mods = "Alt", chars = "\u001BN" },     # Search forward through history
+  { key = "Up", mods = "Alt", chars = "\u001BP" },    # Search backward through history
+  { key = "Down", mods = "Alt", chars = "\u001BN" },  # Search forward through history
 ]

@@ -13,6 +13,7 @@ setopt globdots
 export PATH="$HOME/usr/local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/local/Cellar/neovim/0.10.4/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh/"

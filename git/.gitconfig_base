@@ -2,8 +2,12 @@
   autocrlf = input
 [color]
   ui = auto
+[column]
+  ui = auto
 [init]
   defaultBranch = main
+[commit]
+  verbose = true
 [push]
   default = simple
   autoSetupRemote = true
@@ -12,12 +16,15 @@
 [rebase]
   autosquash = true
   autostash = true
+  updateRefs = true
 [tag]
   sort = -version:refname
 [diff]
   algorithm = histogram
   colorMoved = default
   colorMovedWS = allow-indentation-change
+  renames = true
+  mnemonicPrefix = true
 [merge]
   tool = nvimdiff2
   conflictstyle = zdiff3
@@ -26,6 +33,7 @@
   writeToTemp = true
 [rerere]
   enabled = true
+  autoupdate = true
 [branch]
   sort = -committerdate
 [alias]

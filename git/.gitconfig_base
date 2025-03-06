@@ -63,4 +63,4 @@
   default-branch = !git remote show origin | grep 'HEAD branch' | cut -d' ' -f5
   praise = blame
 [help]
-  autocorrect = 13  # 1.3 seconds
+  autocorrect = 12  # 1.2 seconds

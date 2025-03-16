@@ -191,6 +191,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 
 # psql
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH" 
+export PATH="/usr/local/opt/libpq/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/mloning/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mloning/Downloads/google-cloud-sdk/path.zsh.inc'; fi
@@ -211,4 +212,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-

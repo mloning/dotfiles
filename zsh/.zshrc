@@ -96,10 +96,11 @@ source $ZSH/oh-my-zsh.sh
 
 # Configure command history; some of these are already set by oh-my-zsh 
 # but I keep them here for completeness
-HISTSIZE=50000
-SAVEHIST=50000
-setopt INC_APPEND_HISTORY # Immediately append to history file
+HISTSIZE=100000
+SAVEHIST=100000
 setopt EXTENDED_HISTORY # Record timestamp in history
+setopt INC_APPEND_HISTORY # Immediately append to history file
+setopt INC_APPEND_HISTORY_TIME # Add information how long command ran for
 setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history
 setopt HIST_IGNORE_DUPS # Don't record an entry that was just recorded again
 setopt HIST_IGNORE_ALL_DUPS # Delete old recorded entry if new entry is a duplicate

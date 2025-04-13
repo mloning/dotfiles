@@ -4,14 +4,15 @@
 
 ---@type LazySpec
 return {
-  "AstroNvim/astrocommunity",
-  { import = "astrocommunity.pack.lua" },
-  { import = "astrocommunity.pack.python" },
-  { import = "astrocommunity.pack.rust" },
-  { import = "astrocommunity.pack.docker" },
-  { import = "astrocommunity.pack.markdown" },
-  { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
-  { import = "astrocommunity.completion.copilot-cmp" },
-  { import = "astrocommunity.editing-support.neogen" },
-  { import = "astrocommunity.diagnostics.trouble-nvim" },
+    "AstroNvim/astrocommunity",
+    { import = "astrocommunity.pack.lua" },
+    { import = "astrocommunity.pack.python" },
+    { import = "astrocommunity.pack.rust" },
+    { import = "astrocommunity.pack.docker" },
+    { import = "astrocommunity.pack.markdown" },
+    { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
+    { import = "astrocommunity.completion.copilot-cmp" },
+    { import = "astrocommunity.editing-support.neogen" },
+    { import = "astrocommunity.diagnostics.trouble-nvim" },
+    -- import/override with your plugins folder
 }

@@ -13,7 +13,6 @@ setopt globdots
 export PATH="$HOME/usr/local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="/usr/local/Cellar/neovim/0.10.4/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh/"
@@ -111,7 +110,6 @@ setopt SHARE_HISTORY # Share history between all sessions
 # Set neovim as default editor
 export EDITOR=nvim
 export VISUAL=nvim
-alias vim='nvim'
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh

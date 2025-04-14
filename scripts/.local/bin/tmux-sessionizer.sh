@@ -34,12 +34,12 @@ create_windows () {
   # the first window is created when the session is created, so we rename it 
   local window=1
   local target="$name:$window"
-  tmux rename-window -t "$target" "vim" 
+  tmux rename-window -t "$target" "nvim" 
   if is_conda_env_available "$name"; then
     tmux send-keys -t "$target" "conda activate $name" C-m C-l
   fi
   tmux send-keys -t "$target" "cd $path" C-m C-l  
-  tmux send-keys -t "$target" "vim" C-m 
+  tmux send-keys -t "$target" "nvim" C-m 
 
   
   # launch shell in second window

@@ -6,7 +6,7 @@
                 "9",
                 "9",
             ],
-            "selector": "[data-jp-code-runner]"
+            "selector": ".jp-Notebook.jp-mod-commandMode"
     }
     ]
 }

@@ -39,9 +39,11 @@
 [alias]
   s = status
   a = add
-  c = commit
+  c = commit -m
   d = diff
+  ds = diff --staged
   r = restore
+  rs = restore --staged
   m = merge
   mt = mergetool
   n = switch --create
@@ -58,6 +60,7 @@
   psu = !git push --set-upstream origin $(git branch --show-current)
   psf = push --force-with-lease
   pl = pull
+  p = pull
   sy = pull origin main:main --no-edit
   root = rev-parse --show-toplevel
   default-branch = !git remote show origin | grep 'HEAD branch' | cut -d' ' -f5

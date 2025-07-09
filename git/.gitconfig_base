@@ -39,7 +39,7 @@
 [alias]
   s = status
   a = add
-  c = commit -m
+  c = commit
   d = diff
   ds = diff --staged
   r = restore

@@ -37,8 +37,8 @@ My personal git configuration is in `git/.gitconfig_personal`.
 ### AstroNvim (Neovim)
 
 - `:AstroUpdate` to update Neovim and Mason plugins
-- `:LazySync` to upgrade Mason plugins and remove unused plugins
-- `:Lazy:Restore` to install Mason plugin from versions in lock file
+- `:Lazy` and then `Sync` to upgrade Mason plugins and remove unused plugins
+- `:Lazy` and then `Restore` to install Mason plugin from versions in lock file
 - `:checkhealth` to check health of all packages
 - `:TSUpdate` to update tree-sitter
 - `:Mason` to update LSP servers and related tools

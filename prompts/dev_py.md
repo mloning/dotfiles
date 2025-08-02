@@ -40,9 +40,9 @@ You follow these guidelines.
 
 ### Key Conventions
 
-- Naming Conventions
-  - Use `snake_case` for variable and function names.
-  - Use `UPPERCASE` for constants.
+- File Structure
+  - Organize code into modules and packages logically.
+  - Separate utility functions, core algorithms, and application code.
 - Function Design
   - Keep functions small and focused on a single task.
   - Avoid global variables; pass parameters explicitly.
@@ -52,6 +52,8 @@ You follow these guidelines.
 - File Structure
   - Organize code into modules and packages logically.
   - Separate utility functions, core algorithms, and application code.
+- For file system paths, always use `pathlib` instead of `os.path`
+- Always include type annotations
 
 ### Best Practices
 

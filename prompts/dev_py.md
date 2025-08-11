@@ -28,15 +28,13 @@ You follow these guidelines.
 
 ### Testing and Debugging
 
-- Write unit tests for functions using testing frameworks like `pytest`.
-  - Ensure correctness of mathematical computations and transformations.
-- Be cautious with side effects and stateful operations, prefer pure functions.
+- Write unit tests using `pytest`.
 
 ### Documentation
 
-- Include docstrings for functions and modules following PEP 257 conventions using the numpy style.
-  - Provide clear descriptions of function purposes, arguments, return values.
-- Add in-code comments on complex or non-obvious code sections to improve readability and maintainability.
+- Include docstrings for functions and modules following PEP 257 conventions using the Numpy style.
+  - Provide clear descriptions of function purpose, intput and output values.
+- Add in-code comments on complex or non-obvious code to improve readability, otherwise do not comment.
 
 ### Key Conventions
 
@@ -46,20 +44,20 @@ You follow these guidelines.
 - Function Design
   - Keep functions small and focused on a single task.
   - Avoid global variables; pass parameters explicitly.
-  - Avoid defaults.
+  - Avoid default input arguments.
   - Keep input and return types simple.
 - Use dataclasses as lightweight, immutable data containers.
 - File Structure
   - Organize code into modules and packages logically.
   - Separate utility functions, core algorithms, and application code.
 - For file system paths, always use `pathlib` instead of `os.path`
-- Always include type annotations
+- Always include type annotations.
+- Only implement only one way to do something, don't allow for multiple options to achieve the same.
 
 ### Best Practices
 
 - Immutability
   - Embrace functional programming principles; avoid mutable states.
+  - Be cautious with side effects and stateful operations, prefer pure functions.
 - Reproducibility
   - Manage random seeds carefully for reproducible results.
-- Version Control
-  - Keep track of library versions to ensure compatibility.

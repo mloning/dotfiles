@@ -53,7 +53,7 @@ style = "Regular"
 [window]
 decorations = "full"
 dynamic_padding = false
-startup_mode = "Windowed"
+startup_mode = "Maximized"
 
 [keyboard]
 bindings = [

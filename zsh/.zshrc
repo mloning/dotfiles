@@ -211,3 +211,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"

@@ -1,3 +1,7 @@
-.local/share
-.local/state
-.IdentityService
+# git-ignore everything except my scripts
+*
+!./local/bin/tmux-sessionizer.sh
+
+# .local/share
+# .local/state
+# .IdentityService

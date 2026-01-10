@@ -62,10 +62,7 @@ if status is-interactive
     
     starship init fish | source
     zoxide init fish | source
-
-    # fzf bindings
     fzf --fish | source
-    set -gx FZF_CTRL_R_COMMAND "history -t"
 
     ssh-add --apple-use-keychain ~/.ssh/id_ed25519 &>/dev/null
     

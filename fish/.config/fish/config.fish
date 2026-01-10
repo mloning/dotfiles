@@ -56,22 +56,19 @@ if status is-interactive
     end
     
     function fish_user_key_bindings
-        bind -M insert \ct 'tmux-sessionizer; commandline -f repaint'
-        bind -M default \ct 'tmux-sessionizer; commandline -f repaint'
+        bind -M insert \cf 'tmux-sessionizer; commandline -f repaint'
+        bind -M default \cf 'tmux-sessionizer; commandline -f repaint'
     end
     
-    if type -q starship
-        starship init fish | source
-    end
+    starship init fish | source
+    zoxide init fish | source
 
-    if type -q zoxide
-        zoxide init fish | source
-    end
+    # fzf bindings
+    fzf --fish | source
+    set -gx FZF_CTRL_R_COMMAND "history -t"
 
-    # SSH keys
     ssh-add --apple-use-keychain ~/.ssh/id_ed25519 &>/dev/null
     
-    # Cargo (Rust)
     if test -f "$HOME/.cargo/env.fish"
         source "$HOME/.cargo/env.fish"
     end

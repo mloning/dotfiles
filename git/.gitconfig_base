@@ -47,8 +47,8 @@
   m = merge
   mt = mergetool
   n = switch --create
-  l = log --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset %Cgreen%ad%Creset %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset'
-  t = tag
+  l = log --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset %Cgreen%ad%Creset %C(bold blue)%an%Creset %s%C(yellow)%d%Creset'
+  t = tag --no-column --format='%(color:yellow)%(refname:short)%(color:reset) %(color:green)%(creatordate:format:%Y-%m-%d %H:%M:%S)%(color:reset) %(color:bold blue)%(taggername)%(authorname)%(color:reset) %(color:white)%(contents:subject)%(color:reset)'
   f = fetch
   co = checkout
   cl = clean -d --force

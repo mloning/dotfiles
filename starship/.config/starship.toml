@@ -9,3 +9,9 @@ ssh_only = true
 
 [aws]
 disabled = true
+
+[gcloud]
+disabled = true
+
+[azure]
+disabled = true

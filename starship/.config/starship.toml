@@ -15,3 +15,7 @@ disabled = true
 
 [azure]
 disabled = true
+
+[conda]
+symbol = "🐍 "
+format = "via [$symbol$environment]($style) "

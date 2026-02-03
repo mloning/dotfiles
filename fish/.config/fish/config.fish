@@ -80,6 +80,9 @@ if status is-interactive
 end
 
 
+# Disable conda's prompt modification (Starship handles it)
+set -gx CONDA_CHANGEPS1 false
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 if test -f /usr/local/Caskroom/miniforge/base/bin/conda

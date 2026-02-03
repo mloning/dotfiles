@@ -1,9 +1,9 @@
 repos:
 - repo: https://github.com/JohnnyMorganz/StyLua
-  rev: v0.19.1
+  rev: v2.3.1
   hooks:
     - id: stylua 
 - repo: https://github.com/koalaman/shellcheck-precommit
-  rev: v0.9.0
+  rev: v0.11.0
   hooks:
     - id: shellcheck

@@ -15,12 +15,20 @@ make create
 
 ## Core dependencies
 
-- [alacritty](https://alacritty.org) or [Windows Terminal](https://github.com/microsoft/terminal)
-- [oh-my-zsh](https://ohmyz.sh) with [powerlevel10k](https://github.com/romkatv/powerlevel10k)
+- [fish](https://fishshell.com/) with [Starship](https://starship.rs/)
+- [ghostty](https://ghostty.org/)
+- ~~[alacritty](https://alacritty.org) or [Windows Terminal](https://github.com/microsoft/terminal)~~
+- ~~[oh-my-zsh](https://ohmyz.sh) with [powerlevel10k](https://github.com/romkatv/powerlevel10k)~~
 - [tmux](https://github.com/tmux/tmux)
 - [neovim](https://neovim.io) with [AstroNvim](https://astronvim.com/)
 
-## Git configuration
+## Fish 
+
+I have different environment configurations on my work and personal computer.
+I use a shared `config.fish` file which imports a `config.local.fish` file if present.
+The local configuration is not tracked in this git repo, and needs to be created manually.
+
+## Git 
 
 My personal git configuration is different from my work one.
 I define a shared `.gitconfig_base`, which I can then import in each of my `.gitconfig` files.
@@ -31,6 +39,7 @@ I define a shared `.gitconfig_base`, which I can then import in each of my `.git
 ```
 
 My personal git configuration is in `git/.gitconfig_personal`.
+The local `.gitconfig` is not tracked in this git repo, and needs to be created manually.
 
 ## Update plugins
 

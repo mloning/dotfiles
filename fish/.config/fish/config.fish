@@ -9,8 +9,10 @@ if status is-interactive
     set -gx EDITOR nvim
     set -gx VISUAL nvim
     
-    # tmux-sessionizer configuration
-    set -gx TMUX_SESSIONIZER_ROOT_PATH "$HOME/Documents/Software"
+    # Load machine-specific configuration
+    if test -f ~/.config/fish/config.local.fish
+        source ~/.config/fish/config.local.fish
+    end
     
     # PATH configuration
     fish_add_path $HOME/usr/local/bin

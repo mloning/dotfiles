@@ -22,13 +22,14 @@ make create
 - [tmux](https://github.com/tmux/tmux)
 - [neovim](https://neovim.io) with [AstroNvim](https://astronvim.com/)
 
-## Fish 
+## Fish/Zsh
 
-I have different environment configurations on my work and personal computer.
-I use a shared `config.fish` file which imports a `config.local.fish` file if present.
+My personal shell environment configurations is different from my work one.
+For fish, I use a shared `config.fish` file which imports a `config.local.fish` file if present.
+For Zsh, I use `~/.zshenv` which is imported automatically by Zsh.
 The local configuration is not tracked in this git repo, and needs to be created manually.
 
-## Git 
+## Git
 
 My personal git configuration is different from my work one.
 I define a shared `.gitconfig_base`, which I can then import in each of my `.gitconfig` files.

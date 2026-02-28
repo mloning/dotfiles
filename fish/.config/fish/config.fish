@@ -1,7 +1,3 @@
-# ============================================================================
-# Fish Shell Configuration
-# ============================================================================
-
 if status is-interactive
     # Commands to run in interactive sessions can go here
     
@@ -80,7 +76,6 @@ if status is-interactive
         source "$HOME/Downloads/google-cloud-sdk/path.fish.inc"
     end
 end
-
 
 # Disable conda's prompt modification (Starship handles it)
 set -gx CONDA_CHANGEPS1 false

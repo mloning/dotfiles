@@ -19,6 +19,7 @@ if status is-interactive
     fish_add_path $HOME/bin
     fish_add_path $HOME/.local/bin
     fish_add_path /opt/homebrew/bin
+    fish_add_path /opt/homebrew/sbin
     fish_add_path /opt/homebrew/opt/libpq/bin
     fish_add_path /usr/local/opt/libpq/bin
     fish_add_path /opt/homebrew/opt/openjdk@11/bin

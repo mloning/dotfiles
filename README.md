@@ -17,17 +17,17 @@ make create
 
 - [fish](https://fishshell.com/) with [Starship](https://starship.rs/)
 - [ghostty](https://ghostty.org/)
-- ~~[alacritty](https://alacritty.org) or [Windows Terminal](https://github.com/microsoft/terminal)~~
-- ~~[oh-my-zsh](https://ohmyz.sh) with [powerlevel10k](https://github.com/romkatv/powerlevel10k)~~
 - [tmux](https://github.com/tmux/tmux)
 - [neovim](https://neovim.io) with [AstroNvim](https://astronvim.com/)
 
 ## Fish/Zsh
 
 My personal shell environment configurations is different from my work one.
-For fish, I use a shared `config.fish` file which imports a `config.local.fish` file if present.
-For Zsh, I use `~/.zshenv` which is imported automatically by Zsh.
-The local configuration is not tracked in this git repo, and needs to be created manually.
+
+- For fish, I use a shared `config.fish` file which imports a `config.local.fish` file if present.
+- For Zsh, I use `~/.zshenv` which is imported automatically by Zsh.
+
+The local configuration is not tracked in this git repo and needs to be created manually.
 
 ## Git
 
@@ -40,11 +40,9 @@ I define a shared `.gitconfig_base`, which I can then import in each of my `.git
 ```
 
 My personal git configuration is in `git/.gitconfig_personal`.
-The local `.gitconfig` is not tracked in this git repo, and needs to be created manually.
+The local `.gitconfig` is not tracked in this git repo and needs to be created manually.
 
-## Update plugins
-
-### AstroNvim (Neovim)
+## Neovim (AstroNvim)
 
 - `:AstroUpdate` to update Neovim and Mason plugins
 - `:Lazy` and then `Sync` to upgrade Mason plugins and remove unused plugins
@@ -53,7 +51,7 @@ The local `.gitconfig` is not tracked in this git repo, and needs to be created 
 - `:TSUpdate` to update tree-sitter
 - `:Mason` to update LSP servers and related tools
 
-### tmux
+## tmux
 
 - Press `prefix` + `I` to install plugins using [tmp]
 

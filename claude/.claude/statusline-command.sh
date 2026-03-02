@@ -23,7 +23,7 @@ dim=$'\033[2m'
 reset=$'\033[0m'
 
 # Compose output
-printf "%s %s %s%s%s\n" \
-  "${dim}${bar} ${used_int}%${reset}" \
+printf "%s%s%s %s %s\n" \
+  "$dim" "$model" "$reset" \
   "${dim}|${reset}" \
-  "$dim" "$model" "$reset"
+  "${dim}${bar} ${used_int}%${reset}"

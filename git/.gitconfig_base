@@ -55,7 +55,9 @@
   sw = switch
   br = branch
   rb = rebase
-  st = stash
+  st = stash push
+  sts = stash push --staged
+  stu = stash push --keep-index
   ps = push
   psu = !git push --set-upstream origin $(git branch --show-current)
   psf = push --force-with-lease

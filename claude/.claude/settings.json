@@ -8,7 +8,7 @@
     "clangd-lsp@claude-plugins-official": true
   },
   "permissions": {
-    "allow": ["Bash(*)", "Edit(*)", "Write(*)"],
+    "allow": ["Bash(*)", "Edit(*)", "Write(*)", "Search(*)"],
     "ask": [
       "Bash(rm -rf *)",
       "Bash(rm -r *)",

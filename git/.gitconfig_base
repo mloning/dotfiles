@@ -55,7 +55,7 @@
   sw = switch
   br = branch
   rb = rebase
-  st = stash push
+  st = stash
   sts = stash push --staged
   stu = stash push --keep-index
   ps = push

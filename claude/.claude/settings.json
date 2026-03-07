@@ -3,10 +3,13 @@
     "type": "command",
     "command": "bash /Users/mloning/.claude/statusline-command.sh"
   },
+  "spinnerTipsEnabled": false,
+  "spinnerVerbs": { "mode": "replace", "verbs": ["Working"] },
   "effortLevel": "medium",
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true
   },
+  "plansDirectory": "./local/plans",
   "permissions": {
     "allow": ["Bash(*)", "Edit(*)", "Write(*)", "Search(*)"],
     "ask": [

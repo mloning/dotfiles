@@ -1,5 +1,7 @@
 [core]
   autocrlf = input
+  longpaths = true
+  symlinks = true
 [color]
   ui = auto
 [column]

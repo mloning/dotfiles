@@ -81,16 +81,9 @@ end
 # Disable conda's prompt modification (Starship handles it)
 set -gx CONDA_CHANGEPS1 false
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -f /opt/homebrew/Caskroom/miniforge/base/bin/conda
-    eval /opt/homebrew/Caskroom/miniforge/base/bin/conda "shell.fish" "hook" $argv | source
-else
-    if test -f "/opt/homebrew/Caskroom/miniforge/base/etc/fish/conf.d/conda.fish"
-        . "/opt/homebrew/Caskroom/miniforge/base/etc/fish/conf.d/conda.fish"
-    else
-        set -x PATH "/opt/homebrew/Caskroom/miniforge/base/bin" $PATH
-    end
+# Initialize conda
+set -l brew_conda_path (brew --prefix)/Caskroom/miniforge/base/bin/conda
+if test -f $brew_conda_path
+    eval $brew_conda_path "shell.fish" "hook" $argv | source
 end
-# <<< conda initialize <<<
 

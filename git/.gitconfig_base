@@ -69,5 +69,6 @@
   root = rev-parse --show-toplevel
   default-branch = !git remote show origin | grep 'HEAD branch' | cut -d' ' -f5
   praise = blame
+  wt = worktree
 [help]
   autocorrect = 12  # 1.2 seconds

@@ -31,7 +31,8 @@ The local configuration is not tracked in this repo and needs to be created manu
 
 ## Git
 
-I define a common `.gitconfig_base`, which I import in of my personal and work `.gitconfig` files.
+My personal and work configurations are slightly different.
+I define a common `.gitconfig_base` which I can then import in `.gitconfig` files.
 The `.gitconfig` is not tracked in this repo and needs to be created manually.
 My personal git configuration is in `git/.gitconfig_personal`.
 

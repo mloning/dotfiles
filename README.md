@@ -16,9 +16,9 @@ make create
 ## Core dependencies
 
 - [Fish](https://fishshell.com/) with [Starship](https://starship.rs/)
-- [ghostty](https://ghostty.org/)
+- [Ghostty](https://ghostty.org/)
 - [tmux](https://github.com/tmux/tmux)
-- [neovim](https://neovim.io) with [AstroNvim](https://astronvim.com/)
+- [Neovim](https://neovim.io) with [AstroNvim](https://astronvim.com/)
 
 ## Fish/Zsh
 

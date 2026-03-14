@@ -15,32 +15,30 @@ make create
 
 ## Core dependencies
 
-- [fish](https://fishshell.com/) with [Starship](https://starship.rs/)
+- [Fish](https://fishshell.com/) with [Starship](https://starship.rs/)
 - [ghostty](https://ghostty.org/)
 - [tmux](https://github.com/tmux/tmux)
 - [neovim](https://neovim.io) with [AstroNvim](https://astronvim.com/)
 
 ## Fish/Zsh
 
-My personal shell environment configurations is different from my work one.
+My personal configurations is different from my work one.
 
-- For fish, I use a shared `config.fish` file which imports a `config.local.fish` file if present.
+- For Fish, I use a shared `config.fish` file which imports a `config.local.fish` file if present.
 - For Zsh, I use `~/.zshenv` which is imported automatically by Zsh.
 
-The local configuration is not tracked in this git repo and needs to be created manually.
+The local configuration is not tracked in this repo and needs to be created manually.
 
 ## Git
 
-My personal git configuration is different from my work one.
-I define a shared `.gitconfig_base`, which I can then import in each of my `.gitconfig` files.
+I define a common `.gitconfig_base`, which I import in of my personal and work `.gitconfig` files.
+The `.gitconfig` is not tracked in this repo and needs to be created manually.
+My personal git configuration is in `git/.gitconfig_personal`.
 
 ```
 [include]
   path = ~/.gitconfig_base
 ```
-
-My personal git configuration is in `git/.gitconfig_personal`.
-The local `.gitconfig` is not tracked in this git repo and needs to be created manually.
 
 ## Neovim (AstroNvim)
 
@@ -84,7 +82,7 @@ The local `.gitconfig` is not tracked in this git repo and needs to be created m
 
 - https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
 
-### zsh
+### Zsh
 
 - https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout
 - https://www.freecodecamp.org/news/how-do-zsh-configuration-files-work/

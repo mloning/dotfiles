@@ -1,4 +1,7 @@
 if status is-interactive
+    # Remove fish greeting
+    set -g fish_greeting
+
     # Commands to run in interactive sessions can go here
     
     # Set neovim as default editor

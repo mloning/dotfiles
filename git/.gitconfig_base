@@ -39,36 +39,39 @@
 [branch]
   sort = -committerdate
 [alias]
-  s = status
   a = add
+  aa = add .
+  ap = add --patch .
+  au = add --update .
+  br = branch
   c = commit
+  cl = clean -d --force
+  co = checkout
   d = diff
+  default-branch = !git remote show origin | grep 'HEAD branch' | cut -d' ' -f5
   ds = diff --staged
-  r = restore
-  rs = restore --staged
+  f = fetch
+  l = log --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset %Cgreen%ad%Creset %C(bold blue)%an%Creset %s%C(yellow)%d%Creset'
   m = merge
   mt = mergetool
   n = switch --create
-  l = log --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset %Cgreen%ad%Creset %C(bold blue)%an%Creset %s%C(yellow)%d%Creset'
-  t = tag --no-column --format='%(color:yellow)%(refname:short)%(color:reset) %(color:green)%(creatordate:format:%Y-%m-%d %H:%M:%S)%(color:reset) %(color:bold blue)%(taggername)%(authorname)%(color:reset) %(color:white)%(contents:subject)%(color:reset)'
-  f = fetch
-  co = checkout
-  cl = clean -d --force
-  sw = switch
-  br = branch
+  p = pull
+  pl = pull
+  praise = blame
+  ps = push
+  psf = push --force-with-lease
+  psu = !git push --set-upstream origin $(git branch --show-current)
+  r = restore
   rb = rebase
+  root = rev-parse --show-toplevel
+  rs = restore --staged
+  s = status
   st = stash
   sts = stash push --staged
   stu = stash push --keep-index
-  ps = push
-  psu = !git push --set-upstream origin $(git branch --show-current)
-  psf = push --force-with-lease
-  pl = pull
-  p = pull
+  sw = switch
   sy = pull origin main:main --no-edit
-  root = rev-parse --show-toplevel
-  default-branch = !git remote show origin | grep 'HEAD branch' | cut -d' ' -f5
-  praise = blame
+  t = tag --no-column --format='%(color:yellow)%(refname:short)%(color:reset) %(color:green)%(creatordate:format:%Y-%m-%d %H:%M:%S)%(color:reset) %(color:bold blue)%(taggername)%(authorname)%(color:reset) %(color:white)%(contents:subject)%(color:reset)'
   wt = worktree
 [help]
   autocorrect = 12  # 1.2 seconds

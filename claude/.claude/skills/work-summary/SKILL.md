@@ -27,7 +27,7 @@ Run these two searches in parallel:
 - All PRs authored by the user created since the start date: `author:<username> created:>=<start_date>`
 - All PRs authored by the user merged since the start date: `author:<username> is:merged merged:>=<start_date>`
 
-Use `perPage: 50`.
+Use `perPage: 100`.
 
 Combine the results into a single deduplicated list. For each PR determine:
 

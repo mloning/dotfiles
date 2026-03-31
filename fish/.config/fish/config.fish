@@ -14,14 +14,21 @@ if status is-interactive
     end
     
     # PATH configuration
-    fish_add_path $HOME/usr/local/bin
-    fish_add_path $HOME/bin
-    fish_add_path $HOME/.local/bin
-    fish_add_path /opt/homebrew/bin
-    fish_add_path /opt/homebrew/sbin
-    fish_add_path /opt/homebrew/opt/libpq/bin
-    fish_add_path /usr/local/opt/libpq/bin
-    fish_add_path /opt/homebrew/opt/openjdk@11/bin
+    set --local paths \
+        $HOME/.cargo/bin \
+        $HOME/.local/bin \
+        $HOME/bin \
+        $HOME/usr/local/bin \
+        /opt/homebrew/bin \
+        /opt/homebrew/opt/libpq/bin \
+        /opt/homebrew/opt/openjdk@11/bin \
+        /opt/homebrew/sbin \
+        /usr/local/opt/libpq/bin
+    for path in $paths
+        if test -d $path
+            fish_add_path $path
+        end
+    end
     
     # GPG
     set -gx GPG_TTY (tty)
@@ -85,7 +92,7 @@ end
 set -gx CONDA_CHANGEPS1 false
 
 # Initialize conda
-set -l brew_conda_path (brew --prefix)/Caskroom/miniforge/base/bin/conda
+set --local brew_conda_path (brew --prefix)/Caskroom/miniforge/base/bin/conda
 if test -f $brew_conda_path
     eval $brew_conda_path "shell.fish" "hook" $argv | source
 end

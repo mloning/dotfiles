@@ -9,14 +9,16 @@ return {
       },
       mappings = {
         n = {
-          ["<S-l>"] = { cmd = ":bnext<CR>", desc = "Next buffer" },
-          ["<S-h>"] = { cmd = ":bprevious<CR>", desc = "Previous buffer" },
+          ["<S-l>"] = { "]b", desc = "Next buffer", remap = true },
+          ["<S-h>"] = { "[b", desc = "Previous buffer", remap = true },
           ["n"] = { cmd = "nzz", desc = "Next search result with centering" },
           ["N"] = { cmd = "Nzz", desc = "Previous search result with centering" },
-          -- Use Trouble for LSP results directly, bypassing quickfix race condition
-          ["gr"] = { function() require("trouble").open("lsp_references") end, desc = "LSP references (Trouble)" },
-          ["gd"] = { function() require("trouble").open("lsp_definitions") end, desc = "LSP definitions (Trouble)" },
-          ["gI"] = { function() require("trouble").open("lsp_implementations") end, desc = "LSP implementations (Trouble)" },
+          -- Use Trouble for LSP results directly
+          ["gr"] = { function() require("trouble").open "lsp_references" end, desc = "LSP references (Trouble)" },
+          ["gI"] = {
+            function() require("trouble").open "lsp_implementations" end,
+            desc = "LSP implementations (Trouble)",
+          },
         },
       },
       autocmds = {
@@ -31,13 +33,11 @@ return {
               local win = vim.api.nvim_get_current_win()
               vim.schedule(function()
                 if is_loclist then
-                  require("trouble").open("loclist")
+                  require("trouble").open "loclist"
                 else
-                  require("trouble").open("qflist")
+                  require("trouble").open "qflist"
                 end
-                if vim.api.nvim_win_is_valid(win) then
-                  pcall(vim.api.nvim_win_close, win, false)
-                end
+                if vim.api.nvim_win_is_valid(win) then pcall(vim.api.nvim_win_close, win, false) end
               end)
             end,
           },

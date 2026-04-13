@@ -1,0 +1,22 @@
+model = "gpt-5.4"
+model_reasoning_effort = "high"
+
+[tui]
+show_tooltips = false
+animations = false
+notifications = false
+status_line = [
+  "current-dir",
+  "git-branch",
+  "model-with-reasoning",
+  "context-usage",
+]
+
+[analytics]
+enabled = false # disable OpenAI analytics
+
+[feedback]
+enabled = false # disable OpenAI feedback
+
+[projects."/Users/mloning/Dev/projects/dotfiles"]
+trust_level = "trusted"

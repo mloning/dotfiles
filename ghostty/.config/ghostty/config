@@ -1,3 +1,4 @@
 font-family = MesloLGS Nerd Font
 font-size = 15
 shell-integration = fish
+macos-option-as-alt = left

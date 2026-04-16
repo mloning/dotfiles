@@ -270,5 +270,7 @@
   },
   "effortLevel": "medium",
   "plansDirectory": "./local/plans",
-  "cleanupPeriodDays": 90
+  "cleanupPeriodDays": 90,
+  "includeCoAuthoredBy": false,
+  "gitAttribution": false
 }

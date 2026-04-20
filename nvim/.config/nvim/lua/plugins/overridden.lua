@@ -20,6 +20,9 @@ return {
             desc = "LSP implementations (Trouble)",
           },
         },
+        x = {
+          ["p"] = { [["_dP]], desc = "Paste without yanking replaced text" },
+        },
       },
       autocmds = {
         -- Redirect quickfix/location list to Trouble

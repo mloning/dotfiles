@@ -263,6 +263,7 @@
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true
   },
+  "prefersReducedMotion": true,
   "spinnerTipsEnabled": false,
   "spinnerVerbs": {
     "mode": "replace",

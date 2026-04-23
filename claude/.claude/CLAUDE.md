@@ -1,1 +1,1 @@
-In Plan Mode, when saving the plan to a file, always use a descriptive kebab-case filename that summarizes the plan and the date (e.g. `YYYYMMDD-add-user-auth.md`, `YYYYMMDD-migrate-to-postgres.md`), not a random auto-generated name.
+In Plan Mode, when saving the plan, use a descriptive kebab-case filename that summarizes the plan (e.g. `add-user-auth.md`, `migrate-to-postgres.md`), not a random auto-generated name.

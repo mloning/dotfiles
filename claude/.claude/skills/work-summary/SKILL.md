@@ -13,7 +13,7 @@ Generate an activity summary for a team member, covering GitHub PRs and Jira tic
 /work-summary <username> [days]
 ```
 
-- `<username>`: GitHub/Jira username (e.g. `croyen`)
+- `<username>`: GitHub/Jira username (e.g. `mloning`)
 - `[days]`: Optional. Number of days to look back (default: `7`). Examples: `7`, `30`, `90`.
 
 ## Instructions
@@ -31,7 +31,7 @@ Use `perPage: 100`.
 
 Combine the results into a single deduplicated list. For each PR determine:
 
-- **Repo**: the repository name only (not the full URL, e.g. `nm-wave`)
+- **Repo**: the repository name only (not the full URL, e.g. `numpy` not `https://github.com/numpy/numpy`)
 - **Title**: PR title
 - **Status**: `Merged`, `Open`, or `Closed` (closed without merge)
 - **Created**: date only (e.g. `Mar 18`)

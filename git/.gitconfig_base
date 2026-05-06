@@ -65,7 +65,7 @@
   rb = rebase
   root = rev-parse --show-toplevel
   rs = restore --staged
-  s = status
+  s = status --short
   st = stash
   sts = stash --staged
   stu = stash --keep-index

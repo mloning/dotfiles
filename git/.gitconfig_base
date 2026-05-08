@@ -40,9 +40,7 @@
   sort = -committerdate
 [alias]
   a = add
-  aa = add .
   ap = add --patch .
-  au = add --update .
   br = branch
   c = commit
   cl = clean -d --force

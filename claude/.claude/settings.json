@@ -9,8 +9,6 @@
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
-      "mcp__ghe-oauth__*",
-      "mcp__jira__*",
       "Bash(*)",
       "Edit(*)",
       "Write(*)",
@@ -230,13 +228,10 @@
     "clangd-lsp@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true
   },
-  },
   "spinnerTipsEnabled": false,
   "spinnerVerbs": {
     "mode": "replace",
-    "verbs": [
-      "Working"
-    ]
+    "verbs": ["Working"]
   },
   "effortLevel": "xhigh",
   "plansDirectory": "./local/plans",

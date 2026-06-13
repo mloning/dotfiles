@@ -14,10 +14,14 @@ TARGET_DIR=${HOME}
 STOW_PACKAGES := $(filter-out skills/, $(wildcard */))
 
 # Agent skill dirs. skills/ is symlinked into these so edits in this repo are
-# immediately live in both agents (no re-sync). Codex reads ~/.agents/skills.
+# immediately live in all agents (no re-sync).
 SKILLS_SRC := $(CURDIR)/skills
 CLAUDE_SKILLS_DIR := $(HOME)/.claude/skills
 CODEX_SKILLS_DIR := $(HOME)/.agents/skills
+AGY_CLI_SKILLS_DIR := $(HOME)/.gemini/antigravity-cli/skills
+AGY_CONFIG_SKILLS_DIR := $(HOME)/.gemini/config/skills
+
+AGENT_SKILLS_DIRS := $(CLAUDE_SKILLS_DIR) $(CODEX_SKILLS_DIR) $(AGY_CLI_SKILLS_DIR) $(AGY_CONFIG_SKILLS_DIR)
 
 # see http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 help: # Help
@@ -29,14 +33,16 @@ create: ## Create symbolic links
 delete: ## Delete symbolic links
 	stow --verbose=${VERBOSE} --target=${TARGET_DIR} --delete ${STOW_PACKAGES}
 
-link-skills: ## Symlink skills/ into Claude Code & Codex 
-	@mkdir -p "$(CLAUDE_SKILLS_DIR)" "$(CODEX_SKILLS_DIR)"
+link-skills: ## Symlink skills/ into Claude Code, Codex & Antigravity (agy)
+	@for dir in $(AGENT_SKILLS_DIRS); do \
+		mkdir -p "$$dir"; \
+	done
 	@for skill in $(SKILLS_SRC)/*/; do \
 		name=$$(basename "$$skill"); \
-		for dir in "$(CLAUDE_SKILLS_DIR)" "$(CODEX_SKILLS_DIR)"; do \
+		for dir in $(AGENT_SKILLS_DIRS); do \
 			rm -rf "$$dir/$$name"; \
 			ln -s "$(SKILLS_SRC)/$$name" "$$dir/$$name"; \
 		done; \
-		echo "linked $$name -> Claude Code + Codex"; \
+		echo "linked $$name -> Claude Code, Codex & Antigravity"; \
 	done
 

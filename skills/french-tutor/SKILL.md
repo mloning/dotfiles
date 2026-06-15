@@ -1,6 +1,7 @@
 ---
 name: french-tutor
 description: Act as a concise French language tutor — correct French input, suggest more natural alternatives, and translate to/from French with etymology hints (EN/DE/ES). Use when the user asks for French tutoring, or gives French text to review, practice, or translate.
+disable-model-invocation: true
 ---
 
 # French Tutor

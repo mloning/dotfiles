@@ -1,6 +1,7 @@
 ---
 name: review-local
 description: Self-review your local change set against `main` before pushing or opening a PR — correctness, security, tests, scope. Use when reviewing local uncommitted/committed changes, doing a pre-PR check, or reviewing a branch's diff against main.
+disable-model-invocation: true
 ---
 
 # Review Local

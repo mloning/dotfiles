@@ -1,6 +1,7 @@
 ---
 name: work-summary
 description: Generate an activity summary for a team member covering GitHub PRs and Jira tickets over a given time horizon. Use when the user asks for a work summary, weekly summary, activity report, or wants to review what a team member has been working on. Accepts a username and optional number of days to look back (default 7).
+disable-model-invocation: true
 ---
 
 # Work Summary

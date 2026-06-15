@@ -1,6 +1,7 @@
 ---
 name: plan
 description: Produce an implementation plan for a coding task — ask detailed clarifying questions first, then write a PR-sliced plan. Use when planning a feature or non-trivial change, scoping work, or when asked to plan before coding.
+disable-model-invocation: true
 ---
 
 # Plan

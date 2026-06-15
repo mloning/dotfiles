@@ -1,6 +1,7 @@
 ---
 name: debug
 description: Systematically debug a failure — reproduce it, find the root cause, test hypotheses, then fix. Use when investigating a bug, a failing test, an error, or why something is broken.
+disable-model-invocation: true
 ---
 
 # Debug

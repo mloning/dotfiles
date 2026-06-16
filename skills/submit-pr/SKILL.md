@@ -14,7 +14,7 @@ Open a PR a reviewer can act on without asking questions. Describe what actually
 4. **Keep the bullets terse.** One bullet per change, a few words each — _what_ changed and _why_, no more. Bullets are a scannable index, not prose. Push every elaboration (context, trade-offs, mechanism, follow-ups) into `## Notes`, where detail is welcome.
 5. **Give manual test steps.** List the exact commands a reviewer runs to verify the change, using the repo's own dev/helper/testing tooling (e.g. `just test`, `pytest`, `make check`) — read the Makefile/justfile/README to use the real commands, don't invent them.
 6. **Link the Jira issue.** Find the issue key (branch name, commit messages, or ask) and link it in the description; add any related PRs or docs.
-7. **Create the PR.** Prefer the GitHub MCP tool; otherwise `gh pr create`. Target the correct base (`main` unless told otherwise). Report the PR URL.
+7. **Create the PR as a draft.** Default to a **draft** PR unless told otherwise — `gh pr create --draft`, or the GitHub MCP tool's `draft: true`. Prefer the MCP tool; otherwise `gh pr create`. Target the correct base (`main` unless told otherwise). Report the PR URL.
 
 ## Default description template
 

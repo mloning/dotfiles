@@ -1,5 +1,5 @@
 ---
-name: spec
+name: write-spec
 description: Specify requirements before planning — the problem, exact testable requirements, acceptance criteria, scope and non-goals. Use when defining what to build, capturing requirements, or writing a spec/PRD before design.
 disable-model-invocation: true
 ---

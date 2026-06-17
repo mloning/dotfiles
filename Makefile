@@ -9,12 +9,13 @@ TARGET_DIR=${HOME}
 #TARGET_DIR=${HOME}/testdir/
 
 # Stow packages: every top-level dir except those managed elsewhere.
-# skills/ is symlinked into each agent's skills dir by `make link-skills`
-# (live edits, single source of truth), not stowed.
+# skills/ is copied into each agent's skills dir by `make link-skills`
+# (copied, not symlinked, so the files can be bind-mounted into containers),
+# not stowed.
 STOW_PACKAGES := $(filter-out skills/, $(wildcard */))
 
-# Agent skill dirs. skills/ is symlinked into these so edits in this repo are
-# immediately live in all agents (no re-sync).
+# Agent skill dirs. skills/ is the single source of truth and is copied into
+# these. Re-run `make link-skills` after editing skills/ to re-sync.
 SKILLS_SRC := $(CURDIR)/skills
 CLAUDE_SKILLS_DIR := $(HOME)/.claude/skills
 CODEX_SKILLS_DIR := $(HOME)/.agents/skills
@@ -33,7 +34,7 @@ create: ## Create symbolic links
 delete: ## Delete symbolic links
 	stow --verbose=${VERBOSE} --target=${TARGET_DIR} --delete ${STOW_PACKAGES}
 
-link-skills: ## Symlink skills/ into Claude Code, Codex & Antigravity (agy)
+link-skills: ## Copy skills/ into Claude Code, Codex & Antigravity (agy)
 	@for dir in $(AGENT_SKILLS_DIRS); do \
 		mkdir -p "$$dir"; \
 	done
@@ -41,8 +42,8 @@ link-skills: ## Symlink skills/ into Claude Code, Codex & Antigravity (agy)
 		name=$$(basename "$$skill"); \
 		for dir in $(AGENT_SKILLS_DIRS); do \
 			rm -rf "$$dir/$$name"; \
-			ln -s "$(SKILLS_SRC)/$$name" "$$dir/$$name"; \
+			cp -R "$(SKILLS_SRC)/$$name" "$$dir/$$name"; \
 		done; \
-		echo "linked $$name -> Claude Code, Codex & Antigravity"; \
+		echo "copied $$name -> Claude Code, Codex & Antigravity"; \
 	done
 

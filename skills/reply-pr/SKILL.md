@@ -1,10 +1,10 @@
 ---
-name: pr-reply
+name: reply-pr
 description: Verify and address open review comments on the current PR — fetch unresolved comments, check each against the codebase, fix what's correct, push back with justification where needed. Use when responding to PR review feedback or addressing review comments.
 disable-model-invocation: true
 ---
 
-# PR Reply
+# Reply PR
 
 Verify before implementing. Ask before assuming. Technical correctness over social comfort.
 

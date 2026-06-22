@@ -158,8 +158,6 @@
       "Edit(~/.profile)",
       "Edit(~/.claude/settings.json)",
       "Edit(**/.claude/settings.json)",
-      "Read(**/.claude/settings.json)",
-      "Edit(**/CLAUDE.md)",
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)",
       "Read(~/.kube/config)",

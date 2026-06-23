@@ -8,13 +8,15 @@ disable-model-invocation: true
 
 The remote counterpart to `review-local`: review only what the PR introduces against `main` — not pre-existing code — plus the context it carries (description, conversation, linked tickets). High signal over volume. Verify independently; don't trust the PR's own framing of what it does.
 
+> **Tooling — prefer MCP.** For every GitHub operation (resolving the PR, fetching the diff/description/conversation, posting review comments), use an available GitHub MCP server's tools in preference to the `gh` CLI — e.g. `ghe_get_pr`, `ghe_pr_diff`, `ghe_pr_all_feedback`, `ghe_add_review_comment` if present. Fall back to `gh` only when no MCP tool is available (e.g. `gh pr checkout`, which has no MCP equivalent).
+
 ## Usage
 
 ```
 /review-pr [pr]
 ```
 
-`[pr]` is an optional PR number or URL. With no argument, review the PR linked to the **current branch** (`gh pr view` with no arg); if the branch has no open PR, say so and stop.
+`[pr]` is an optional PR number or URL. With no argument, review the PR linked to the **current branch** (GitHub MCP `ghe_my_prs`, else `gh pr view` with no arg); if the branch has no open PR, say so and stop.
 
 1. **Resolve & fetch the PR.** Resolve the target (the arg, or the current branch's PR). Fetch the change set, description, and conversation — GitHub MCP, or `gh pr view <pr>` / `gh pr diff <pr>`. Check out the branch (`gh pr checkout <pr>`) so the diff is local. Pull any linked Jira tickets and referenced docs/PRs.
 2. **Build & test first.** Run the project's build/tests/linters (check README/CLAUDE.md/CI for the commands). If they fail, say so — and don't claim they pass without running them. Do this once, up front, before launching either review.

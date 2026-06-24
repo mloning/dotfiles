@@ -232,13 +232,7 @@
     "verbs": ["Working"]
   },
   "effortLevel": "xhigh",
-<<<<<<< Updated upstream
   "plansDirectory": "./local/plans",
-  "gitAttribution": false
-||||||| Stash base
-  "gitAttribution": false
-=======
   "gitAttribution": false,
   "skipWorkflowUsageWarning": true
->>>>>>> Stashed changes
 }

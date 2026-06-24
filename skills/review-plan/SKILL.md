@@ -10,11 +10,45 @@ Critique before any code is written. Verify independently — read the actual co
 
 1. **Launch both critiques in parallel.** Run two independent critiques concurrently against the checklist in steps 2–6, then combine at the end (step 7) — don't run them sequentially:
    - **You** critique the plan yourself against steps 2–6.
-   - **The other agent** runs the same checklist headless in the background and lists its findings. **Build it a self-contained prompt:** point it at the plan/spec file (or paste the plan in) and inline the actual critique criteria (the substance of steps 2–6) directly — never say "follow this skill" or cite step numbers, because the headless agent has no skill loaded and will burn its entire budget hunting through skill files to reconstruct them (this is the usual cause of an empty `FINDINGS_JSON`). Also tell it not to spawn its own second critic (no recursion). Background it to a log and **stream** so you can see it's alive — `perl -e 'alarm shift; exec @ARGV' 300` is a portable 5-minute hard-kill (macOS ships no `timeout`/`gtimeout`). From Claude: `(perl -e 'alarm shift; exec @ARGV' 300 codex exec "<prompt>") > /tmp/review-plan-other.log 2>&1 &`; from Codex: `(perl -e 'alarm shift; exec @ARGV' 300 claude -p "<prompt>" --output-format stream-json --include-partial-messages --verbose --no-session-persistence) > /tmp/review-plan-other.log 2>&1 &` (plain `claude -p` buffers all output until the final answer, so it looks frozen for minutes while it's actually reading files and running tools). Add these three constraints verbatim to its prompt: (1) **"Use at most 15 tool calls total — spend them on the plan and the code it references, never on reading skill or doc files."** (2) **"Do not open, read, or follow any skill files (`SKILL.md` or `references/`); everything you need is already in this prompt."** (3) **"The last thing you output must be a fenced JSON block opened with the line `FINDINGS_JSON` containing your findings array and a verdict string."** Keep critiquing while it runs. **Silence ≠ stalled** — judge it done by the process exiting (tail the log for liveness), not by output gaps. The 5-minute timeout hard-kills it if it hasn't finished.
+   - **The other agent** runs the same checklist as a headless cross-critic in the background. Run it the reliable way — **hand over the plan and disable exploration**, don't plead in prose (a critic loose in the repo ignores "use ≤15 tool calls / don't read skill files," spirals into exploration, and gets hard-killed before emitting anything). Inline the **full plan text in the prompt**, run it **with exploration structurally disabled** and **stdin closed** (`codex exec` hangs reading an open stdin), and make it **write schema-validated findings to a file**. Run the block below — `1a` if you are Claude (spawn Codex), `1b` if you are Codex (spawn Claude):
+
+   ```bash
+   # 1. Point at the plan/spec file under review.
+   PLAN_FILE="<path to the plan/design doc>"
+
+   # 2. Write the findings schema once (single line — safe regardless of indentation).
+   printf '%s' '{"type":"object","additionalProperties":false,"required":["findings","verdict"],"properties":{"findings":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["severity","location","issue","why","fix"],"properties":{"severity":{"type":"string","enum":["critical","important","minor"]},"location":{"type":"string"},"issue":{"type":"string"},"why":{"type":"string"},"fix":{"type":"string"}}}},"verdict":{"type":"string"}}}' > /tmp/review-schema.json
+
+   # 3. Inline the critique criteria (the substance of steps 2–6) — never reference this skill or step numbers.
+   CRITERIA="You are a sharp plan critic. The COMPLETE plan to critique is below the ===PLAN=== marker. Critique ONLY that text — do NOT run shell commands, read files, or explore the repo, CLIs, docs, or skill files; everything you need is in the plan. Check: does it actually solve the stated problem (map each requirement to a step; flag 'right feature, wrong problem'); scope creep / over-engineering / speculative nice-to-haves (YAGNI); unstated assumptions, fuzzy or overloaded terms, anything readable two ways; sequencing and buildability (each step independently buildable and verifiable, right order, no missing prerequisites, no naming/type inconsistencies across steps); and missing tests, edge cases, error paths, and failure modes (a step with no verification is a gap). Only flag what would cause real problems — not wording or style. For 'location', cite the plan section/step. If the approach is fundamentally wrong, say so in the verdict (re-plan, don't patch)."
+
+   # 1a. FROM CLAUDE → spawn the Codex critic (read-only sandbox, no user config/rules, stdin closed, schema enforced to a file):
+   (perl -e 'alarm shift; exec @ARGV' 180 \
+     codex exec --ignore-user-config --ignore-rules --ephemeral -s read-only \
+       --output-schema /tmp/review-schema.json -o /tmp/review-other.json \
+       "$CRITERIA
+
+   ===PLAN===
+   $(cat "$PLAN_FILE")" < /dev/null) > /tmp/review-other.log 2>&1 &
+
+   # 1b. FROM CODEX → spawn the Claude critic (all tools disabled, stdin closed, JSON envelope):
+   (perl -e 'alarm shift; exec @ARGV' 180 \
+     claude -p "$CRITERIA Output ONLY a JSON object (no prose, no markdown fence) of shape {\"findings\":[{\"severity\":\"critical|important|minor\",\"location\":\"\",\"issue\":\"\",\"why\":\"\",\"fix\":\"\"}],\"verdict\":\"\"}.
+
+   ===PLAN===
+   $(cat "$PLAN_FILE")" \
+       --tools "" --output-format json --no-session-persistence < /dev/null) > /tmp/review-other.json 2>&1 &
+   ```
+
+   Inlining via `"$(cat …)"` is safe — command-substitution output is not re-evaluated. The critic finishes well under the timeout; the `perl alarm` is only a backstop. Keep critiquing while it runs, then `wait`.
 2. **Does it solve the problem?** Map each requirement to a step; list anything with no corresponding task. Catch "right feature, wrong problem" misunderstandings.
 3. **Scope & over-engineering.** Flag work that wasn't asked for, speculative "nice-to-haves," and unnecessary complexity — the simpler thing is usually right (YAGNI).
 4. **Assumptions & ambiguity.** Surface unstated assumptions, fuzzy/overloaded terms, and anything readable two ways; flag claims that contradict the actual code.
 5. **Sequencing & buildability.** Is each step independently buildable and verifiable, in the right order, with no missing prerequisites? Could an engineer follow it without getting stuck? Watch for naming/type inconsistencies across steps.
 6. **Tests & failure modes.** Where are the test seams? What edge cases, error paths, and "what could go wrong" are missing? A step with no verification is a gap.
-7. **Combine results.** Once your own critique is done, wait for the background process (`wait`) then read `/tmp/review-plan-other.log` and look for the `FINDINGS_JSON` block. If the log is empty, has no `FINDINGS_JSON` block, or the process was killed by the 5-minute timeout, state that explicitly ("second reviewer did not produce usable output — single-reviewer findings below") and proceed with your own critique alone. Never produce a vacuous "no disagreements" summary when the second reviewer failed. If both produced results, keep findings both confirm (high confidence), investigate disagreements, drop anything neither can substantiate.
+7. **Combine results.** Once your own critique is done, `wait` for the background critic and read `/tmp/review-other.json`:
+   - **From Claude** (Codex critic): the file *is* the findings object (`{findings, verdict}`) — read it directly.
+   - **From Codex** (Claude critic): the file is an envelope — extract the payload with `jq -r '.result'`, then parse that as the findings JSON.
+
+   If the file is missing, empty, or not valid JSON (e.g. the critic was hard-killed by the timeout), state that explicitly ("second critic did not produce usable output — single-critic findings below") and proceed with your own critique alone. Never produce a vacuous "no disagreements" summary when the second critic failed. If both produced results, keep findings both confirm (high confidence), investigate disagreements, drop anything neither can substantiate.
 8. **Report by severity + verdict.** Merge into one list grouped **Critical / Important / Minor** — only flag what would cause real problems, not wording or style; note where the two agents disagreed. If the approach is fundamentally wrong, say so: re-plan, don't patch. End with: ready to build? (yes / no / with changes).

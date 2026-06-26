@@ -233,6 +233,49 @@
   },
   "effortLevel": "xhigh",
   "plansDirectory": "./local/plans",
+  "skipWorkflowUsageWarning": true,
   "gitAttribution": false,
-  "skipWorkflowUsageWarning": true
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/mloning/.cargo/bin/agentq\" status RUNNING --type claude 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/mloning/.cargo/bin/agentq\" status IDLE --type claude 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/mloning/.cargo/bin/agentq\" clear 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/mloning/.cargo/bin/agentq\" status WAITING_APPROVAL --type claude 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
 }

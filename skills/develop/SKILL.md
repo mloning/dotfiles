@@ -1,10 +1,10 @@
 ---
-name: dev
+name: develop
 description: Run a full autonomous development cycle — brainstorm + spec, plan, implement, review, submit PR. Use when asked to build something end-to-end with minimal interruption, or for a fully autonomous implementation from idea to PR.
 disable-model-invocation: true
 ---
 
-# Dev
+# Develop
 
 Iterate: brainstorm → spec → plan → code → review → PR. Ask only when genuinely stuck or at a scope/architecture decision point. Use maximum effort.
 

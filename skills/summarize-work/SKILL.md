@@ -1,17 +1,17 @@
 ---
-name: work-summary
+name: summarize-work
 description: Generate an activity summary for a team member covering GitHub PRs and Jira tickets over a given time horizon. Use when the user asks for a work summary, weekly summary, activity report, or wants to review what a team member has been working on. Accepts a username and optional number of days to look back (default 7).
 disable-model-invocation: true
 ---
 
-# Work Summary
+# Summarize Work
 
 Generate an activity summary for a team member, covering GitHub PRs and Jira tickets.
 
 ## Usage
 
 ```
-/work-summary <username> [days]
+/summarize-work <username> [days]
 ```
 
 - `<username>`: GitHub/Jira username (e.g. `mloning`)
@@ -57,17 +57,18 @@ Run these queries in parallel:
 
 Fields to request: `summary,status,issuetype,created,updated,priority,assignee`
 
-Combine the results into a single deduplicated list. For each PR determine:
+Combine the results into a single deduplicated list. For each issue determine:
 
 - **Issue**: the name only (not the full URL)
 - **Action**: Created, completed, active
 - **Summary**: Issue summary based on title and description
 - **Status**
+- **Created**: date only (e.g. `Mar 18`)
 
-Present as a single table sorted by created data ascending:
+Present as a single table sorted by created date ascending:
 
-| Issue | Action | Summary | Status |
-| ----- | ------ | ------- | ------ |
+| Issue | Action | Summary | Status | Created |
+| ----- | ------ | ------- | ------ | ------- |
 
 If a section is empty, write "None."
 

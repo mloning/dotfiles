@@ -26,17 +26,19 @@ Explore before committing, then capture the decision as a spec. The goal is the 
 
    ```bash
    SPEC_FILE="specs/<feature-slug>.md"   # the spec you just wrote
-   printf '%s' '{"type":"object","additionalProperties":false,"required":["findings","verdict"],"properties":{"findings":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["severity","location","issue","why","fix"],"properties":{"severity":{"type":"string","enum":["critical","important","minor"]},"location":{"type":"string"},"issue":{"type":"string"},"why":{"type":"string"},"fix":{"type":"string"}}}},"verdict":{"type":"string"}}}' > /tmp/review-schema.json
+   # Per-run temp dir, keyed off the branch — reconstructible later without shell state; recompute this line wherever you need $RD.
+   RD="${TMPDIR:-/tmp}/review-$(git rev-parse --abbrev-ref HEAD | tr -c 'A-Za-z0-9._-' '-')"; mkdir -p "$RD"
+   printf '%s' '{"type":"object","additionalProperties":false,"required":["findings","verdict"],"properties":{"findings":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["severity","location","issue","why","fix"],"properties":{"severity":{"type":"string","enum":["critical","important","minor"]},"location":{"type":"string"},"issue":{"type":"string"},"why":{"type":"string"},"fix":{"type":"string"}}}},"verdict":{"type":"string"}}}' > $RD/schema.json
    CRITERIA="You are a spec reviewer. The COMPLETE spec is below the ===SPEC=== marker. Review ONLY that text — do NOT run shell commands, read files, or explore the repo/CLIs/docs/skill files; everything you need is in the spec. Flag: (a) placeholders (TBD/TODO/incomplete sections); (b) internal inconsistency — a section contradicting another, or architecture not matching the requirements; (c) any requirement that is not testable or is readable more than one way; (d) scope too broad for a single plan (should be decomposed); (e) any HOW — code, file paths, or pinned implementation choices that don't belong in a spec. Cite the spec section in 'location'."
 
    # 7a. FROM CLAUDE → spawn the Codex reviewer (stdin closed so codex can't hang reading it):
    (perl -e 'alarm shift; exec @ARGV' 180 \
      codex exec --ignore-user-config --ignore-rules --ephemeral -s read-only \
-       --output-schema /tmp/review-schema.json -o /tmp/review-other.json \
+       --output-schema $RD/schema.json -o $RD/other.json \
        "$CRITERIA
 
    ===SPEC===
-   $(cat "$SPEC_FILE")" < /dev/null) > /tmp/review-other.log 2>&1 &
+   $(cat "$SPEC_FILE")" < /dev/null) > $RD/other.log 2>&1 &
 
    # 7b. FROM CODEX → spawn the Claude reviewer (stdin closed):
    (perl -e 'alarm shift; exec @ARGV' 180 \
@@ -44,7 +46,7 @@ Explore before committing, then capture the decision as a spec. The goal is the 
 
    ===SPEC===
    $(cat "$SPEC_FILE")" \
-       --tools "" --output-format json --no-session-persistence < /dev/null) > /tmp/review-other.json 2>&1 &
+       --tools "" --output-format json --no-session-persistence < /dev/null) > $RD/other.json 2>&1 &
    ```
-   - **Combine.** Once your own review is done, `wait` for the background reviewer and read `/tmp/review-other.json` — **from Claude** it *is* the findings object (`{findings, verdict}`); **from Codex** extract the payload with `jq -r '.result'`, then parse that JSON. If the file is missing, empty, or not valid JSON (e.g. hard-killed by the timeout), say so explicitly ("second reviewer did not produce usable output — single-reviewer findings below") and proceed with yours alone. Otherwise keep findings both confirm, investigate disagreements, drop anything neither can substantiate. Fix all issues inline in the spec.
+   - **Combine.** Once your own review is done, `wait` for the background reviewer and read `$RD/other.json` (recompute `RD` with the same line from the block above if your shell no longer has it set) — **from Claude** it *is* the findings object (`{findings, verdict}`); **from Codex** extract the payload with `jq -r '.result'`, then parse that JSON. If the file is missing, empty, or not valid JSON (e.g. hard-killed by the timeout), say so explicitly ("second reviewer did not produce usable output — single-reviewer findings below") and proceed with yours alone. Otherwise keep findings both confirm, investigate disagreements, drop anything neither can substantiate. Fix all issues inline in the spec.
 8. **User review gate, then hand off.** Tell the user: "Spec written to `<path>` — please review it and let me know if you want changes before we plan." If they request changes, make them and re-run step 7. Once approved, the spec feeds into `plan` — do not write code or invoke any other skill.

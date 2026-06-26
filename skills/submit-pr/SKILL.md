@@ -8,7 +8,13 @@ disable-model-invocation: true
 
 Open a PR a reviewer can act on without asking questions. Describe what actually changed, not what you intended — minimal, every change justified.
 
-> **Input (optional).** The skill takes one optional argument: the Jira/GitHub issue to link. It **MUST** be a **full link** (e.g. `https://jira.sc-corp.net/browse/<JIRA-KEY>`), not a bare key — a bare key won't trigger the GHE/Jira integration. If no argument is given, leave the issue reference empty and **do not** prompt, interrupt, or ask for one.
+## Usage
+
+```
+/submit-pr [issue-link]
+```
+
+`[issue-link]` is optional: the Jira/GitHub issue to link via `Closes`. It **MUST** be a **full link** (e.g. `https://jira.sc-corp.net/browse/<JIRA-KEY>`), not a bare key — a bare key won't trigger the GHE/Jira integration. If omitted, leave the issue reference empty and **do not** prompt, interrupt, or ask for one.
 
 > **Tooling — prefer MCP.** For every GitHub operation (create, edit, mark ready, comment), use an available GitHub MCP server's tools in preference to the `gh` CLI — e.g. `ghe_create_pr`, `ghe_pr_edit`, `ghe_pr_ready` if present. Fall back to `gh` only when no MCP tool is available.
 

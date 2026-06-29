@@ -17,3 +17,17 @@ enabled = false # disable OpenAI analytics
 
 [feedback]
 enabled = false # disable OpenAI feedback
+
+[hooks.state]
+
+[hooks.state."/Users/mloning/.codex/hooks.json:permission_request:0:0"]
+trusted_hash = "sha256:071acc6026e27ac022bc6040f1effab16b4a77f7fc1e0341000512f2acf73af6"
+
+[hooks.state."/Users/mloning/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:7786b74cb4d22870cff0e2cd377d90bb4d19f67fb6c01194527dcf039ae5d98e"
+
+[hooks.state."/Users/mloning/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:036c44ce5fd8f2084059933756772bd5d7b991bc451ca96cf142f36e0e610116"
+
+[hooks.state."/Users/mloning/.codex/hooks.json:stop:1:0"]
+trusted_hash = "sha256:9de4b90f77acf045cd804a5b7581b11df0d97bfd723f5500b00783d9d5b7f930"

@@ -7,6 +7,7 @@
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "includeCoAuthoredBy": false,
+  "disableClaudeAiConnectors": true,
   "permissions": {
     "allow": [
       "Bash(*)",
@@ -229,7 +230,9 @@
   "spinnerTipsEnabled": false,
   "spinnerVerbs": {
     "mode": "replace",
-    "verbs": ["Working"]
+    "verbs": [
+      "Working"
+    ]
   },
   "effortLevel": "xhigh",
   "plansDirectory": "./local/plans",
@@ -252,6 +255,14 @@
           {
             "type": "command",
             "command": "\"/Users/mloning/.cargo/bin/agentq\" status IDLE --type claude 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/mloning/.cargo/bin/agentq\" summarize --type claude 2>/dev/null || true"
           }
         ]
       }

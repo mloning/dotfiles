@@ -65,7 +65,7 @@ is_tmux_session="${TMUX:-}"
 if [[ -z "$is_tmux_running" ]] && [[ -z "$is_tmux_session" ]]; then
   tmux new-session -s "$name" -c "$path" -d
   create_windows
-  tmux attach-session -t "$name"
+  tmux attach-session -t "=$name"
 fi
 
 # if in tmux and current session is already selected name, exit
@@ -74,15 +74,17 @@ if [[ -n "$is_tmux_session" ]] && [[ "$current_session" == "$name" ]]; then
   exit 0
 fi
 
-# if the session does not exists, create a new detached session 
-if ! tmux has-session -t "$name" 2> /dev/null; then
+# if the session does not exists, create a new detached session
+# use "=" prefix to force an exact match (otherwise tmux prefix-matches,
+# e.g. "nm-bci-cpp" would match an existing "nm-bci-cpp-wt1" session)
+if ! tmux has-session -t "=$name" 2> /dev/null; then
   tmux new-session -s "$name" -c "$path" -d
   create_windows
 fi
 
 # when outside tmux, attach session; otherwise switch client
 if [[ -z "$is_tmux_session" ]]; then
-  tmux attach-session -t "$name"
+  tmux attach-session -t "=$name"
 else
-  tmux switch-client -t "$name"
+  tmux switch-client -t "=$name"
 fi

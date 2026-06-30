@@ -31,3 +31,6 @@ trusted_hash = "sha256:036c44ce5fd8f2084059933756772bd5d7b991bc451ca96cf142f36e0
 
 [hooks.state."/Users/mloning/.codex/hooks.json:stop:1:0"]
 trusted_hash = "sha256:9de4b90f77acf045cd804a5b7581b11df0d97bfd723f5500b00783d9d5b7f930"
+
+[hooks.state."/Users/mloning/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:6a4d9e4fb1813a399a35a0f183bd4437f098aef2312f91bdbf2b35f56a564643"

@@ -287,6 +287,17 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/mloning/.cargo/bin/agentq\" status RUNNING --type claude 2>/dev/null || true"
+          }
+        ]
+      }
     ]
   }
 }

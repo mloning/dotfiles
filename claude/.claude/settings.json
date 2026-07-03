@@ -7,7 +7,6 @@
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "includeCoAuthoredBy": false,
-  "disableClaudeAiConnectors": true,
   "permissions": {
     "allow": [
       "Bash(*)",
@@ -223,21 +222,19 @@
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
   },
-  "enabledPlugins": {
-    "clangd-lsp@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true
-  },
   "spinnerTipsEnabled": false,
   "spinnerVerbs": {
     "mode": "replace",
-    "verbs": [
-      "Working"
-    ]
+    "verbs": ["Working"]
   },
   "effortLevel": "xhigh",
   "plansDirectory": "./local/plans",
   "skipWorkflowUsageWarning": true,
   "gitAttribution": false,
+  "effortLevel": "xhigh",
+  "plansDirectory": "./local/plans",
+  "skipWorkflowUsageWarning": true,
+  "disableClaudeAiConnectors": true,
   "hooks": {
     "UserPromptSubmit": [
       {

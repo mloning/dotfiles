@@ -27,7 +27,7 @@ Critique before any code is written. Verify independently — read the actual co
    CRITERIA="You are a sharp plan critic. The COMPLETE plan to critique is below the ===PLAN=== marker. Critique ONLY that text — do NOT run shell commands, read files, or explore the repo, CLIs, docs, or skill files; everything you need is in the plan. Check: does it actually solve the stated problem (map each requirement to a step; flag 'right feature, wrong problem'); scope creep / over-engineering / speculative nice-to-haves (YAGNI); unstated assumptions, fuzzy or overloaded terms, anything readable two ways; sequencing and buildability (each step independently buildable and verifiable, right order, no missing prerequisites, no naming/type inconsistencies across steps); and missing tests, edge cases, error paths, and failure modes (a step with no verification is a gap). Only flag what would cause real problems — not wording or style. For 'location', cite the plan section/step. If the approach is fundamentally wrong, say so in the verdict (re-plan, don't patch)."
 
    # 1a. FROM CLAUDE → spawn the Codex critic (read-only sandbox, no user config/rules, stdin closed, schema enforced to a file):
-   (perl -e 'alarm shift; exec @ARGV' 180 \
+   (perl -e 'alarm shift; exec @ARGV' 600 \
      codex exec --ignore-user-config --ignore-rules --ephemeral -s read-only \
        --output-schema $RD/schema.json -o $RD/other.json \
        "$CRITERIA
@@ -36,7 +36,7 @@ Critique before any code is written. Verify independently — read the actual co
    $(cat "$PLAN_FILE")" < /dev/null) > $RD/other.log 2>&1 &
 
    # 1b. FROM CODEX → spawn the Claude critic (all tools disabled, stdin closed, JSON envelope):
-   (perl -e 'alarm shift; exec @ARGV' 180 \
+   (perl -e 'alarm shift; exec @ARGV' 600 \
      claude -p "$CRITERIA Output ONLY a JSON object (no prose, no markdown fence) of shape {\"findings\":[{\"severity\":\"critical|important|minor\",\"location\":\"\",\"issue\":\"\",\"why\":\"\",\"fix\":\"\"}],\"verdict\":\"\"}.
 
    ===PLAN===

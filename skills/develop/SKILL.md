@@ -13,16 +13,4 @@ Iterate: brainstorm → spec → plan → code → review → PR. Ask only when 
 1. **Brainstorm & specify** — follow `brainstorm`. Explore approaches, weigh trade-offs, converge on a direction, and capture it as a testable spec doc (problem, requirements, acceptance criteria, non-goals). Don't skip the exploration; the obvious approach isn't always right. Get the spec approved before planning.
 2. **Plan** — follow `plan`. Produce a PR-sliced implementation plan with explicit success criteria per slice, derived from the spec. Get approval before writing any code.
 3. **Critique the plan** — follow `review-plan` to stress-test the plan. Fix all Critical findings before proceeding; note Important ones so they don't become surprises mid-implementation.
-4. **Implement slice by slice.** Work through each slice from the plan:
-   a. Follow `write-tests` first (test-first for new behavior) or alongside (for modifications to existing code).
-   b. Follow `code` for the implementation — minimal, correct, well-named.
-   c. Commit each slice as you go — small, passing commits. Never commit red.
-5. **Cross-agent review** — follow `review-local` (you plus the other agent in parallel) before submitting. Fix all Critical and Important findings.
-6. **Submit** — follow `submit-pr` to open a draft PR.
-7. **When to stop and ask.**
-   - Blocked after two attempts on the same issue
-   - A decision would materially change scope or architecture
-   - Build/tests are red and the cause isn't clear after investigation
-   - A plan step is ambiguous in a way that affects correctness
-   Never guess on scope or architecture — ask and wait.
-8. **Never work on `main`.** If on main, branch first. Never commit directly to main.
+4. **Build it** — follow `implement`. It carries the plan through to a draft PR: implement each slice test-first (`write-tests` + `code`), commit small and green, cross-review (`review-local`), then submit (`submit-pr`). It also owns the when-to-stop-and-ask and never-work-on-`main` guardrails, so honor those throughout.

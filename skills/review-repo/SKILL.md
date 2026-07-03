@@ -29,7 +29,7 @@ Read widely before judging. Flag only issues that impede maintainability, not st
    CRITERIA="You are an architecture reviewer. Review ONLY the modules/dirs named in SCOPE below, reading just the code under them. Do NOT read skill files (SKILL.md or references/) or wander outside SCOPE. Assess: coupling & interfaces (god objects, circular deps, modules that always change together, non-minimal/unstable interfaces); naming & consistency (domain terms used differently across modules, impl details leaking into public names); tech debt & complexity (deep nesting, long functions, dead/commented-out code, stale TODOs, overengineered abstractions with no payoff); test coverage & quality (modules lacking tests, tests asserting on internals instead of behaviour, flaky/skipped tests); and stale docs/comments (READMEs and comments that no longer match the code). Flag only issues that impede maintainability, not style. Cite file(s) in 'location'. Use severity high/medium/low. End with an overall health read in the verdict."
 
    # 3a. FROM CLAUDE → spawn the Codex reviewer (read-only sandbox, no user config/rules, stdin closed, schema enforced to a file):
-   (perl -e 'alarm shift; exec @ARGV' 240 \
+   (perl -e 'alarm shift; exec @ARGV' 720 \
      codex exec --ignore-user-config --ignore-rules --ephemeral -s read-only \
        --output-schema $RD/schema.json -o $RD/other.json \
        "$CRITERIA
@@ -37,7 +37,7 @@ Read widely before judging. Flag only issues that impede maintainability, not st
    SCOPE: $FOCUS" < /dev/null) > $RD/other.log 2>&1 &
 
    # 3b. FROM CODEX → spawn the Claude reviewer (read-only tool whitelist, stdin closed, JSON envelope):
-   (perl -e 'alarm shift; exec @ARGV' 240 \
+   (perl -e 'alarm shift; exec @ARGV' 720 \
      claude -p "$CRITERIA Output ONLY a JSON object (no prose, no markdown fence) of shape {\"findings\":[{\"severity\":\"high|medium|low\",\"location\":\"\",\"issue\":\"\",\"why\":\"\",\"fix\":\"\"}],\"verdict\":\"\"}.
 
    SCOPE: $FOCUS" \
@@ -45,7 +45,7 @@ Read widely before judging. Flag only issues that impede maintainability, not st
        --output-format json --no-session-persistence < /dev/null) > $RD/other.json 2>&1 &
    ```
 
-   The reviewer roams, so it can run longer than the diff-based skills — the 240s `perl alarm` is a backstop. Because roaming is open-ended, the kill can still lose output; the focused SCOPE is what keeps it finishing in time. Keep reviewing while it runs, then `wait`.
+   The reviewer roams, so it can run longer than the diff-based skills — the 720s `perl alarm` is a backstop. Because roaming is open-ended, the kill can still lose output; the focused SCOPE is what keeps it finishing in time. Keep reviewing while it runs, then `wait`.
 4. **Coupling & interfaces.** Where are modules tightly coupled? Are interfaces minimal and stable? Flag god objects, circular dependencies, and modules that always change together.
 5. **Naming & consistency.** Inconsistent naming across modules; domain terms used differently in different places; implementation details leaking into public names.
 6. **Tech debt & complexity.** Deep nesting, long functions, dead code, commented-out code, TODOs older than a sprint, overengineered abstractions with no payoff.

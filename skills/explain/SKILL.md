@@ -16,3 +16,4 @@ Start broad, then drill. Use the project's own vocabulary. Stop when the questio
 6. **Give a minimal example.** A concrete input → output trace beats paragraphs of prose. Use the smallest example that demonstrates the behavior — not a real-world one that needs context.
 7. **State what it doesn't do.** Boundaries and non-behaviors are often what the reader really needs. "This does not handle X — that's done in Y."
 8. **Be concise.** If the explanation is longer than the code, it's probably wrong. Cut anything the reader doesn't need to act on the explanation.
+9. **Check understanding last.** After explaining, always end by asking the user to describe the concept back in their own words. Then verify: confirm what they got right, correct misconceptions directly, and fill any gaps they missed. Don't just say "correct" — point to the specific part that was right or wrong. This is the final step every time; do not skip it.

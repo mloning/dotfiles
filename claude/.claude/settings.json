@@ -280,7 +280,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"/Users/mloning/.cargo/bin/agentq\" status WAITING_APPROVAL --type claude 2>/dev/null || true"
+            "command": "\"/Users/mloning/.cargo/bin/agentq\" status WAITING --type claude 2>/dev/null || true"
           }
         ]
       }

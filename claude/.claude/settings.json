@@ -231,9 +231,6 @@
   "plansDirectory": "./local/plans",
   "skipWorkflowUsageWarning": true,
   "gitAttribution": false,
-  "effortLevel": "xhigh",
-  "plansDirectory": "./local/plans",
-  "skipWorkflowUsageWarning": true,
   "disableClaudeAiConnectors": true,
   "hooks": {
     "UserPromptSubmit": [

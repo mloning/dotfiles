@@ -1,14 +1,13 @@
 ---
 name: submit-pr
-description: Open a pull request with a concise, reviewer-ready description pitched at the level of intent — what the PR accomplishes and why, not a line-by-line changelog of every file or function. Optionally links a Jira/GitHub issue. Takes an optional full-link issue argument. Use when submitting/opening a PR, raising a PR for the current branch, or after finishing a change set.
-disable-model-invocation: true
+description: Use when opening a pull request (PR) for the current branch. Open a PR with a concise, reviewer-ready description pitched at the level of intent — what the PR accomplishes and why. Optionally links a Jira/GitHub issue.
 ---
 
 # Submit PR
 
 Open a PR a reviewer can act on without asking questions. Describe what actually changed, not what you intended.
 
-**Write at the altitude of intent, not a changelog.** The description exists to orient a reviewer — what the PR accomplishes and why — so they can then read the diff for the line-level detail. It is *not* a transcript of the diff. If a bullet just restates a file, function, or edit, you're too low: merge it into the intent it serves.
+**Write at the altitude of intent, not a changelog.** The description exists to orient a reviewer — what the PR accomplishes and why — so they can then read the diff for the line-level detail. It is _not_ a transcript of the diff. If a bullet just restates a file, function, or edit, you're too low: merge it into the intent it serves.
 
 ## Usage
 
@@ -33,7 +32,7 @@ Open a PR a reviewer can act on without asking questions. Describe what actually
 ```markdown
 ## Changes
 
-- <what> — <why>   # a few words; e.g. "Cache token lookups — cut auth latency"
+- <what> — <why> # a few words; e.g. "Cache token lookups — cut auth latency"
 - <what> — <why>
 
 ## Notes
@@ -42,7 +41,7 @@ Open a PR a reviewer can act on without asking questions. Describe what actually
 a risk, a decision made, a follow-up. Not a mechanism walkthrough, not a restatement
 of the changes. A line or two, not an essay.>
 
-Closes <full issue link>   # only if an issue arg was passed; full link MUST be used for GHE/Jira integration. Omit this line entirely otherwise.
+Closes <full issue link> # only if an issue arg was passed; full link MUST be used for GHE/Jira integration. Omit this line entirely otherwise.
 ```
 
 ## Altitude — an example

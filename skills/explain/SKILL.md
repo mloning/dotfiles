@@ -1,7 +1,6 @@
 ---
 name: explain
 description: Explain code clearly — data flow, call sequence, a minimal example. Use when asked how code works, what a module does, or to understand an unfamiliar part of the codebase.
-disable-model-invocation: true
 ---
 
 # Explain

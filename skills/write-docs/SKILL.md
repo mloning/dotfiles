@@ -1,7 +1,6 @@
 ---
 name: write-docs
 description: Write documentation from the actual code — concise, verb-first, no weasel words. Use when writing or updating docs, READMEs, docstrings, API docs, or usage guides.
-disable-model-invocation: true
 ---
 
 # Write Docs

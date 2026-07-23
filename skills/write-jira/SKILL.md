@@ -1,7 +1,6 @@
 ---
 name: write-jira
 description: Create a Jira ticket — clear title, problem statement, acceptance criteria, assigned to the most relevant epic. Use when filing a bug, writing a story or task, or creating any Jira issue.
-disable-model-invocation: true
 ---
 
 # Write Jira

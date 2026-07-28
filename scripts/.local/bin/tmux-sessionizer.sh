@@ -9,6 +9,17 @@ IFS=$'\n\t'
 DEFAULT_ROOT_PATH="$HOME"/Dev/projects
 ROOT_PATH="${TMUX_SESSIONIZER_ROOT_PATH:-$DEFAULT_ROOT_PATH}"
 
+# Coding agent launched in the second window of every session
+DEFAULT_AGENT="claude"
+AGENT="${TMUX_SESSIONIZER_AGENT:-$DEFAULT_AGENT}"
+
+# Fail early rather than creating a session without the agent
+if ! command -v "$AGENT" > /dev/null; then
+  echo "tmux-sessionizer: agent '$AGENT' not found on PATH" >&2
+  echo "set TMUX_SESSIONIZER_AGENT to an available command" >&2
+  exit 1
+fi
+
 # Select project path and name, from input name or from project paths using fzf
 if [[ $# -eq 1 ]]; then
   name="$1"
@@ -42,8 +53,18 @@ create_windows () {
   tmux send-keys -t "$target" "nvim" C-m 
 
   
-  # launch shell in second window
+  # launch agent in second window
   local window=2
+  local target="$name:$window"
+  tmux new-window -d -t "$target" -n "$AGENT"
+  if is_conda_env_available "$name"; then
+    tmux send-keys -t "$target" "conda activate $name" C-m C-l
+  fi
+  tmux send-keys -t "$target" "cd $path" C-m C-l
+  tmux send-keys -t "$target" "$AGENT" C-m
+
+  # launch shell in third window
+  local window=3
   local target="$name:$window"
   tmux new-window -d -t "$target" -n "cmd" 
   if is_conda_env_available "$name"; then
@@ -51,7 +72,7 @@ create_windows () {
   fi
   tmux send-keys -t "$target" "cd $path" C-m C-l
 
-  # select second window as initial window
+  # select shell window as initial window
   tmux select-window -t "$target"
 }
 

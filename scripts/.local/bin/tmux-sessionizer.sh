@@ -41,8 +41,8 @@ is_conda_env_available () {
 
 # Function to create tmux windows for given project name
 create_windows () {
-  # launch vim in first window
-  # the first window is created when the session is created, so we rename it 
+  # launch nvim in first window
+  # the first window is created when the session is created, so we only need to rename it 
   local window=1
   local target="$name:$window"
   tmux rename-window -t "$target" "nvim" 
@@ -52,8 +52,7 @@ create_windows () {
   tmux send-keys -t "$target" "cd $path" C-m C-l  
   tmux send-keys -t "$target" "nvim" C-m 
 
-  
-  # launch agent in second window
+  # launch AI agent in second window
   local window=2
   local target="$name:$window"
   tmux new-window -d -t "$target" -n "$AGENT"
@@ -66,7 +65,7 @@ create_windows () {
   # launch shell in third window
   local window=3
   local target="$name:$window"
-  tmux new-window -d -t "$target" -n "cmd" 
+  tmux new-window -d -t "$target"
   if is_conda_env_available "$name"; then
     tmux send-keys -t "$target" "conda activate $name" C-m C-l
   fi

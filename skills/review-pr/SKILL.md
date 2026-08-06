@@ -46,10 +46,11 @@ The remote counterpart to `review-local`: review only what the PR introduces aga
    PREAMBLE="You are a strict PR reviewer assigned ONE aspect only. Below are the PR CONTEXT and the COMPLETE diff (after the ===DIFF=== marker). Review ONLY this text — do NOT run shell commands, read files, or explore the repo, CLIs, docs, or skill files; everything you need is here. Report only issues within your assigned aspect. High signal only — skip style a linter handles, pre-existing issues, and anything you cannot confirm from the diff."
 
    # 4a. FROM CLAUDE → define reviewer() to spawn one focused Codex reviewer per aspect
-   #     (read-only sandbox, no user config/rules, stdin closed, schema enforced to a per-lens file):
+   #     (read-only sandbox, no user config/rules, stdin closed, schema enforced to a per-lens file).
+   #     Session files persist so the tokens land in `ccusage codex`; isolation comes from --ignore-user-config, not persistence.
    reviewer() {   # $1 = aspect slug, $2 = aspect focus
      (perl -e 'alarm shift; exec @ARGV' 600 \
-       codex exec --ignore-user-config --ignore-rules --ephemeral -s read-only \
+       codex exec --ignore-user-config --ignore-rules -s read-only \
          --output-schema $RD/schema.json -o "$RD/lens-$1.json" \
          "$PREAMBLE
    YOUR ASPECT: $2
@@ -62,7 +63,8 @@ The remote counterpart to `review-local`: review only what the PR introduces aga
    }
 
    # 4b. FROM CODEX → define reviewer() to spawn one focused Claude reviewer per aspect
-   #     (all tools disabled, stdin closed, JSON envelope written to a per-lens file):
+   #     (all tools disabled, stdin closed, JSON envelope written to a per-lens file).
+   #     Sessions persist so ccusage can count these tokens — it reads ~/.claude/projects/**/*.jsonl.
    reviewer() {   # $1 = aspect slug, $2 = aspect focus
      (perl -e 'alarm shift; exec @ARGV' 600 \
        claude -p "$PREAMBLE
@@ -74,7 +76,7 @@ The remote counterpart to `review-local`: review only what the PR introduces aga
 
    ===DIFF===
    $(cat $RD/diff.txt)" \
-         --tools "" --output-format json --no-session-persistence < /dev/null) > "$RD/lens-$1.json" 2>&1 &
+         --tools "" --output-format json < /dev/null) > "$RD/lens-$1.json" 2>&1 &
    }
 
    # 5. Spawn all four focused reviewers (identical for both agents once reviewer() is defined).

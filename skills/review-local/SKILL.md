@@ -29,10 +29,12 @@ Review only what this change introduces against `main` — not pre-existing code
    PREAMBLE="You are a strict code reviewer assigned ONE aspect only. The COMPLETE diff to review is below the ===DIFF=== marker. Review ONLY that text — do NOT run shell commands, read files, or explore the repo, CLIs, docs, or skill files; everything you need is in the diff. Report only issues within your assigned aspect. High signal only — skip style a linter handles, pre-existing issues, and anything you cannot confirm from the diff."
 
    # 4a. FROM CLAUDE → define reviewer() to spawn one focused Codex reviewer per aspect
-   #     (read-only sandbox, no user config/rules, stdin closed, schema enforced to a per-lens file):
+   #     (read-only sandbox, no user config/rules, stdin closed, schema enforced to a per-lens file).
+   #     Session files stay on disk (no --ephemeral) so these tokens show up in `ccusage codex`;
+   #     --ignore-user-config does the isolation, persistence has no bearing on the sandbox.
    reviewer() {   # $1 = aspect slug, $2 = aspect focus
      (perl -e 'alarm shift; exec @ARGV' 600 \
-       codex exec --ignore-user-config --ignore-rules --ephemeral -s read-only \
+       codex exec --ignore-user-config --ignore-rules -s read-only \
          --output-schema $RD/schema.json -o "$RD/lens-$1.json" \
          "$PREAMBLE
    YOUR ASPECT: $2
@@ -42,7 +44,9 @@ Review only what this change introduces against `main` — not pre-existing code
    }
 
    # 4b. FROM CODEX → define reviewer() to spawn one focused Claude reviewer per aspect
-   #     (all tools disabled, stdin closed, JSON envelope written to a per-lens file):
+   #     (all tools disabled, stdin closed, JSON envelope written to a per-lens file).
+   #     Sessions persist (no --no-session-persistence) so ccusage can count these tokens —
+   #     it reads ~/.claude/projects/**/*.jsonl, and unsaved sessions are invisible to it.
    reviewer() {   # $1 = aspect slug, $2 = aspect focus
      (perl -e 'alarm shift; exec @ARGV' 600 \
        claude -p "$PREAMBLE
@@ -51,7 +55,7 @@ Review only what this change introduces against `main` — not pre-existing code
 
    ===DIFF===
    $(cat $RD/diff.txt)" \
-         --tools "" --output-format json --no-session-persistence < /dev/null) > "$RD/lens-$1.json" 2>&1 &
+         --tools "" --output-format json < /dev/null) > "$RD/lens-$1.json" 2>&1 &
    }
 
    # 5. Spawn all four focused reviewers (identical for both agents once reviewer() is defined).

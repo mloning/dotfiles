@@ -7,6 +7,8 @@ description: Write documentation and in-code comments from the actual code — c
 
 Document what the code actually does, not what you wish it did. Write for a reader who can't ask questions, and explain each thing exactly once — in the one place they will look for it.
 
+**Write in Simplified Technical English.** Follow the `simple-english` skill (ASD-STE100) for sentence-level style on any reader-facing text: short single-read sentences, active voice, simple tenses, one term per concept, condition before command, and no AI slop (leverage/utilize, simply/just, ensure, "it is worth noting"). Read its `SKILL.md` and apply it — this skill covers *what* to document, `simple-english` covers *how* to phrase it.
+
 ## Docs — READMEs, guides, tutorials, docstrings, API and architecture docs
 
 1. **Read the code first.** Read the actual implementation before writing anything. Document from the code — it may differ from the task description.

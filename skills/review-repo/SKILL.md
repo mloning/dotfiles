@@ -1,6 +1,6 @@
 ---
 name: review-repo
-description: Review an entire repository for architecture quality — coupling, interfaces, naming, tech debt, test coverage, stale docs. Use when doing an architecture review, identifying refactor opportunities, or assessing overall code health.
+description: Review an entire repository for architecture quality — coupling, interfaces, naming, tech debt, test coverage, doc quality. Use when doing an architecture review, identifying refactor opportunities, or assessing overall code health.
 disable-model-invocation: true
 ---
 
@@ -26,7 +26,18 @@ Read widely before judging. Flag only issues that impede maintainability, not st
    printf '%s' '{"type":"object","additionalProperties":false,"required":["findings","verdict"],"properties":{"findings":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["severity","location","issue","why","fix"],"properties":{"severity":{"type":"string","enum":["high","medium","low"]},"location":{"type":"string"},"issue":{"type":"string"},"why":{"type":"string"},"fix":{"type":"string"}}}},"verdict":{"type":"string"}}}' > $RD/schema.json
 
    # 3. Inline the review criteria (the substance of steps 4–8) — never reference this skill or step numbers.
-   CRITERIA="You are an architecture reviewer. Review ONLY the modules/dirs named in SCOPE below, reading just the code under them. Do NOT read skill files (SKILL.md or references/) or wander outside SCOPE. Assess: coupling & interfaces (god objects, circular deps, modules that always change together, non-minimal/unstable interfaces); naming & consistency (domain terms used differently across modules, impl details leaking into public names); tech debt & complexity (deep nesting, long functions, dead/commented-out code, stale TODOs, overengineered abstractions with no payoff); test coverage & quality (modules lacking tests, tests asserting on internals instead of behaviour, flaky/skipped tests); and stale docs/comments (READMEs and comments that no longer match the code). Flag only issues that impede maintainability, not style. Cite file(s) in 'location'. Use severity high/medium/low. End with an overall health read in the verdict."
+   CRITERIA="You are an architecture reviewer. Review ONLY the modules/dirs named in SCOPE below, reading just the code under them. Do NOT read skill files (SKILL.md or references/) or wander outside SCOPE. Assess: coupling & interfaces (god objects, circular deps, modules that always change together, non-minimal/unstable interfaces); naming & consistency (domain terms used differently across modules, impl details leaking into public names); tech debt & complexity (deep nesting, long functions, dead/commented-out code, stale TODOs, overengineered abstractions with no payoff); test coverage & quality (modules lacking tests, tests asserting on internals instead of behaviour, flaky/skipped tests); and documentation quality (READMEs, docs, and comments that no longer match the code, plus documentation that violates the write-docs rubric inlined at the END of these instructions under the ===DOC RUBRICS=== marker — apply those rules). Flag only issues that impede maintainability, not style. Cite file(s) in 'location'. Use severity high/medium/low. End with an overall health read in the verdict."
+
+   # 3.5. Doc-quality rubric — write-docs is the only doc skill you name; it declares companion skills
+   #      (e.g. simple-english for sentence-level style). Inline write-docs, then follow it: also inline
+   #      every sibling skill it references in backticks (the reviewer must not read skill files itself, so
+   #      the orchestrator resolves the pointer here). Both agents symlink the skills from this repo, so try
+   #      Claude's dir then Codex's; either resolves the same.
+   for d in "$HOME/.claude/skills" "$HOME/.agents/skills"; do [ -d "$d/write-docs" ] && SK="$d" && break; done
+   DOCS_RUBRIC="$(cat "$SK/write-docs/SKILL.md" 2>/dev/null)"
+   for ref in $(grep -oE '`[a-z][a-z0-9-]+`' "$SK/write-docs/SKILL.md" 2>/dev/null | tr -d '`' | sort -u); do
+     [ "$ref" != write-docs ] && [ -f "$SK/$ref/SKILL.md" ] && DOCS_RUBRIC="$DOCS_RUBRIC$(printf '\n\n=== %s ===\n' "$ref")$(cat "$SK/$ref/SKILL.md")"
+   done
 
    # 3a. FROM CLAUDE → spawn the Codex reviewer (read-only sandbox, no user config/rules, stdin closed, schema enforced to a file).
    #     Session files persist so the tokens land in `ccusage codex`; isolation comes from --ignore-user-config, not persistence.
@@ -35,14 +46,20 @@ Read widely before judging. Flag only issues that impede maintainability, not st
        --output-schema $RD/schema.json -o $RD/other.json \
        "$CRITERIA
 
-   SCOPE: $FOCUS" < /dev/null) > $RD/other.log 2>&1 &
+   SCOPE: $FOCUS
+
+   ===DOC RUBRICS===
+   $DOCS_RUBRIC" < /dev/null) > $RD/other.log 2>&1 &
 
    # 3b. FROM CODEX → spawn the Claude reviewer (read-only tool whitelist, stdin closed, JSON envelope).
    #     Session persists so ccusage can count it — it reads ~/.claude/projects/**/*.jsonl.
    (perl -e 'alarm shift; exec @ARGV' 720 \
      claude -p "$CRITERIA Output ONLY a JSON object (no prose, no markdown fence) of shape {\"findings\":[{\"severity\":\"high|medium|low\",\"location\":\"\",\"issue\":\"\",\"why\":\"\",\"fix\":\"\"}],\"verdict\":\"\"}.
 
-   SCOPE: $FOCUS" \
+   SCOPE: $FOCUS
+
+   ===DOC RUBRICS===
+   $DOCS_RUBRIC" \
        --allowedTools "Read" "Grep" "Glob" --disallowedTools "Bash" "Edit" "Write" "Task" "WebFetch" "WebSearch" \
        --output-format json < /dev/null) > $RD/other.json 2>&1 &
    ```
@@ -52,7 +69,7 @@ Read widely before judging. Flag only issues that impede maintainability, not st
 5. **Naming & consistency.** Inconsistent naming across modules; domain terms used differently in different places; implementation details leaking into public names.
 6. **Tech debt & complexity.** Deep nesting, long functions, dead code, commented-out code, TODOs older than a sprint, overengineered abstractions with no payoff.
 7. **Test coverage & quality.** Which modules lack tests? Tests that verify implementation details (mocks on internals) instead of behavior? Flaky or skipped tests?
-8. **Stale docs & comments.** READMEs that no longer match the code, comments describing old behavior, outdated decision records.
+8. **Documentation quality.** READMEs and comments that no longer match the code, comments describing old behavior, outdated decision records — plus documentation that violates the `write-docs` skill (restating code instead of the why, burying the action, weasel words or AI slop, missing inputs/outputs/errors on public functions, or prose that isn't short, single-read, and active-voice).
 9. **Combine results.** Once your review is done, `wait` for the background reviewer and read `$RD/other.json` (recompute `RD` with the same line from the block above if your shell no longer has it set):
    - **From Claude** (Codex reviewer): the file *is* the findings object (`{findings, verdict}`) — read it directly.
    - **From Codex** (Claude reviewer): the file is an envelope — extract the payload with `jq -r '.result'`, then parse that as the findings JSON.

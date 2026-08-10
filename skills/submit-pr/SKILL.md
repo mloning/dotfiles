@@ -24,8 +24,9 @@ Open a PR a reviewer can act on without asking questions. Describe what actually
 3. **Use the repo's template.** If `.github/` has a `PULL_REQUEST_TEMPLATE.md` (or `pull_request_template.md`), you **MUST** follow its sections; only when none exists, use the default below.
 4. **Group by intent — aim for ~2–5 bullets, never one per file/function/commit.** Each bullet is one conceptual change the reviewer must grasp, a few words each — _what_ shifted and _why_. Fold every edit that serves the same purpose into a single bullet (new module + its wiring + its tests = one bullet, not four). The line-by-line detail is in the diff; don't mirror it here. If you catch yourself writing a bullet per file, per function, or per commit — or narrating _how_ the code works — you're too low; zoom out. See the altitude example below.
 5. **Don't summarize Markdown/docs changes.** For `.md` files (READMEs, docs), the rendered diff is directly readable — don't restate their contents. A single bullet naming the file is enough (e.g. "Update README — document `link-skills`"). Only when the change is large does it warrant a _very short_ summary.
-6. **Link the issue — only if one was passed.** If the skill was given an issue argument, include it verbatim as a `Closes <link>` line; it **MUST** be a **full link** (not a bare key) for the GHE/Jira integration to pick it up. If no argument was given, omit the issue line entirely — do **not** infer one from the branch/commits, and do **not** ask. Add any related PRs or docs.
-7. **Create the PR as a draft.** Default to a **draft** PR unless told otherwise (MCP `ghe_create_pr` with `draft: true`; else `gh pr create --draft`). Target the correct base (`main` unless told otherwise). Report the PR URL.
+6. **Link the issue — only if one was passed.** If the skill was given an issue argument, include it verbatim as a `Closes <link>` line; it **MUST** be a **full link** (not a bare key) for the GHE/Jira integration to pick it up. If no argument was given, omit the issue line entirely — do **not** infer one from the branch/commits, and do **not** ask.
+7. **Reference each ticket once, at the most specific level — no redundant references.** The linked issue is the single entry point; the reviewer reaches everything above and around it from there. So if an issue is linked, do **not** also reference its epic, parent, or sibling tickets. Add a related PR or doc only when it's genuinely _not_ reachable from the linked issue and the reviewer needs it — otherwise leave it out.
+8. **Create the PR as a draft.** Default to a **draft** PR unless told otherwise (MCP `ghe_create_pr` with `draft: true`; else `gh pr create --draft`). Target the correct base (`main` unless told otherwise). Report the PR URL.
 
 ## Default description template
 
@@ -41,7 +42,7 @@ Open a PR a reviewer can act on without asking questions. Describe what actually
 a risk, a decision made, a follow-up. Not a mechanism walkthrough, not a restatement
 of the changes. A line or two, not an essay.>
 
-Closes <full issue link> # only if an issue arg was passed; full link MUST be used for GHE/Jira integration. Omit this line entirely otherwise.
+Closes <full issue link> # only if an issue arg was passed; full link MUST be used for GHE/Jira integration. Omit this line entirely otherwise. One ticket only — no epic/parent alongside it.
 ```
 
 ## Altitude — an example

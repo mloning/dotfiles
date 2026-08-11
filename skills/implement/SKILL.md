@@ -27,7 +27,7 @@ Both optional: the path to the plan, or a **full link** to the issue/ticket (e.g
    **When to plan first instead.** A ticket is enough on its own when the goal is unambiguous, self-contained, and you can name its slices and success criteria from the ticket plus the codebase. If it's vague, spans independent subsystems, or the approach needs a real design decision, stop and plan first (`brainstorm`/`plan`) — don't improvise a design under cover of "implementing". Same when there's neither plan nor ticket: say so and plan first.
 
    Then write a checklist of every phase in this cycle — each slice, then cross-review (step 5), then the draft PR (step 6) — and keep it updated as you work. The review and PR items stay on the list until actually done; a green slice never removes them.
-2. **Never work on `main`.** If on main, branch first. Never commit directly to main.
+2. **Never work on `main`.** Branch off fresh `main` before touching code — `git fetch origin main && git switch -c <user>/<slug> origin/main` — so the base is `origin/main`, not a stale local `main` or whatever branch was left checked out. Already on a feature branch for this work? Stay on it. Never commit directly to main.
 3. **Implement slice by slice.** Work through the brief's slices in dependency order. For each:
    a. Follow `write-tests` first (test-first for new behavior) or alongside (for changes to existing code).
    b. Follow `code` for the implementation — minimal, correct, well-named, consistent with the surrounding code.

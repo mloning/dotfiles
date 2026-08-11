@@ -37,6 +37,11 @@
   enabled = true
   autoupdate = true
 [branch]
+  # `simple` only sets an upstream when the remote branch has the same name, so
+  # branching off `origin/main` leaves the upstream unset for push.autoSetupRemote
+  # to fill in on first push. `true` would track `origin/main`, which makes
+  # push.default=simple refuse the push and status/pull compare against main.
+  autoSetupMerge = simple
   sort = -committerdate
 [alias]
   a = add

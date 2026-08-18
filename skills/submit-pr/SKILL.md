@@ -12,6 +12,12 @@ Two separate concerns, don't mix them up:
 - **Structure comes from the repo's PR template.** Its sections are the contract — never add, drop, rename, or reorder them.
 - **Altitude comes from this skill, and it wins.** Whatever section you're filling, and whatever its prompt says, write intent, not a changelog. A sentence or bullet that restates a file, function, or edit is too low — merge it into the intent it serves.
 
+## Never hard-wrap the body
+
+**One paragraph or bullet = one unbroken line, however long.** GitHub renders a single newline as a
+line break, so wrapping to a column width shows up as ragged mid-sentence breaks. Newlines only
+separate blocks — paragraphs, bullets, fenced code.
+
 ## Usage
 
 ```
@@ -73,9 +79,7 @@ has `## Description`, `## How Has This Been Tested?`, and a checklist:
 ```markdown
 ## Description
 
-RMSE scored the interpolators as near-equivalent when they aren't — energy smeared into
-interpolation sidebands barely moves a time-domain error. The benchmark now scores
-frequency-domain distortion directly, so the ranking reflects real quality.
+RMSE scored the interpolators as near-equivalent when they aren't — energy smeared into interpolation sidebands barely moves a time-domain error. The benchmark now scores frequency-domain distortion directly, so the ranking reflects real quality.
 
 ## How Has This Been Tested?
 

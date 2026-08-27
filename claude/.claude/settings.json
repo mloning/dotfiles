@@ -222,6 +222,7 @@
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
   },
+  "outputStyle": "Concise",
   "spinnerTipsEnabled": false,
   "spinnerVerbs": {
     "mode": "replace",
@@ -229,6 +230,7 @@
   },
   "effortLevel": "xhigh",
   "plansDirectory": "./local/plans",
+  "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
   "gitAttribution": false,
   "disableClaudeAiConnectors": true,

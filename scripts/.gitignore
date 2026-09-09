@@ -1,6 +1,10 @@
-# git-ignore everything except my scripts
+# git-ignore everything except my scripts. Re-including a file needs its parent
+# directories re-included first, otherwise git never looks inside them.
 *
-!./local/bin/tmux-sessionizer.sh
+!.local/
+!.local/bin/
+!.local/bin/tmux-sessionizer.sh
+!.local/bin/git_fzf_branch_picker
 
 # .local/share
 # .local/state

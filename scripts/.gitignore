@@ -4,7 +4,7 @@
 !.local/
 !.local/bin/
 !.local/bin/tmux-sessionizer.sh
-!.local/bin/git_fzf_branch_picker
+!.local/bin/git_fzf_branch_switcher.sh
 
 # .local/share
 # .local/state

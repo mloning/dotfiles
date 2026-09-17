@@ -50,7 +50,7 @@ separate blocks — paragraphs, bullets, fenced code.
    - **What changed** — 3–6 bullets when the PR does several separable things; none at all when it does one, because then the title and diff already cover it. One bullet per change at intent level, each one rendered line, carrying at most one clause of purpose. Never one bullet per file or commit, and never enumerate the functions or modules you touched.
 5. **Justify the approach in a clause, not a paragraph.** Only where a reviewer would otherwise block on "why this way?", and then inside the bullet it belongs to. No alternatives-considered section, no narrating the decision ("I chose this over…", "this deliberately overrides…"), no arguing with the repo's own docs. A design that needs a paragraph to defend it belongs in a doc the PR links to.
 6. **State test status in one or two plain sentences.** What you ran, and flatly what you did not: "Not run on glasses. Verified off-device: both build trees re-configure, and every script runs against a stubbed `adb`." No bold, and never tell the reviewer what to weigh or focus on — that is their call. Commands only when they aren't guessable: a repro, the specific failing case, a required flag or env var. Never restate the repo's standard commands (`pytest`, `npm test`, `make`) — the reviewer knows them. Nothing non-obvious and a section to fill? One line — "Covered by the existing test suite; no manual steps." — and no padding. No such section, add nothing.
-7. **Link the issue — only if one was passed.** Include it verbatim as `Closes <full link>`; a bare key won't trigger the GHE/Jira integration. If no argument was given, omit the line entirely — do **not** infer one from the branch or commits, and do **not** ask. The linked issue is the reviewer's single entry point, so don't also reference its epic, parent, or siblings; add a related PR or doc only when it genuinely isn't reachable from there.
+7. **Link the issue — only if one was passed.** Include it verbatim as `Closes <full link>`; a bare key won't trigger the GHE/Jira integration. If no argument was given, write `N/A` where a section asks for the reference and otherwise omit the line entirely — do **not** infer one from the branch or commits, and do **not** ask. The linked issue is the reviewer's single entry point, so don't also reference its epic, parent, or siblings; add a related PR or doc only when it genuinely isn't reachable from there.
 8. **Write the title — it carries the _what_.** The body only reports the pieces, so the title has to state the change whole: one imperative line, ~70 chars, no trailing period. Match the repo's convention before inventing one — check `git log --oneline -20 main` for a Conventional Commits prefix, a `[JIRA-123]` tag, or whatever is there.
 9. **Create the PR as a draft.** Default to a **draft** PR unless told otherwise (MCP `ghe_create_pr` with `draft: true`; else `gh pr create --draft`). Target the correct base (`main` unless told otherwise). Report the PR URL.
 
@@ -67,33 +67,29 @@ separate blocks — paragraphs, bullets, fenced code.
 
 ## Default description template
 
-Only when the repo has no template. Nothing here is a contract, unlike a repo's template: every
-heading below except `Why` is optional, and an empty section is worse than no section — delete the
-heading too. There is deliberately no `Approach` heading; a design that needs its own section
-belongs in a doc this PR links to.
+Only when the repo has no template. Use both headings, verbatim and in this order — `N/A` under the
+first when no issue was passed, rather than deleting it. There is deliberately no `Approach`
+heading; a design that needs its own section belongs in a doc this PR links to.
 
 ```markdown
-## Why
+#### Reference issues/PRs
+
+Closes <full issue link> # only if an issue arg was passed; one ticket, no epic alongside it. Otherwise `N/A`.
+
+#### What does this PR change?
 
 <2–3 sentences: the problem, and what it cost in practice. Name a component only when it is the subject.>
 
-## What changed
+<3–6 bullets, one line each, only if the PR does several separable things — omit entirely if it does one>
 
-<3–6 bullets, one line each, only if the PR does several separable things — delete the heading if it does one>
-
-## Testing
-
-<what you ran, what you did not, and the non-obvious command — delete this heading if there is nothing>
-
-Closes <full issue link> # only if an issue arg was passed. One ticket, no epic alongside it.
+<test status in one or two plain sentences: what you ran, what you did not, and the non-obvious command — omit if there is nothing>
 ```
 
 ## Example
 
-35 files, +267/−743, into a repo whose template has `#### Reference issues/PRs` and
-`#### What does this PR change?`. 250 words, and note what each block is doing:
-two sentences of concrete cost, bullets that report rather than defend, a flat
-test status, and one note the reader can act on.
+35 files, +267/−743, written against the default template above. 250 words, and note
+what each block is doing: two sentences of concrete cost, bullets that report rather
+than defend, a flat test status, and one note the reader can act on.
 
 ```markdown
 #### Reference issues/PRs

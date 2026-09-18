@@ -1,5 +1,5 @@
-model = "gpt-5.4"
-model_reasoning_effort = "high"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "xhigh"
 
 [tui]
 show_tooltips = false
@@ -34,3 +34,6 @@ trusted_hash = "sha256:9de4b90f77acf045cd804a5b7581b11df0d97bfd723f5500b00783d9d
 
 [hooks.state."/Users/mloning/.codex/hooks.json:post_tool_use:0:0"]
 trusted_hash = "sha256:6a4d9e4fb1813a399a35a0f183bd4437f098aef2312f91bdbf2b35f56a564643"
+
+[notice.model_migrations]
+"gpt-5.5" = "gpt-5.6-sol"

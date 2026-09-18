@@ -2,45 +2,42 @@
 export PATH="$PATH:/Users/mloning/.docker/bin"
 # End of Docker Desktop section.
 
+# PATH configuration
+set --local paths \
+    $HOME/.cargo/bin \
+    $HOME/.local/bin \
+    $HOME/bin \
+    $HOME/usr/local/bin \
+    $HOME/Library/pnpm \
+    /opt/homebrew/bin \
+    /opt/homebrew/opt/libpq/bin \
+    /opt/homebrew/opt/openjdk@11/bin \
+    /opt/homebrew/sbin \
+    /usr/local/opt/libpq/bin
+for path in $paths
+    if test -d $path
+        fish_add_path --global $path
+    end
+end
+
+# Load machine-specific configuration
+if test -f ~/.config/fish/config.local.fish
+    source ~/.config/fish/config.local.fish
+end
+    
+
+# Commands to run in interactive sessions can go here
 if status is-interactive
     # Remove fish greeting
     set -g fish_greeting
 
-    # Commands to run in interactive sessions can go here
-    
     # Set neovim as default editor
     set -gx EDITOR nvim
     set -gx VISUAL nvim
     
-    # Load machine-specific configuration
-    if test -f ~/.config/fish/config.local.fish
-        source ~/.config/fish/config.local.fish
-    end
-    
-    # PATH configuration
-    set --local paths \
-        $HOME/.cargo/bin \
-        $HOME/.local/bin \
-        $HOME/bin \
-        $HOME/usr/local/bin \
-        /opt/homebrew/bin \
-        /opt/homebrew/opt/libpq/bin \
-        /opt/homebrew/opt/openjdk@11/bin \
-        /opt/homebrew/sbin \
-        /usr/local/opt/libpq/bin
-    for path in $paths
-        if test -d $path
-            fish_add_path $path
-        end
-    end
-    
     # GPG
     set -gx GPG_TTY (tty)
     gpgconf --launch gpg-agent
-    
-    # pnpm
-    set -gx PNPM_HOME "$HOME/Library/pnpm"
-    fish_add_path $PNPM_HOME
     
     # Aliases
     alias la='eza --long --all --total-size'

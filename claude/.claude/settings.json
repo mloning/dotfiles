@@ -217,7 +217,6 @@
     ],
     "defaultMode": "acceptEdits"
   },
-  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
@@ -229,6 +228,11 @@
     "verbs": ["Working"]
   },
   "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    }
+  },
   "plansDirectory": "./local/plans",
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,

@@ -215,7 +215,7 @@
       "Bash(less *credentials*)",
       "Bash(more *credentials*)"
     ],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "auto"
   },
   "statusLine": {
     "type": "command",

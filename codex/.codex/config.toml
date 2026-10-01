@@ -1,4 +1,4 @@
-model = "gpt-5.6-sol"
+model = "gpt-6-astra"
 model_reasoning_effort = "xhigh"
 
 [tui]
@@ -11,6 +11,7 @@ status_line = [
   "model-with-reasoning",
   "context-usage",
 ]
+screen_reader_detection_done = true
 
 [analytics]
 enabled = false # disable OpenAI analytics

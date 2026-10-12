@@ -33,8 +33,10 @@ Explore before committing, then capture the decision as a spec. The goal is the 
 
    # 7a. FROM CLAUDE → spawn the Codex reviewer (stdin closed so codex can't hang reading it).
    #     Session files persist so the tokens land in `ccusage codex`; isolation comes from --ignore-user-config, not persistence.
-   (perl -e 'alarm shift; exec @ARGV' 180 \
-     codex exec --ignore-user-config --ignore-rules -s read-only \
+   #     Pin model + effort: --ignore-user-config drops to an older default model at xhigh, which reasons past 10 min on a spec and emits nothing.
+   (perl -e 'alarm shift; exec @ARGV' 600 \
+     codex exec --ignore-user-config --ignore-rules --skip-git-repo-check -s read-only \
+       -m gpt-6-astra -c model_reasoning_effort=high \
        --output-schema $RD/schema.json -o $RD/other.json \
        "$CRITERIA
 
@@ -42,7 +44,7 @@ Explore before committing, then capture the decision as a spec. The goal is the 
    $(cat "$SPEC_FILE")" < /dev/null) > $RD/other.log 2>&1 &
 
    # 7b. FROM CODEX → spawn the Claude reviewer (stdin closed; session persists so ccusage counts it):
-   (perl -e 'alarm shift; exec @ARGV' 180 \
+   (perl -e 'alarm shift; exec @ARGV' 600 \
      claude -p "$CRITERIA Output ONLY a JSON object (no prose, no markdown fence) of shape {\"findings\":[{\"severity\":\"critical|important|minor\",\"location\":\"\",\"issue\":\"\",\"why\":\"\",\"fix\":\"\"}],\"verdict\":\"\"}.
 
    ===SPEC===

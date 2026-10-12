@@ -28,8 +28,10 @@ Critique before any code is written. Verify independently — read the actual co
 
    # 1a. FROM CLAUDE → spawn the Codex critic (read-only sandbox, no user config/rules, stdin closed, schema enforced to a file).
    #     Session files persist so the tokens land in `ccusage codex`; isolation comes from --ignore-user-config, not persistence.
+   # Pin model + effort: --ignore-user-config drops to an older default model at xhigh, which can reason past the timeout and emit nothing.
    (perl -e 'alarm shift; exec @ARGV' 600 \
-     codex exec --ignore-user-config --ignore-rules -s read-only \
+     codex exec --ignore-user-config --ignore-rules --skip-git-repo-check -s read-only \
+       -m gpt-6-astra -c model_reasoning_effort=high \
        --output-schema $RD/schema.json -o $RD/other.json \
        "$CRITERIA
 

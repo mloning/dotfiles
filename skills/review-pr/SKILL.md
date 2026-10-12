@@ -61,8 +61,10 @@ The remote counterpart to `review-local`: review only what the PR introduces aga
    #     (read-only sandbox, no user config/rules, stdin closed, schema enforced to a per-lens file).
    #     Session files persist so the tokens land in `ccusage codex`; isolation comes from --ignore-user-config, not persistence.
    reviewer() {   # $1 = aspect slug, $2 = aspect focus
+     # Pin model + effort: --ignore-user-config drops to an older default model at xhigh, which can reason past the timeout and emit nothing.
      (perl -e 'alarm shift; exec @ARGV' 600 \
-       codex exec --ignore-user-config --ignore-rules -s read-only \
+       codex exec --ignore-user-config --ignore-rules --skip-git-repo-check -s read-only \
+         -m gpt-6-astra -c model_reasoning_effort=high \
          --output-schema $RD/schema.json -o "$RD/lens-$1.json" \
          "$PREAMBLE
    YOUR ASPECT: $2

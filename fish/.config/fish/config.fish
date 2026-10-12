@@ -68,9 +68,18 @@ if status is-interactive
         end
     end
     
+    # On failure, push the prompt below the error output, otherwise repainting a
+    # multi-line prompt overwrites it (same trick as fish's __fish_echo)
+    function __tmux_sessionizer_widget
+        if not tmux-sessionizer
+            string repeat -N \n --count=(math (count (fish_prompt)) - 1)
+        end
+        commandline -f repaint
+    end
+
     function fish_user_key_bindings
-        bind -M insert \cf 'tmux-sessionizer; commandline -f repaint'
-        bind -M default \cf 'tmux-sessionizer; commandline -f repaint'
+        bind -M insert \cf __tmux_sessionizer_widget
+        bind -M default \cf __tmux_sessionizer_widget
     end
     
     starship init fish | source

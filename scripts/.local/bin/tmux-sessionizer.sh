@@ -1,9 +1,13 @@
 #!/bin/bash
-set -euo pipefail
+set -Eeuo pipefail
 IFS=$'\n\t'
 
-# Script to start tmux sessions for projects using fzf to filter directories 
+# Script to start tmux sessions for projects using fzf to filter directories
 # adapted from https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
+
+# Name the failing command, since tmux errors like "open terminal failed: not a
+# terminal" don't say where they come from
+trap 'echo "tmux-sessionizer: command failed (exit $?): $BASH_COMMAND" >&2' ERR
 
 # Personal project directory
 DEFAULT_ROOT_PATH="$HOME"/Dev/projects
@@ -25,7 +29,8 @@ if [[ $# -eq 1 ]]; then
   name="$1"
   path="$ROOT_PATH/$name"
 else
-  path=$(find "$ROOT_PATH" -mindepth 1 -maxdepth 1 -type d | fzf)
+  # fzf exits non-zero when cancelled, handled by the empty path check below
+  path=$(find "$ROOT_PATH" -mindepth 1 -maxdepth 1 -type d | fzf || true)
   # Trim full path to name
   name=$(basename "$path" | tr . _)
 fi
@@ -35,28 +40,35 @@ if [[ -z "$path" ]]; then
   exit 0
 fi
 
-is_conda_env_available () {
-  conda env list | grep "^$1\s"
-}
+if [[ ! -d "$path" ]]; then
+  echo "tmux-sessionizer: no such directory: $path" >&2
+  exit 1
+fi
+
+# Check once, as `conda env list` is slow
+has_conda_env=false
+if command -v conda > /dev/null && conda env list | grep "^$name\s" > /dev/null; then
+  has_conda_env=true
+fi
 
 # Function to create tmux windows for given project name
 create_windows () {
   # launch nvim in first window
-  # the first window is created when the session is created, so we only need to rename it 
+  # the first window is created when the session is created, so we only need to rename it
   local window=1
   local target="$name:$window"
-  tmux rename-window -t "$target" "nvim" 
-  if is_conda_env_available "$name"; then
+  tmux rename-window -t "$target" "nvim"
+  if $has_conda_env; then
     tmux send-keys -t "$target" "conda activate $name" C-m C-l
   fi
-  tmux send-keys -t "$target" "cd $path" C-m C-l  
-  tmux send-keys -t "$target" "nvim" C-m 
+  tmux send-keys -t "$target" "cd $path" C-m C-l
+  tmux send-keys -t "$target" "nvim" C-m
 
   # launch AI agent in second window
   local window=2
   local target="$name:$window"
   tmux new-window -d -t "$target" -n "$AGENT"
-  if is_conda_env_available "$name"; then
+  if $has_conda_env; then
     tmux send-keys -t "$target" "conda activate $name" C-m C-l
   fi
   tmux send-keys -t "$target" "cd $path" C-m C-l
@@ -66,7 +78,7 @@ create_windows () {
   local window=3
   local target="$name:$window"
   tmux new-window -d -t "$target"
-  if is_conda_env_available "$name"; then
+  if $has_conda_env; then
     tmux send-keys -t "$target" "conda activate $name" C-m C-l
   fi
   tmux send-keys -t "$target" "cd $path" C-m C-l
@@ -75,26 +87,15 @@ create_windows () {
   tmux select-window -t "$target"
 }
 
-
-# check if tmux is running, gives non-zero exit code if not, otherwise process ID
-is_tmux_running=$(pgrep tmux || true)
 is_tmux_session="${TMUX:-}"
 
-# if not in tmux and tmux is not running, create and attach to new session; 
-# otherwise, assume tmux is running
-if [[ -z "$is_tmux_running" ]] && [[ -z "$is_tmux_session" ]]; then
-  tmux new-session -s "$name" -c "$path" -d
-  create_windows
-  tmux attach-session -t "=$name"
-fi
-
 # if in tmux and current session is already selected name, exit
-current_session=$(tmux display-message -p '#S')
-if [[ -n "$is_tmux_session" ]] && [[ "$current_session" == "$name" ]]; then
+if [[ -n "$is_tmux_session" ]] && [[ "$(tmux display-message -p '#S')" == "$name" ]]; then
   exit 0
 fi
 
-# if the session does not exists, create a new detached session
+# if the session does not exist, create a new detached session; this also
+# starts the tmux server if it is not running
 # use "=" prefix to force an exact match (otherwise tmux prefix-matches,
 # e.g. "nm-bci-cpp" would match an existing "nm-bci-cpp-wt1" session)
 if ! tmux has-session -t "=$name" 2> /dev/null; then

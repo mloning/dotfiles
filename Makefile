@@ -36,6 +36,7 @@ delete: ## Delete symbolic links
 
 git-filters: ## Configure git filters used in .gitattributes
 	git config filter.jsonsort.clean 'jq -S .'
+	git config filter.jsonsort.smudge cat
 	git config filter.jsonsort.required true
 
 link-skills: ## Symlink skills/ into Claude Code, Codex & Antigravity (agy)

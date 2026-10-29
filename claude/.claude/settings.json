@@ -1,4 +1,8 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "cleanupPeriodDays": 90,
   "disableClaudeAiConnectors": true,
   "effortLevel": "xhigh",
@@ -8,7 +12,6 @@
     "DISABLE_ERROR_REPORTING": "1",
     "DISABLE_TELEMETRY": "1"
   },
-  "gitAttribution": false,
   "hooks": {
     "PermissionRequest": [
       {
@@ -71,7 +74,6 @@
       }
     ]
   },
-  "includeCoAuthoredBy": false,
   "modelSettings": {
     "claude-opus-5-5": {
       "effortLevel": "xhigh"

@@ -1,6 +1,6 @@
 # Makefile for easier setup
 
-.PHONY: help create delete link-skills
+.PHONY: help create delete link-skills git-filters
 
 .DEFAULT_GOAL := help
 
@@ -28,11 +28,15 @@ AGENT_SKILLS_DIRS := $(CLAUDE_SKILLS_DIR) $(CODEX_SKILLS_DIR) $(AGY_CLI_SKILLS_D
 help: # Help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-create: ## Create symbolic links
+create: git-filters ## Create symbolic links
 	stow --verbose=${VERBOSE} --target=${TARGET_DIR} --restow ${STOW_PACKAGES}
 
 delete: ## Delete symbolic links
 	stow --verbose=${VERBOSE} --target=${TARGET_DIR} --delete ${STOW_PACKAGES}
+
+git-filters: ## Configure git filters used in .gitattributes
+	git config filter.jsonsort.clean 'jq -S .'
+	git config filter.jsonsort.required true
 
 link-skills: ## Symlink skills/ into Claude Code, Codex & Antigravity (agy)
 	@for dir in $(AGENT_SKILLS_DIRS); do \

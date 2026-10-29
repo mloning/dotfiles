@@ -1,0 +1,3 @@
+# Claude Code rewrites settings.json in its own key order. Sort keys on staging
+# so diffs show only real changes. Filter is defined by `make git-filters`.
+claude/.claude/settings.json filter=jsonsort

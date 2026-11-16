@@ -22,7 +22,7 @@ The remote counterpart to `review-local`: review only what the PR introduces aga
 2. **Build & test first.** Run the project's build/tests/linters (check README/CLAUDE.md/CI for the commands). If they fail, say so — and don't claim they pass without running them. Do this once, up front, before launching the reviews.
 3. **Launch your review + a focused cross-review fleet in parallel.** Run these concurrently, then combine at the end (step 9) — don't run them sequentially:
    - **You** do a holistic review of the diff against steps 4–8. Read the diff once; only crawl the repo to chase a *specific named risk* (e.g. confirm a changed function's callers are updated) — don't re-explore the whole tree.
-   - **Five focused headless cross-reviewers** run in the background, one narrow aspect each: **correctness, security, spec & requirements, test coverage, documentation quality**. One lens per reviewer goes deeper than a single generalist running the whole checklist. Run them the reliable way — **hand over the scope and disable exploration**, don't plead in prose (the loose-in-the-repo reviewer ignores "use ≤15 tool calls / don't read skill files," spirals, and gets hard-killed before emitting anything). Give each reviewer the **full diff plus the PR/ticket context inlined in the prompt**, run it **with exploration structurally disabled** and **stdin closed** (`codex exec` hangs reading an open stdin), and make it **write schema-validated findings to its own file**. Define the `reviewer()` function for your agent — `4a` if you are Claude (spawn Codex), `4b` if you are Codex (spawn Claude) — then run the five spawn calls in `5`:
+   - **Four focused headless cross-reviewers** run in the background, one narrow aspect each: **correctness, spec & requirements, test coverage, documentation quality**. One lens per reviewer goes deeper than a single generalist running the whole checklist. Run them the reliable way — **hand over the scope and disable exploration**, don't plead in prose (the loose-in-the-repo reviewer ignores "use ≤15 tool calls / don't read skill files," spirals, and gets hard-killed before emitting anything). Give each reviewer the **full diff plus the PR/ticket context inlined in the prompt**, run it **with exploration structurally disabled** and **stdin closed** (`codex exec` hangs reading an open stdin), and make it **write schema-validated findings to its own file**. Define the `reviewer()` function for your agent — `4a` if you are Claude (spawn Codex), `4b` if you are Codex (spawn Claude) — then run the four spawn calls in `5`:
 
    ```bash
    # 0. Per-run temp dir, keyed off the branch — reconstructible in later steps without shell state,
@@ -93,9 +93,8 @@ The remote counterpart to `review-local`: review only what the PR introduces aga
          --tools "" --output-format json < /dev/null) > "$RD/lens-$1.json" 2>&1 &
    }
 
-   # 5. Spawn all five focused reviewers (identical for both agents once reviewer() is defined).
+   # 5. Spawn all four focused reviewers (identical for both agents once reviewer() is defined).
    reviewer correctness "correctness bugs — wrong logic, unhandled edge cases (null/empty/boundary), off-by-one, missing or incorrect error handling, race conditions, resource leaks."
-   reviewer security    "security — leaked secrets/keys/tokens, injection (SQL/command/path/template), missing authz/authn checks, unsafe handling of untrusted input, unsafe deserialization."
    reviewer spec        "spec & requirements — does the diff fully implement the PR DESCRIPTION and satisfy the linked ticket's acceptance criteria; flag drift between stated intent and actual change, missing/partial requirements, scope creep beyond the ticket, and whether the UNRESOLVED REVIEW COMMENTS are actually addressed by the diff."
    reviewer tests       "test coverage — do the tests actually exercise the new/changed behaviour (not just assert on mocks); missing tests for new code paths and edge cases; skipped tests, leftover debug code, or TODOs."
    reviewer docs        "documentation quality — READMEs, other docs, docstrings/API docs, and in-code comments added or changed in the diff. Judge them against the write-docs rubric inlined below the ===DOC RUBRICS=== marker (it covers documentation content and folds in Simplified Technical English for sentence-level style); apply those rules to the changed documentation and report where it violates them. Never flag code, identifiers, commands, flags, paths, or quoted error/log strings. Flag only docs/comments actually added or changed in the diff.
@@ -104,13 +103,13 @@ The remote counterpart to `review-local`: review only what the PR introduces aga
    $DOCS_RUBRIC"
    ```
 
-   Inlining via `"$(cat …)"` is safe — command-substitution output is not re-evaluated. Each reviewer finishes well under the timeout; the `perl alarm` is only a backstop. The five run concurrently, so wall-clock ≈ the slowest lens, not the sum. Keep doing your own review while they run, then `wait`.
+   Inlining via `"$(cat …)"` is safe — command-substitution output is not re-evaluated. Each reviewer finishes well under the timeout; the `perl alarm` is only a backstop. The four run concurrently, so wall-clock ≈ the slowest lens, not the sum. Keep doing your own review while they run, then `wait`.
 4. **Scope the diff.** `git diff main...HEAD` (three-dot, vs merge-base). Only flag issues this PR introduces.
 5. **Does it do what it claims?** Check the diff fully implements the PR *description* and satisfies the linked *Jira ticket's* acceptance criteria; flag drift between stated intent and actual change, missing/partial requirements, and scope creep beyond the ticket.
 6. **Hunt high-value misses.** Correctness (edge cases, null/empty, off-by-one, error handling), security (secrets/keys, injection, authz), leftover debug code/TODOs, whether tests actually cover the change, and documentation quality (judge changed docs/comments against the `write-docs` skill).
 7. **Skip the noise.** Don't flag style a linter handles, pre-existing issues, or anything you can't confirm from the diff — if unsure it's real, don't flag it.
 8. **Check the conversation.** Are unresolved review comments and prior reviewer concerns actually addressed by the current diff? Flag anything raised and left open.
-9. **Combine results.** Once your own review is done, `wait` for the background reviewers, then read the five `$RD/lens-*.json` files (recompute `RD` with the same line from the block above if your shell no longer has it set):
+9. **Combine results.** Once your own review is done, `wait` for the background reviewers, then read the four `$RD/lens-*.json` files (recompute `RD` with the same line from the block above if your shell no longer has it set):
    - **From Claude** (Codex reviewers): each file *is* the findings object (`{findings, verdict}`) — read it directly.
    - **From Codex** (Claude reviewers): each file is an envelope — extract the payload with `jq -r '.result'`, then parse that as the findings JSON.
 

@@ -291,6 +291,7 @@
     ]
   },
   "plansDirectory": "./local/plans",
+  "promptCacheTtl": "1h",
   "skipWorkflowUsageWarning": true,
   "spinnerTipsEnabled": false,
   "spinnerVerbs": {

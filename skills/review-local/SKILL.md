@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Review Local
 
-Review only what this change introduces against `main` — not pre-existing code. High signal over volume.
+Review only what this change introduces against the default branch (freshly fetched `origin/main`) — not pre-existing code. High signal over volume.
 
 1. **Build & test first.** Run the project's build/tests/linters (check README/CLAUDE.md/CI for the commands). If they fail, fix that before reviewing — and don't claim they pass without running them. Do this once, up front, before launching the reviews.
 2. **Launch your review + a focused cross-review fleet in parallel.** Run these concurrently, then combine at the end (step 7) — don't run them sequentially:
@@ -19,8 +19,15 @@ Review only what this change introduces against `main` — not pre-existing code
    RD="${TMPDIR:-/tmp}/review-$(git rev-parse --abbrev-ref HEAD | tr -c 'A-Za-z0-9._-' '-')"; mkdir -p "$RD"
 
    # 1. Capture the exact change set — this IS the scope; the reviewers never rediscover it.
-   git diff main...HEAD > $RD/diff.txt
-   git diff HEAD >> $RD/diff.txt   # include uncommitted work too
+   #    Fetch first so a stale local main doesn't pull already-merged upstream work into the diff. Then take
+   #    ONE diff from the merge-base to the working tree (committed + staged + unstaged — no overlapping
+   #    hunks), and append untracked files, which `git diff` never shows (e.g. a new module).
+   #    --default-prefix overrides diff.mnemonicPrefix so every path reads a/… b/….
+   BASE="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@')"; BASE="${BASE:-main}"
+   git fetch --quiet origin "$BASE" || echo "fetch failed — origin/$BASE may be stale"
+   git diff --default-prefix "$(git merge-base HEAD "origin/$BASE")" > $RD/diff.txt
+   (cd "$(git rev-parse --show-toplevel)" && git ls-files --others --exclude-standard -z |
+     xargs -0 -r -n1 git diff --default-prefix --no-index /dev/null) >> $RD/diff.txt
 
    # 2. Write the findings schema once (single line — safe regardless of indentation).
    printf '%s' '{"type":"object","additionalProperties":false,"required":["findings","verdict"],"properties":{"findings":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["severity","location","issue","why","fix"],"properties":{"severity":{"type":"string","enum":["critical","important","minor"]},"location":{"type":"string"},"issue":{"type":"string"},"why":{"type":"string"},"fix":{"type":"string"}}}},"verdict":{"type":"string"}}}' > $RD/schema.json
@@ -83,7 +90,7 @@ Review only what this change introduces against `main` — not pre-existing code
    ```
 
    Inlining the diff via `"$(cat …)"` is safe — command-substitution output is not re-evaluated, so diff content can't run as shell. Each reviewer finishes well under the timeout (≈20–60s for a typical diff); the `perl alarm` is only a backstop that scales with diff size. The four run concurrently, so wall-clock ≈ the slowest lens, not the sum. Keep doing your own review while they run, then `wait`.
-3. **Scope the diff.** `git diff main...HEAD` (three-dot, vs merge-base) plus `git diff HEAD` for uncommitted work. Only flag issues this change introduces.
+3. **Scope the diff.** Read `$RD/diff.txt` from step 1 — the single diff from the merge-base with a freshly fetched `origin/<base>` to the working tree, plus untracked files. Only flag issues this change introduces.
 4. **Does it do what it claims?** Check the diff fully implements the intent; flag missing/partial requirements and scope creep (behaviour that wasn't asked for).
 5. **Hunt high-value misses.** Correctness (edge cases, null/empty, off-by-one, error handling), security (secrets/keys, injection, authz), leftover debug code/TODOs, whether tests actually cover the change, and documentation quality (judge changed docs/comments against the `write-docs` skill).
 6. **Skip the noise.** Don't flag style a linter handles, pre-existing issues, or anything you can't confirm from the diff — if unsure it's real, don't flag it.

@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Review PR
 
-The remote counterpart to `review-local`: review only what the PR introduces against `main` — not pre-existing code — plus the context it carries (description, conversation, linked tickets). High signal over volume. Verify independently; don't trust the PR's own framing of what it does.
+The remote counterpart to `review-local`: review only what the PR introduces against its base branch — not pre-existing code — plus the context it carries (description, conversation, linked tickets). High signal over volume. Verify independently; don't trust the PR's own framing of what it does.
 
 > **Tooling — prefer MCP.** For every GitHub operation (resolving the PR, fetching the diff/description/conversation, posting review comments), use an available GitHub MCP server's tools in preference to the `gh` CLI — e.g. `ghe_get_pr`, `ghe_pr_diff`, `ghe_pr_all_feedback`, `ghe_add_review_comment` if present. Fall back to `gh` only when no MCP tool is available (e.g. `gh pr checkout`, which has no MCP equivalent).
 
@@ -18,7 +18,7 @@ The remote counterpart to `review-local`: review only what the PR introduces aga
 
 `[pr]` is an optional PR number or URL. With no argument, review the PR linked to the **current branch** (GitHub MCP `ghe_my_prs`, else `gh pr view` with no arg); if the branch has no open PR, say so and stop.
 
-1. **Resolve & fetch the PR.** Resolve the target (the arg, or the current branch's PR). Fetch the change set, description, and conversation — GitHub MCP, or `gh pr view <pr>` / `gh pr diff <pr>`. Check out the branch (`gh pr checkout <pr>`) so the diff is local. Pull any linked Jira tickets and referenced docs/PRs.
+1. **Resolve & fetch the PR.** Resolve the target (the arg, or the current branch's PR). Fetch the change set, description, conversation, and **base branch** (`baseRefName`) — GitHub MCP, or `gh pr view <pr>` / `gh pr diff <pr>`. Check out the branch (`gh pr checkout <pr>`) so the diff is local. Pull any linked Jira tickets and referenced docs/PRs.
 2. **Build & test first.** Run the project's build/tests/linters (check README/CLAUDE.md/CI for the commands). If they fail, say so — and don't claim they pass without running them. Do this once, up front, before launching the reviews.
 3. **Launch your review + a focused cross-review fleet in parallel.** Run these concurrently, then combine at the end (step 9) — don't run them sequentially:
    - **You** do a holistic review of the diff against steps 4–8. Read the diff once; only crawl the repo to chase a *specific named risk* (e.g. confirm a changed function's callers are updated) — don't re-explore the whole tree.
@@ -30,7 +30,12 @@ The remote counterpart to `review-local`: review only what the PR introduces aga
    RD="${TMPDIR:-/tmp}/review-$(git rev-parse --abbrev-ref HEAD | tr -c 'A-Za-z0-9._-' '-')"; mkdir -p "$RD"
 
    # 1. Capture the exact PR change set — this IS the scope; the reviewers never rediscover it.
-   git diff main...HEAD > $RD/diff.txt
+   #    Diff against the PR's own base branch (from step 1 — not always main), fetched first so a stale local
+   #    copy doesn't pull already-merged upstream work into the diff. merge-base..HEAD is exactly what the PR adds.
+   #    --default-prefix overrides diff.mnemonicPrefix so every path reads a/… b/….
+   BASE="<the PR's base branch, e.g. main>"
+   git fetch --quiet origin "$BASE" || echo "fetch failed — origin/$BASE may be stale"
+   git diff --default-prefix "$(git merge-base HEAD "origin/$BASE")" HEAD > $RD/diff.txt
 
    # 2. Capture the PR context the reviewers must check the diff against (fill these in from step 1).
    {
@@ -104,7 +109,7 @@ The remote counterpart to `review-local`: review only what the PR introduces aga
    ```
 
    Inlining via `"$(cat …)"` is safe — command-substitution output is not re-evaluated. Each reviewer finishes well under the timeout; the `perl alarm` is only a backstop. The four run concurrently, so wall-clock ≈ the slowest lens, not the sum. Keep doing your own review while they run, then `wait`.
-4. **Scope the diff.** `git diff main...HEAD` (three-dot, vs merge-base). Only flag issues this PR introduces.
+4. **Scope the diff.** Read `$RD/diff.txt` from step 3 — the PR head against its merge-base with a freshly fetched `origin/<base>`. Only flag issues this PR introduces.
 5. **Does it do what it claims?** Check the diff fully implements the PR *description* and satisfies the linked *Jira ticket's* acceptance criteria; flag drift between stated intent and actual change, missing/partial requirements, and scope creep beyond the ticket.
 6. **Hunt high-value misses.** Correctness (edge cases, null/empty, off-by-one, error handling), security (secrets/keys, injection, authz), leftover debug code/TODOs, whether tests actually cover the change, and documentation quality (judge changed docs/comments against the `write-docs` skill).
 7. **Skip the noise.** Don't flag style a linter handles, pre-existing issues, or anything you can't confirm from the diff — if unsure it's real, don't flag it.

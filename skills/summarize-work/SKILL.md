@@ -23,7 +23,7 @@ Given a username and optional time horizon (default 7 days), compute the start d
 
 ### 1. GitHub PRs
 
-> **Tooling — prefer MCP.** Use an available GitHub MCP server's search tools (e.g. `ghe_search_prs`, `ghe_my_prs`) in preference to the `gh` CLI. Fall back to `gh search prs` only when no MCP tool is available.
+> **Tooling.** Run the searches with `gh search prs`.
 
 Run these two searches in parallel:
 

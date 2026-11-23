@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 The remote counterpart to `review-local`: review only what the PR introduces against its base branch — not pre-existing code — plus the context it carries (description, conversation, linked tickets). High signal over volume. Verify independently; don't trust the PR's own framing of what it does.
 
-> **Tooling — prefer MCP.** For every GitHub operation (resolving the PR, fetching the diff/description/conversation, posting review comments), use an available GitHub MCP server's tools in preference to the `gh` CLI — e.g. `ghe_get_pr`, `ghe_pr_diff`, `ghe_pr_all_feedback`, `ghe_add_review_comment` if present. Fall back to `gh` only when no MCP tool is available (e.g. `gh pr checkout`, which has no MCP equivalent).
+> **Tooling.** Use the `gh` CLI for every GitHub operation: `gh pr view` / `gh pr diff` to fetch the PR, `gh pr checkout` to check it out, `gh pr review` to post a review, and `gh api repos/{owner}/{repo}/pulls/<pr>/reviews` with a `comments` array for inline comments.
 
 ## Usage
 
@@ -16,9 +16,9 @@ The remote counterpart to `review-local`: review only what the PR introduces aga
 /review-pr [pr]
 ```
 
-`[pr]` is an optional PR number or URL. With no argument, review the PR linked to the **current branch** (GitHub MCP `ghe_my_prs`, else `gh pr view` with no arg); if the branch has no open PR, say so and stop.
+`[pr]` is an optional PR number or URL. With no argument, review the PR linked to the **current branch** (`gh pr view` with no arg); if the branch has no open PR, say so and stop.
 
-1. **Resolve & fetch the PR.** Resolve the target (the arg, or the current branch's PR). Fetch the change set, description, conversation, and **base branch** (`baseRefName`) — GitHub MCP, or `gh pr view <pr>` / `gh pr diff <pr>`. Check out the branch (`gh pr checkout <pr>`) so the diff is local. Pull any linked Jira tickets and referenced docs/PRs.
+1. **Resolve & fetch the PR.** Resolve the target (the arg, or the current branch's PR). Fetch the change set, description, conversation, and **base branch** (`baseRefName`) — `gh pr view <pr>` / `gh pr diff <pr>`. Check out the branch (`gh pr checkout <pr>`) so the diff is local. Pull any linked Jira tickets and referenced docs/PRs.
 2. **Build & test first.** Run the project's build/tests/linters (check README/CLAUDE.md/CI for the commands). If they fail, say so — and don't claim they pass without running them. Do this once, up front, before launching the reviews.
 3. **Launch your review + a focused cross-review fleet in parallel.** Run these concurrently, then combine at the end (step 9) — don't run them sequentially:
    - **You** do a holistic review of the diff against steps 4–8. Read the diff once; only crawl the repo to chase a *specific named risk* (e.g. confirm a changed function's callers are updated) — don't re-explore the whole tree.
@@ -119,4 +119,4 @@ The remote counterpart to `review-local`: review only what the PR introduces aga
    - **From Codex** (Claude reviewers): each file is an envelope — extract the payload with `jq -r '.result'`, then parse that as the findings JSON.
 
    For any lens whose file is missing, empty, or not valid JSON (e.g. hard-killed by the timeout), say so explicitly and move on — don't fabricate its findings. Take the **union** of your own findings and all lens findings, **dedup** (same `file:line` + same issue), then **confirm each survivor against the diff yourself** and drop anything you can't substantiate. Never produce a vacuous "no disagreements" summary when reviewers failed to run.
-10. **Report by severity + verdict.** One **numbered** list grouped **Critical / Important / Minor** (number findings continuously `1..N` so they're easy to refer back to), each with `file:line`, what's wrong, why it matters, and the fix. Evidence before claims: don't state the PR is clean, or that build/tests pass, unless you actually ran them in step 2 — and drop hedge words ("should" / "probably" / "seems to") from the verdict; if you can't confirm something, verify it or say so. End with a verdict: **approve / request changes / comment**. If it's clean, say so — don't invent issues. If asked, post the findings as PR review comments (GitHub MCP or `gh pr review`); otherwise just report.
+10. **Report by severity + verdict.** One **numbered** list grouped **Critical / Important / Minor** (number findings continuously `1..N` so they're easy to refer back to), each with `file:line`, what's wrong, why it matters, and the fix. Evidence before claims: don't state the PR is clean, or that build/tests pass, unless you actually ran them in step 2 — and drop hedge words ("should" / "probably" / "seems to") from the verdict; if you can't confirm something, verify it or say so. End with a verdict: **approve / request changes / comment**. If it's clean, say so — don't invent issues. If asked, post the findings as PR review comments (`gh pr review`, or `gh api` for inline comments); otherwise just report.

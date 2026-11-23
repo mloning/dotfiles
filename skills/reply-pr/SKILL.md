@@ -8,9 +8,9 @@ disable-model-invocation: true
 
 Verify before implementing. Ask before assuming. Technical correctness over social comfort.
 
-> **Tooling — prefer MCP.** For every GitHub operation (fetching comments, replying, resolving threads, re-requesting review), use an available GitHub MCP server's tools in preference to the `gh` CLI — e.g. `ghe_pr_unresolved_threads`, `ghe_pr_comments`, `ghe_reply_review_comment` if present. Fall back to `gh` only when no MCP tool is available.
+> **Tooling.** Use the `gh` CLI for every GitHub operation: `gh api repos/{owner}/{repo}/pulls/<pr>/comments/<id>/replies -f body=…` to reply in a review thread, the `resolveReviewThread` mutation via `gh api graphql` to resolve one, `gh pr edit --add-reviewer` to re-request review.
 
-1. **Fetch open comments.** Get all unresolved review comments for the current branch's PR — GitHub MCP (e.g. `ghe_pr_unresolved_threads`), else `gh pr view --comments`. Note the PR number and each reviewer.
+1. **Fetch open comments.** Get all unresolved review comments for the current branch's PR — `gh api graphql` on the PR's `reviewThreads`, keeping threads where `isResolved` is false, plus `gh pr view --comments` for top-level comments. Note the PR number and each reviewer.
 2. **Read completely before acting.** Read every comment in full before touching any code. Group them: (a) clearly correct, (b) needs clarification, (c) disagree / would break something.
 3. **Verify each comment against the code.** Check the actual code at the referenced location. Restate what the comment is asking. Don't assume the reviewer is right; don't assume they're wrong.
 4. **Implement correct fixes.** For group (a): make the change, run build/tests to confirm nothing breaks. Smallest change that addresses the comment — don't refactor while fixing.

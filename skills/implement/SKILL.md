@@ -14,7 +14,7 @@ Turn an approved plan — or a ticket clear enough to build from — into a revi
 /implement [plan-path | issue-link]
 ```
 
-Both optional: the path to the plan, or a **full link** to the issue/ticket (e.g. `https://jira.sc-corp.net/browse/<JIRA-KEY>`). If omitted, work from whatever plan or ticket was agreed in context.
+Both optional: the path to the plan, or a **full link** to the issue/ticket (e.g. `https://<jira-host>/browse/<JIRA-KEY>`). If omitted, work from whatever plan or ticket was agreed in context.
 
 > **Definition of done — non-negotiable.** The run is complete only when *both* hold: (a) cross-review has run and every Critical/Important finding is fixed (step 5), and (b) a draft PR is open with its URL reported (step 6). Green slices are **not** the finish line — implementing the code is the middle of the job, not the end. Do not report the work done, hand back, or fall silent while review or the PR is still outstanding. The only legitimate early stop is a genuine block or a scope/architecture decision (step 7): that *pauses for input*, it does not end the run.
 

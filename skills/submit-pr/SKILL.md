@@ -38,7 +38,7 @@ separate blocks — paragraphs, bullets, fenced code.
 /submit-pr [issue-link]
 ```
 
-`[issue-link]` is optional: the Jira/GitHub issue to link via `Closes`. It **MUST** be a **full link** (e.g. `https://jira.sc-corp.net/browse/<JIRA-KEY>`), not a bare key — a bare key won't trigger the GHE/Jira integration. If omitted, leave the issue reference empty and **do not** prompt, interrupt, or ask for one.
+`[issue-link]` is optional: the Jira/GitHub issue to link via `Closes`. It **MUST** be a **full link** (e.g. `https://<jira-host>/browse/<JIRA-KEY>`), not a bare key — a bare key won't trigger the GHE/Jira integration. If omitted, leave the issue reference empty and **do not** prompt, interrupt, or ask for one.
 
 1. **Pre-flight.** Never open a PR from `main` — branch first. Ensure all changes are committed, new files included — check `git status` for untracked ones, which are neither in the PR nor in the diff below.
 2. **Scope the change set.** Pick the base: the one you were told, else the repo's default branch (`origin/HEAD`, or `main` if unset). Run `git fetch origin <base>`, then read `git diff $(git merge-base HEAD origin/<base>) HEAD`. Fetch first — against a stale local base, the diff includes work already merged upstream. Write from the diff — what the PR genuinely does — not from memory of the task.
